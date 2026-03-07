@@ -177,7 +177,7 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     // ── Layer 6: Sound Driver ─────────────────────────────────────────────────
     bool sound_ok = sound_init();
     corvus_draw_boot_progress(42, sound_ok ?
-        "Audio driver online — microphone ready for Landon..." :
+        "Audio driver online — microphone ready..." :
         "Audio: PC speaker fallback active...");
 
     // ── Layer 6: Voice Recognition ────────────────────────────────────────────
@@ -214,7 +214,7 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     terminal_app_init();
     corvus_dashboard_init();
     landon_center_init();
-    corvus_draw_boot_progress(90, "Applications ready — Landon's center online...");
+    corvus_draw_boot_progress(90, "Applications ready — Accessibility Hub online...");
 
     // ── Boot complete ─────────────────────────────────────────────────────────
     terminal_setcolor(red);

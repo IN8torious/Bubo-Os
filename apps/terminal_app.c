@@ -124,7 +124,7 @@ static void term_exec(const char* cmd) {
     if (cmd[0]=='h'&&cmd[1]=='e'&&cmd[2]=='l'&&cmd[3]=='p'&&cmd[4]==0) {
         term_puts("Commands: help  ls  pwd  clear  corvus  mandate  version\n");
     } else if (cmd[0]=='l'&&cmd[1]=='s'&&cmd[2]==0) {
-        term_puts("/\n  boot/\n  kernel/\n  apps/\n  home/\n  landon/\n");
+        term_puts("/\n  boot/\n  kernel/\n  apps/\n  home/\n  user/\n");
     } else if (cmd[0]=='p'&&cmd[1]=='w'&&cmd[2]=='d'&&cmd[3]==0) {
         term_puts("/home/raven\n");
     } else if (cmd[0]=='c'&&cmd[1]=='l'&&cmd[2]=='e'&&cmd[3]=='a'&&cmd[4]=='r'&&cmd[5]==0) {

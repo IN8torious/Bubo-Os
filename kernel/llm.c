@@ -341,13 +341,13 @@ static void corvus_fast_path(const char* input, char* output, uint32_t max_out) 
              llm_contains(input, "stop"))
         resp = "CORVUS: Braking. Brembo calipers engaged. Speed decreasing.";
     else if (llm_contains(input, "drift"))
-        resp = "CORVUS: Initiating drift sequence. Rear traction control disabled. Hold on, Landon.";
+        resp = "CORVUS: Initiating drift sequence. Rear traction control disabled. Hold on.";
     else if (llm_contains(input, "nitro") || llm_contains(input, "boost"))
         resp = "CORVUS: NITRO ACTIVATED. 1,400 HP UNLEASHED. This is what we built it for.";
     else if (llm_contains(input, "overtake") || llm_contains(input, "pass"))
         resp = "CORVUS: Calculating overtake window. Gap: 0.8 seconds. Executing in 3... 2... 1...";
     else if (llm_contains(input, "launch") || llm_contains(input, "start"))
-        resp = "CORVUS: Launch control armed. 3... 2... 1... GO. Full send, Landon.";
+        resp = "CORVUS: Launch control armed. 3... 2... 1... GO. Full send.";
     else if (llm_contains(input, "status") || llm_contains(input, "position"))
         resp = "CORVUS: Position P3. Lap 4 of 10. Gap to P2: 1.2s. Fuel: 78%. All systems nominal.";
     else if (llm_contains(input, "pit"))
@@ -362,7 +362,7 @@ static void corvus_fast_path(const char* input, char* output, uint32_t max_out) 
     else if (llm_contains(input, "help"))
         resp = "CORVUS: Commands: FASTER | BRAKE | DRIFT | NITRO | OVERTAKE | LAUNCH | STATUS | PIT STOP | STOP | MANDATE | WHO ARE YOU";
     else
-        resp = "CORVUS: Understood. Processing through constitutional framework. What do you need, Landon?";
+        resp = "CORVUS: Understood. Processing through constitutional framework. What do you need?";
 
     // Copy response to output
     uint32_t i = 0;

@@ -590,7 +590,7 @@ void dysarthria_init(void) {
     // These are handled by phoneme_cost() returning low cost for same-class substitutions
 
     terminal_write("[DYSARTHRIA] Engine initialized — learning mode active\n");
-    terminal_write("[DYSARTHRIA] Phoneme-aware fuzzy matching ready for Landon\n");
+    terminal_write("[DYSARTHRIA] Phoneme-aware fuzzy matching ready\n");
 }
 
 // ── Accessors ─────────────────────────────────────────────────────────────────

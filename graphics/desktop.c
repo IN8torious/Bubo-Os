@@ -104,7 +104,7 @@ void desktop_init(void) {
     desktop_register_icon("CORVUS",   0x04, 20, 240);
     desktop_register_icon("Tasks",    0x05, 20, 310);
     desktop_register_icon("Race",     0x06, 20, 380);
-    desktop_register_icon("Landon",   0x07, 20, 450);
+    desktop_register_icon("Access Hub",   0x07, 20, 450);
 
     g_desktop_ready = true;
     terminal_write("[DESKTOP] Desktop shell ready — NO MAS DISADVANTAGED\n");
@@ -297,11 +297,11 @@ static void desktop_draw_icons(void) {
 
         uint32_t icon_color = 0xFF333333;
         bool is_race   = (g_icons[i].app_id == 0x06);
-        bool is_landon = (g_icons[i].app_id == 0x07);
+        bool is_access = (g_icons[i].app_id == 0x07);
         bool is_corvus = (g_icons[i].app_id == 0x04);
 
         if (is_race)   icon_color = POLISH_COLOR_CRIMSON;
-        if (is_landon) icon_color = 0xFF0066CC;
+        if (is_access) icon_color = 0xFF0066CC;
         if (is_corvus) icon_color = POLISH_COLOR_RINNEGAN;
 
         // Drop shadow
@@ -309,11 +309,11 @@ static void desktop_draw_icons(void) {
 
         // Bubble icon background
         polish_bubble(x, y, ICON_SIZE, ICON_SIZE,
-                      is_race || is_landon || is_corvus ? icon_color : 0xFF1A1A2A,
-                      is_race || is_landon || is_corvus ? 180 : 140, ICON_SIZE / 4);
+                      is_race || is_access || is_corvus ? icon_color : 0xFF1A1A2A,
+                      is_race || is_access || is_corvus ? 180 : 140, ICON_SIZE / 4);
 
         // Glow for special icons
-        if (is_race || is_landon || is_corvus) {
+        if (is_race || is_access || is_corvus) {
             polish_glow_border(x, y, ICON_SIZE, ICON_SIZE, icon_color, 4);
         }
 
@@ -514,10 +514,10 @@ void desktop_launch_app(uint32_t app_id) {
     case 0x03: desktop_open_window("Settings",                200,100, 400, 300, app_id); break;
     case 0x04: desktop_open_window("CORVUS Dashboard",         80, 50, 560, 400, app_id); break;
     case 0x05: desktop_open_window("Task Manager",            180, 90, 440, 280, app_id); break;
-    case 0x06: desktop_open_window("Landon's Race — Demon 170", 60, 50, 600, 420, app_id); break;
+    case 0x06: desktop_open_window("CORVUS Race — Demon 170", 60, 50, 600, 420, app_id); break;
     case 0x07:
         desktop_toggle_accessibility();
-        desktop_open_window("Landon — Voice Control", 50, 60, 580, 380, app_id);
+        desktop_open_window("Accessibility Hub — Voice Control", 50, 60, 580, 380, app_id);
         break;
     default:
         terminal_write("[DESKTOP] Unknown app ID\n");

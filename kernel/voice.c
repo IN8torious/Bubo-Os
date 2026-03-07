@@ -49,7 +49,7 @@ static const voice_keyword_t KEYWORDS[] = {
     { "STATUS",    VCMD_STATUS,    "CORVUS: Reporting race status" },
     { "STOP",      VCMD_STOP,      "CORVUS: Full stop — all systems halting" },
     { "HELP",      VCMD_HELP,      "CORVUS: Commands: FASTER BRAKE DRIFT NITRO OVERTAKE LAUNCH STATUS STOP" },
-    { "CORVUS",    VCMD_CORVUS,    "CORVUS: Sovereign intelligence online — ready for Landon" },
+    { "CORVUS",    VCMD_CORVUS,    "CORVUS: Sovereign intelligence online — ready for you" },
     { "MANDATE",   VCMD_MANDATE,   "CORVUS: NO MAS DISADVANTAGED — constitutional mandate active" },
 };
 #define KEYWORD_COUNT 14
@@ -122,7 +122,7 @@ bool voice_init(void) {
     dysarthria_init();
 
     terminal_write("[VOICE] Voice engine ready — dysarthria-aware pipeline active\n");
-    terminal_write("[VOICE] Landon's commands: FASTER BRAKE DRIFT NITRO OVERTAKE LAUNCH STATUS STOP\n");
+    terminal_write("[VOICE] Commands: FASTER BRAKE DRIFT NITRO OVERTAKE LAUNCH STATUS STOP\n");
     terminal_write("[VOICE] Slurred speech, partial words, and mumbling all understood\n");
     return true;
 }
@@ -287,7 +287,7 @@ void voice_start_listening(void) {
     g_voice.listening = true;
     sound_start_capture();
     sound_corvus_ready();
-    terminal_write("[VOICE] CORVUS is listening for Landon...\n");
+    terminal_write("[VOICE] CORVUS is listening...\n");
 }
 
 void voice_stop_listening(void) {

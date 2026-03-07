@@ -83,6 +83,8 @@ typedef struct {
     // Performance tracking (feeds vector memory)
     uint32_t      success_count;
     uint32_t      failure_count;
+    // Health score 0-100: derived from success_count vs failure_count
+    uint8_t       health;
 } corvus_agent_t;
 
 // ── Tool Abstraction Layer (MCP-style) ────────────────────────────────────────

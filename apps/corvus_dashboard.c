@@ -66,7 +66,7 @@ static const char* AGENT_ROLES[10] = {
     "Reinforcement learning adapter",
     "Physics simulation, world model",
     "Voice recognition and synthesis",
-    "Drives Landon's Demon 170",
+    "Drives the Demon 170",
 };
 
 // Simulated agent states
