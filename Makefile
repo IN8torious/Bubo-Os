@@ -43,6 +43,7 @@ C_SRCS   = kernel/kernel.c \
             kernel/vfs.c \
             kernel/initrd.c \
             kernel/usermode.c \
+            kernel/dysarthria.c \
             kernel/voice.c \
             kernel/tcpip.c \
             kernel/llm.c \
@@ -54,6 +55,7 @@ C_SRCS   = kernel/kernel.c \
             graphics/gui.c \
             graphics/corvus_display.c \
             graphics/desktop.c \
+            graphics/polish.c \
             engine/raven_engine.c \
             engine/racing_game.c \
             apps/corvus_dashboard.c \
