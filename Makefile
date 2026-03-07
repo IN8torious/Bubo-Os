@@ -1,6 +1,12 @@
 # =============================================================================
-# Raven AOS — Build System
-# Builds the full 7-layer kernel: boot → PMM → IDT → VMM → PIT → KBD → CORVUS
+# Raven AOS v0.7 — Build System
+#
+# "NO MAS DISADVANTAGED"
+# MAS = Multi-Agentic Systems — Sovereign Intelligence
+#
+# Builds the full desktop OS:
+#   boot → PMM → IDT → VMM → PIT → KBD → Scheduler → CORVUS Constitution
+#   → CORVUS Agents → Desktop Shell → Landon Center → Apps
 # =============================================================================
 
 CC      = gcc
@@ -31,16 +37,22 @@ C_SRCS   = kernel/kernel.c \
             kernel/scheduler.c \
             kernel/corvus.c \
             kernel/corvus_brain.c \
+            kernel/corvus_constitution.c \
             kernel/shell.c \
+            kernel/vfs.c \
+            kernel/initrd.c \
+            kernel/usermode.c \
             drivers/vga.c \
             graphics/framebuffer.c \
             graphics/font.c \
             graphics/gui.c \
             graphics/corvus_display.c \
+            graphics/desktop.c \
             engine/raven_engine.c \
             engine/racing_game.c \
-            kernel/vfs.c \
-            kernel/initrd.c
+            apps/corvus_dashboard.c \
+            apps/landon_center.c \
+            apps/terminal_app.c
 
 # ── Object files ──────────────────────────────────────────────────────────────
 ASM_OBJS = $(ASM_SRCS:.asm=.o)
@@ -81,7 +93,8 @@ run: iso
 
 # ── Run headless for CI testing ───────────────────────────────────────────────
 run-headless: iso
-	qemu-system-x86_64 -cdrom $(ISO) -m 512M -nographic -no-reboot
+	qemu-system-x86_64 -cdrom $(ISO) -m 512M -nographic -no-reboot -serial stdio \
+	    -no-shutdown -timeout 10
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:
@@ -91,5 +104,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS v0.5 — framebuffer, CORVUS display, Landon's racing game"
+	git commit -m "Raven AOS v0.7 — Desktop Shell, CORVUS MAS Constitution, Landon Center, NO MAS DISADVANTAGED"
 	git push origin main

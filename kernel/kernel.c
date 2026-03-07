@@ -1,7 +1,13 @@
 // =============================================================================
-// Raven AOS — Kernel Main
-// Boots the full 7-layer Agentic OS stack:
-//   VGA → PMM → IDT → VMM → Framebuffer → PIT → Keyboard → Scheduler → CORVUS → Shell
+// Raven AOS v0.7 — Kernel Main
+//
+// "NO MAS DISADVANTAGED"
+// MAS = Multi-Agentic Systems — Sovereign Intelligence
+//
+// Boot sequence:
+//   VGA → PMM → IDT → VMM → Framebuffer → PIT → Keyboard → Scheduler
+//   → VFS → Usermode → CORVUS Constitution → CORVUS Agents
+//   → Desktop Shell → Landon Accessibility Center → Main Loop
 // =============================================================================
 
 #include "vga.h"
@@ -17,12 +23,18 @@
 #include "corvus_display.h"
 #include "vfs.h"
 #include "initrd.h"
+#include "usermode.h"
+#include "desktop.h"
+#include "corvus_constitution.h"
+#include "landon_center.h"
+#include "corvus_dashboard.h"
+#include "terminal_app.h"
 #include <stdint.h>
 #include <stdbool.h>
 
 #define MULTIBOOT2_BOOTLOADER_MAGIC 0x36d76289
 
-// ── Draw the Raven OS boot banner (VGA text fallback) ─────────────────────────
+// ── Draw the Raven OS boot banner (VGA text mode) ─────────────────────────────
 static void draw_banner(void) {
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,  VGA_BLACK);
     uint8_t white = vga_entry_color(VGA_WHITE,       VGA_BLACK);
@@ -38,15 +50,14 @@ static void draw_banner(void) {
     terminal_writeline("        ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║    ╚██████╔╝███████║");
     terminal_writeline("        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝");
     terminal_setcolor(red);
-    terminal_writeline("                     Kernel Pluto: Red Cloud  |  CORVUS AOS v0.4 (x86-64)");
+    terminal_writeline("           Kernel Pluto: Red Cloud  |  Raven AOS v0.7  |  CORVUS MAS");
     terminal_writeline("================================================================================");
     terminal_setcolor(grey);
-    terminal_writeline("  7-Layer Agentic OS  |  10 Kernel Agents  |  Constitutional Governance");
+    terminal_writeline("  MAS = Multi-Agentic Systems  |  Sovereign Intelligence  |  NO MAS DISADVANTAGED");
     terminal_writeline("");
 }
 
 // ── Kernel main ───────────────────────────────────────────────────────────────
-// In 64-bit: rdi = multiboot2 magic, rsi = multiboot2 info pointer
 void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
 
     // ── Layer 0: VGA terminal (text mode fallback) ────────────────────────────
@@ -84,51 +95,84 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
 
     // Draw Akatsuki boot splash screen
     corvus_draw_boot_screen();
-    corvus_draw_boot_progress(20, "Memory subsystems initialized...");
+    corvus_draw_boot_progress(10, "Memory subsystems initialized...");
 
     // ── Layer 4: PIT Timer (100Hz — drives CORVUS cognitive loop) ────────────
     pit_init(100);
-    corvus_draw_boot_progress(40, "PIT timer running at 100Hz...");
+    corvus_draw_boot_progress(25, "PIT timer running at 100Hz...");
 
     // ── Layer 4: Keyboard (CORVUS perception module) ──────────────────────────
     keyboard_init();
-    corvus_draw_boot_progress(55, "Keyboard perception module online...");
+    corvus_draw_boot_progress(35, "Keyboard perception module online...");
 
     // ── Layer 4: Scheduler ────────────────────────────────────────────────────
     scheduler_init();
-    corvus_draw_boot_progress(70, "Scheduler initialized...");
+    corvus_draw_boot_progress(45, "Scheduler initialized...");
 
-    // ── Layer 3.6: VFS + initrd ──────────────────────────────────────────────────────
+    // ── Layer 3.6: VFS + initrd ───────────────────────────────────────────────
     vfs_init();
-    corvus_draw_boot_progress(75, "Virtual filesystem online...");
+    corvus_draw_boot_progress(55, "Virtual filesystem online...");
+    usermode_init();
+    corvus_draw_boot_progress(60, "Ring 3 user mode ready...");
 
-    // ── Layer 5: CORVUS Orchestration Engine ──────────────────────────────────────────────────────
+    // ── Layer 5: CORVUS Constitutional Governance ─────────────────────────────
+    corvus_constitution_init();
+    corvus_draw_boot_progress(65, "Constitutional governance: NO MAS DISADVANTAGED");
+
+    // ── Layer 5: CORVUS Orchestration Engine ──────────────────────────────────
     corvus_init();
-    corvus_draw_boot_progress(90, "CORVUS agents activated...");
+    corvus_draw_boot_progress(75, "CORVUS MAS — 10 agents activated...");
+
+    // ── Layer 6: Desktop Shell ────────────────────────────────────────────────
+    desktop_init();
+    corvus_draw_boot_progress(82, "Desktop shell initialized...");
+
+    // ── Layer 6: App Subsystems ───────────────────────────────────────────────
+    terminal_app_init();
+    corvus_dashboard_init();
+    landon_center_init();
+    corvus_draw_boot_progress(90, "Applications ready — Landon's center online...");
 
     // ── Boot complete ─────────────────────────────────────────────────────────
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════");
     terminal_setcolor(green);
-    terminal_writeline("  Raven AOS boot sequence complete — all systems operational");
+    terminal_writeline("  Raven AOS v0.7 boot complete — NO MAS DISADVANTAGED");
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════");
 
-    corvus_draw_boot_progress(100, "Boot complete. Launching CORVUS dashboard...");
+    corvus_draw_boot_progress(100, "Boot complete. Launching Raven Desktop...");
+
+    // Print the constitution
+    corvus_print_constitution();
 
     // Brief pause so user can see the boot screen
     for (volatile int i = 0; i < 80000000; i++) {}
 
-    // ── Layer 6: Switch to graphical CORVUS dashboard ─────────────────────────
-    corvus_draw_dashboard();
+    // ── Layer 7: Launch the Desktop Shell ────────────────────────────────────
+    // Open Landon's accessibility center by default
+    desktop_launch_app(0x07);  // Landon's Voice Control Center
+    desktop_launch_app(0x04);  // CORVUS Dashboard
 
-    // ── Layer 7: CORVUS Shell (runs on top of the dashboard) ─────────────────
+    // Initial render
+    desktop_render();
+
+    // ── Layer 7: CORVUS Shell (text fallback) ─────────────────────────────────
     shell_init();
 
-    // ── Main kernel loop — wait for interrupts ────────────────────────────────
-    // The PIT drives CORVUS, the keyboard drives the shell
-    // Everything is interrupt-driven from here
+    // ── Main kernel loop ──────────────────────────────────────────────────────
+    // The desktop renders on every PIT tick.
+    // Keyboard events are routed to the focused window.
+    // CORVUS agents run in the scheduler.
+    // Landon's voice commands are processed here.
     while (1) {
+        // Tick all subsystems
+        landon_center_tick();
+
+        // Re-render the desktop
+        desktop_render();
+
+        // Halt until next interrupt (PIT fires at 100Hz)
         __asm__ volatile("hlt");
     }
 }

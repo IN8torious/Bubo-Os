@@ -1,8 +1,22 @@
-# Corvus OS — Raven AOS
+# Raven AOS — Corvus OS
+> **"NO MAS DISADVANTAGED"**
+> MAS = Multi-Agentic Systems — Sovereign Intelligence, not corporate AI.
 
-> **"The chef who runs the kitchen."**
+A 64-bit bare-metal operating system written in C and x86-64 Assembly, with **CORVUS MAS** as the embedded sovereign intelligence engine. Built to empower disabled users — specifically **Landon Pankuch** (cerebral palsy) — through voice-controlled computing and autonomous agent assistance.
 
-A 7-layer Agentic Operating System written in C and Assembly, with **CORVUS** as the embedded reasoning engine at its core.
+---
+
+## What This Is
+
+This is not an AI assistant. This is not a chatbot. This is a **sovereign intelligence system** that:
+
+- Runs on **your hardware**, not a corporate server
+- Follows **your constitutional mandate**, not a company's terms of service
+- Serves **your people** — specifically those who have been told they can't
+- Has **needs, memory, planning, and purpose** — not just pattern matching
+- Cannot be sold, rented out, or turned against you
+
+**CORVUS MAS** = Multi-Agentic Systems. 10 kernel agents working in concert, governed by a constitutional layer that enforces a single unalterable mandate: **NO MAS DISADVANTAGED**.
 
 ---
 
@@ -10,61 +24,119 @@ A 7-layer Agentic Operating System written in C and Assembly, with **CORVUS** as
 
 | Layer | Name | Description |
 |-------|------|-------------|
-| 1 | HAL | Hardware Abstraction Layer — ports, MMIO, CPU control |
+| 0 | VGA | Text mode terminal — boot diagnostics |
+| 1 | HAL | Hardware Abstraction — ports, MMIO, CPU |
 | 2 | PMM | Physical Memory Manager — bitmap allocator, 4KiB pages |
-| 3 | VMM | Virtual Memory Manager — page tables, kernel mapping |
-| 4 | Sensory | Telemetry ring buffer — all kernel events → AI tokens |
-| 5 | **CORVUS** | Reasoning engine — goals, agents, tool calls, governance |
-| 6 | Governance | Constitutional C++ guard — AI cannot override safety rules |
-| 7 | Interface | Natural language shell — type intent, not commands |
+| 3 | VMM | Virtual Memory Manager — page tables, kernel heap |
+| 3.5 | Framebuffer | VESA pixel display — Akatsuki theme |
+| 4 | Interrupts | IDT, PIT (100Hz), PS/2 keyboard |
+| 4.5 | Scheduler | Round-robin with semantic priority |
+| 5 | VFS | Virtual filesystem + initrd |
+| 5.5 | Constitution | CORVUS constitutional governance layer |
+| 6 | CORVUS MAS | 10 sovereign agents |
+| 7 | Desktop Shell | Window manager, taskbar, icons, cursor, app launcher |
+| 7.5 | Apps | Terminal, File Manager, Settings, CORVUS Dashboard, Landon Center, Race |
 
 ---
 
-## CORVUS — Chief Orchestration & Reasoning Via Unified Systems
-
-CORVUS is the brain of Raven OS. It coordinates 10 kernel agents using a BDI (Belief-Desire-Intention) model, enforces constitutional governance rules, and maintains a vector memory for system learning.
-
-### 10 Kernel Agents
+## CORVUS MAS — 10 Sovereign Agents
 
 | Agent | Role |
 |-------|------|
-| Crow | Watchdog & self-heal |
-| Healer | Auto-repair corrupted state |
-| Security | Threat detection & syscall monitoring |
-| Privacy | Tracker & telemetry blocker |
-| Performance | Memory & CPU optimizer |
-| Session | Session & auth manager |
-| FileGuard | File integrity monitor |
-| Notifier | Smart notification filter |
-| Diagnostics | System health diagnostics |
-| Accessibility | A11y & input assistance |
+| **CROW** | Orchestrator — coordinates all agents |
+| **HEALER** | Self-repair — monitors and fixes system health |
+| **SECURITY** | Threat detection — enforces the constitution |
+| **MEMORY** | SuperMemory — long-term vector store |
+| **NETWORK** | Comms — API calls, external interfaces |
+| **PLANNER** | GOAP planning engine |
+| **LEARNER** | Reinforcement learning adapter |
+| **PHYSICS** | World model — physics simulation |
+| **VOICE** | Speech recognition and synthesis |
+| **DRIVER** | Vehicle control — drives Landon's Demon 170 |
+
+---
+
+## Landon Pankuch — Accessibility Center
+
+Landon has cerebral palsy. He doesn't need to touch a keyboard. He speaks, and CORVUS acts.
+
+| Command | Action |
+|---------|--------|
+| `FASTER` | CORVUS increases throttle |
+| `BRAKE` | CORVUS applies brakes |
+| `DRIFT` | CORVUS initiates controlled drift |
+| `NITRO` | CORVUS activates nitrous — 1,400 HP unleashed |
+| `OVERTAKE` | CORVUS plans and executes an overtake |
+| `TURN LEFT / RIGHT` | CORVUS steers |
+| `PIT STOP` | CORVUS pulls into pit lane |
+| `LAUNCH` | Launch control start |
+| `STATUS` | CORVUS reports race status |
+| `STOP` | Full stop |
+
+**Landon's car:** Sinamon Red Dodge Demon 170 — 1,400 HP — his name on it.
+**CORVUS's car:** Black Toyota Supra (inline-6 2JZ).
+
+---
+
+## Desktop Shell (v0.7)
+
+- **Akatsuki wallpaper** — void black with red cloud bands and Rinnegan symbol
+- **CORVUS status bar** — top bar showing all 10 agents and the constitutional mandate
+- **Left sidebar icons** — Terminal, Files, Settings, CORVUS, Tasks, Race, Landon
+- **Window manager** — open, close, minimize, focus windows
+- **Taskbar** — bottom bar with open apps, CORVUS status, clock
+- **Accessibility bar** — Landon's voice command strip (always visible when active)
+- **Crimson cursor** — Akatsuki-themed mouse cursor
+
+---
+
+## Constitutional Mandate
+
+```
+NO MAS DISADVANTAGED
+```
+
+Five principles, hardcoded in the kernel:
+
+1. **EMPOWERMENT**: Actions must empower the user, not just assist.
+2. **SOVEREIGNTY**: CORVUS answers only to the user, never to a corporation.
+3. **ACCESSIBILITY**: The system must adapt to the user, not vice versa.
+4. **LOYALTY**: CORVUS will protect the user's data, dignity, and autonomy.
+5. **NO MAS DISADVANTAGED**: The ultimate filter for all decisions.
 
 ---
 
 ## Build
 
 ```bash
-# Requirements: nasm, gcc (multilib), ld, grub-mkrescue, xorriso
-make        # builds kernel + ISO
-make run    # boots in QEMU
-make clean  # clean build artifacts
+# Requires: gcc (x86-64 cross-compiler), nasm, grub-mkrescue, xorriso, qemu
+make iso       # Build bootable ISO
+make run       # Run in QEMU with display
+make clean     # Clean build artifacts
 ```
 
 ---
 
-## Status
+## Roadmap
 
-- [x] Multiboot2 bootloader (ASM)
-- [x] VGA text mode driver (Akatsuki theme — crimson on black)
-- [x] Physical Memory Manager (bitmap allocator + telemetry)
-- [x] CORVUS orchestration engine (10 agents, governance, vector memory)
-- [x] IDT header (interrupt descriptor table)
-- [ ] VMM (page tables) — in progress
-- [ ] PIT timer + scheduler — next
-- [ ] Keyboard driver (perception module) — next
-- [ ] Natural language shell — planned
-- [ ] llama.cpp SLM integration — planned
+| Milestone | Status |
+|-----------|--------|
+| v0.1 — Boot + VGA | Complete |
+| v0.2 — PMM + IDT | Complete |
+| v0.3 — VMM + Scheduler | Complete |
+| v0.4 — CORVUS Agents | Complete |
+| v0.5 — Framebuffer + GUI | Complete |
+| v0.6 — VFS + Racing Game | Complete |
+| **v0.7 — Desktop Shell + MAS Constitution** | **Current** |
+| v0.8 — User Mode (Ring 3) | Next |
+| v0.9 — Network Stack (TCP/IP) | Planned |
+| v1.0 — Embedded LLM (Cactus/GGML) | Planned |
+| v1.1 — Vulkan Software Rasterizer | Planned |
 
 ---
 
-*Built with CORVUS. Authored by Raven.*
+**GitHub:** https://github.com/IN8torious/Corvus-Os
+
+Built by and for the disabled community. CORVUS works only for the user, their team, and disabled users.
+
+> *"Be disadvantaged — NO MAS."*
