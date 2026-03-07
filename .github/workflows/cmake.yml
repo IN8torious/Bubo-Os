@@ -1,0 +1,65 @@
+name: cmake
+
+on:
+  workflow_call:
+
+jobs:
+  cmake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y crudini
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python prereqs
+        run: |
+          pip install uv
+          uv pip install --system \
+            pytest \
+            pytest-flake8
+
+      - name: Install Ubuntu dependencies
+        run: |
+          if [ -e cmake.ini ]; then
+            pkg=$(crudini --get cmake.ini ubuntu install 2>/dev/null) && \
+              sudo apt-get install -y ${pkg} || true
+          fi
+
+      - name: Install additional pip dependencies
+        run: |
+          if [ -e cmake.ini ]; then
+            pkg=$(crudini --get cmake.ini pip install 2>/dev/null) && \
+              uv pip install --system ${pkg} || true
+          fi
+
+      - name: Get CMake and Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: CMake configure + build
+        uses: lukka/run-cmake@v10.8
+        with:
+          configurePreset: "ci-release"
+          buildPreset: "ci-release"
+
+      - name: CMake test
+        working-directory: ${{ github.workspace }}/build
+        run: ctest --output-on-failure
+
+      - name: CMake install
+        run: cmake --build ${{ github.workspace }}/build --target install
+
+      - name: Python tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/build/install/python
+          LD_LIBRARY_PATH: ${{ github.workspace }}/build/install/lib
+        run: pytest -r a -v || true

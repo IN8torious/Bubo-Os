@@ -1,0 +1,61 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/build/install",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "ci-release",
+      "displayName": "CI Release (bare-metal i386)",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "RAVEN_BUILD_ISO": "ON",
+        "RAVEN_RUN_QEMU_TEST": "ON"
+      }
+    },
+    {
+      "name": "dev",
+      "displayName": "Developer build",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "RAVEN_BUILD_ISO": "ON",
+        "RAVEN_RUN_QEMU_TEST": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "ci-release",
+      "configurePreset": "ci-release",
+      "jobs": 4
+    },
+    {
+      "name": "dev",
+      "configurePreset": "dev",
+      "jobs": 4
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "ci-release",
+      "configurePreset": "ci-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
