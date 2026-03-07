@@ -38,7 +38,9 @@ C_SRCS   = kernel/kernel.c \
             graphics/gui.c \
             graphics/corvus_display.c \
             engine/raven_engine.c \
-            engine/racing_game.c
+            engine/racing_game.c \
+            kernel/vfs.c \
+            kernel/initrd.c
 
 # ── Object files ──────────────────────────────────────────────────────────────
 ASM_OBJS = $(ASM_SRCS:.asm=.o)

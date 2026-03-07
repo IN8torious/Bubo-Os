@@ -15,6 +15,8 @@
 #include "shell.h"
 #include "framebuffer.h"
 #include "corvus_display.h"
+#include "vfs.h"
+#include "initrd.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -96,7 +98,11 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     scheduler_init();
     corvus_draw_boot_progress(70, "Scheduler initialized...");
 
-    // ── Layer 5: CORVUS Orchestration Engine ──────────────────────────────────
+    // ── Layer 3.6: VFS + initrd ──────────────────────────────────────────────────────
+    vfs_init();
+    corvus_draw_boot_progress(75, "Virtual filesystem online...");
+
+    // ── Layer 5: CORVUS Orchestration Engine ──────────────────────────────────────────────────────
     corvus_init();
     corvus_draw_boot_progress(90, "CORVUS agents activated...");
 
