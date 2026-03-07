@@ -1,4 +1,24 @@
 // =============================================================================
+// Raven AOS — Dedicated to Landon Pankuch
+// =============================================================================
+// Built by IN8torious | Copyright (c) 2025 | MIT License
+//
+// This software was created for Landon Pankuch, who has cerebral palsy,
+// so that he may drive, race, and command his world with his voice alone.
+//
+// Built by a person with manic depression, for a person with cerebral palsy,
+// for every person who has ever been told their disability makes them less.
+// It does not. You are not less. This machine was built to serve you.
+//
+// Constitutional Mandate: "NO MAS DISADVANTAGED"
+// MAS = Multi-Agentic Systems — Sovereign Intelligence, not corporate AI
+//
+// MIT License — Free for Landon. Free for everyone. Especially those who
+// need it most. Accessibility features must remain free in all derivatives.
+// See LICENSE file for full terms and the permanent dedication.
+// =============================================================================
+
+// =============================================================================
 // Raven AOS — Landon Pankuch Accessibility Center
 //
 // This is Landon's command center. Every pixel here exists for him.
@@ -9,6 +29,7 @@
 // =============================================================================
 
 #include "landon_center.h"
+#include "voice.h"
 #include "desktop.h"
 #include "framebuffer.h"
 #include "font.h"
@@ -33,9 +54,9 @@ static const landon_voice_cmd_t VOICE_COMMANDS[] = {
     { "DRIFT",     VCMD_DRIFT,     "CORVUS initiates controlled drift" },
     { "NITRO",     VCMD_NITRO,     "CORVUS activates nitrous — 1,400 HP unleashed" },
     { "OVERTAKE",  VCMD_OVERTAKE,  "CORVUS plans and executes an overtake" },
-    { "TURN LEFT", VCMD_LEFT,      "CORVUS steers left" },
-    { "TURN RIGHT",VCMD_RIGHT,     "CORVUS steers right" },
-    { "PIT STOP",  VCMD_PIT,       "CORVUS pulls into pit lane" },
+    { "TURN LEFT", VCMD_TURN_LEFT,      "CORVUS steers left" },
+    { "TURN RIGHT",VCMD_TURN_RIGHT,     "CORVUS steers right" },
+    { "PIT STOP",  VCMD_PIT_STOP,       "CORVUS pulls into pit lane" },
     { "STATUS",    VCMD_STATUS,    "CORVUS reports race status" },
     { "STOP",      VCMD_STOP,      "CORVUS brings the car to a full stop" },
     { "LAUNCH",    VCMD_LAUNCH,    "CORVUS performs a launch control start" },
@@ -226,11 +247,11 @@ void landon_execute_cmd(uint32_t cmd_id) {
         if (g_landon.position > 1) g_landon.position--;
         g_landon.speed_mph += 10;
         break;
-    case VCMD_LEFT:
-    case VCMD_RIGHT:
+    case VCMD_TURN_LEFT:
+    case VCMD_TURN_RIGHT:
         g_landon.corvus_driving = true;
         break;
-    case VCMD_PIT:
+    case VCMD_PIT_STOP:
         g_landon.speed_mph = 60;
         g_landon.nitro_available = true;
         break;

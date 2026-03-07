@@ -19,8 +19,28 @@
 // =============================================================================
 
 #pragma once
+// =============================================================================
+// Raven AOS — Sound Driver Header (AC97 / Intel HDA)
+// =============================================================================
 #include <stdint.h>
-#include "vfs.h"
+#include <stdbool.h>
 
-vfs_node_t* initrd_init(uint64_t addr, uint64_t size);
-void        initrd_list(void);
+typedef struct {
+    bool     initialized;
+    bool     capture_active;
+    bool     playback_active;
+    uint32_t sample_rate;
+    uint8_t  channels;
+    uint8_t  bits;
+} sound_state_t;
+
+bool          sound_init(void);
+void          sound_start_capture(void);
+void          sound_stop_capture(void);
+uint32_t      sound_read_capture(int16_t* buf, uint32_t max_samples);
+void          sound_beep(uint32_t freq_hz, uint32_t duration_ms);
+void          sound_corvus_ack(void);
+void          sound_corvus_ready(void);
+void          sound_corvus_error(void);
+void          sound_nitro_activate(void);
+sound_state_t* sound_get_state(void);

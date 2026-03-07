@@ -1,12 +1,13 @@
 # =============================================================================
-# Raven AOS v0.7 — Build System
+# Raven AOS v1.0 — Build System
 #
 # "NO MAS DISADVANTAGED"
 # MAS = Multi-Agentic Systems — Sovereign Intelligence
 #
-# Builds the full desktop OS:
-#   boot → PMM → IDT → VMM → PIT → KBD → Scheduler → CORVUS Constitution
-#   → CORVUS Agents → Desktop Shell → Landon Center → Apps
+# Full v1.0 stack:
+#   boot → PMM → IDT → VMM → PIT → KBD → Scheduler → VFS → User Mode
+#   → Sound → Voice → Network → TCP/IP → LLM
+#   → CORVUS Constitution → CORVUS Agents → Desktop → Landon Center → Apps
 # =============================================================================
 
 CC      = gcc
@@ -42,7 +43,12 @@ C_SRCS   = kernel/kernel.c \
             kernel/vfs.c \
             kernel/initrd.c \
             kernel/usermode.c \
+            kernel/voice.c \
+            kernel/tcpip.c \
+            kernel/llm.c \
             drivers/vga.c \
+            drivers/sound.c \
+            drivers/net.c \
             graphics/framebuffer.c \
             graphics/font.c \
             graphics/gui.c \
@@ -89,12 +95,23 @@ iso: kernel
 
 # ── Run in QEMU (with display) ────────────────────────────────────────────────
 run: iso
-	qemu-system-x86_64 -cdrom $(ISO) -m 512M -vga std
+	qemu-system-x86_64 \
+	    -cdrom $(ISO) \
+	    -m 512M \
+	    -vga std \
+	    -soundhw ac97 \
+	    -net nic,model=e1000 -net user \
+	    -serial stdio
 
 # ── Run headless for CI testing ───────────────────────────────────────────────
 run-headless: iso
-	qemu-system-x86_64 -cdrom $(ISO) -m 512M -nographic -no-reboot -serial stdio \
-	    -no-shutdown -timeout 10
+	qemu-system-x86_64 \
+	    -cdrom $(ISO) \
+	    -m 512M \
+	    -nographic \
+	    -no-reboot \
+	    -serial stdio \
+	    -no-shutdown
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:
@@ -104,5 +121,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS v0.7 — Desktop Shell, CORVUS MAS Constitution, Landon Center, NO MAS DISADVANTAGED"
+	git commit -m "Raven AOS v1.0 — Voice + LLM + Network + Sound + Ring3 — NO MAS DISADVANTAGED"
 	git push origin main

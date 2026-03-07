@@ -19,8 +19,26 @@
 // =============================================================================
 
 #pragma once
+// =============================================================================
+// Raven AOS — Network Driver Header (RTL8139 / Intel E1000)
+// =============================================================================
 #include <stdint.h>
-#include "vfs.h"
+#include <stdbool.h>
 
-vfs_node_t* initrd_init(uint64_t addr, uint64_t size);
-void        initrd_list(void);
+typedef struct {
+    bool     initialized;
+    bool     link_up;
+    uint8_t  mac[6];
+    uint8_t  ip[4];
+    uint8_t  gateway[4];
+    uint8_t  netmask[4];
+    uint64_t rx_packets;
+    uint64_t tx_packets;
+    uint64_t rx_bytes;
+    uint64_t tx_bytes;
+} net_state_t;
+
+bool         net_init(void);
+bool         net_send(const uint8_t* data, uint16_t len);
+uint16_t     net_receive(uint8_t* buf, uint16_t max_len);
+net_state_t* net_get_state(void);

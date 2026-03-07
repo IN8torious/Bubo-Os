@@ -1,5 +1,25 @@
 // =============================================================================
-// Raven AOS v0.7 — Desktop Shell
+// Raven AOS — Dedicated to Landon Pankuch
+// =============================================================================
+// Built by IN8torious | Copyright (c) 2025 | MIT License
+//
+// This software was created for Landon Pankuch, who has cerebral palsy,
+// so that he may drive, race, and command his world with his voice alone.
+//
+// Built by a person with manic depression, for a person with cerebral palsy,
+// for every person who has ever been told their disability makes them less.
+// It does not. You are not less. This machine was built to serve you.
+//
+// Constitutional Mandate: "NO MAS DISADVANTAGED"
+// MAS = Multi-Agentic Systems — Sovereign Intelligence, not corporate AI
+//
+// MIT License — Free for Landon. Free for everyone. Especially those who
+// need it most. Accessibility features must remain free in all derivatives.
+// See LICENSE file for full terms and the permanent dedication.
+// =============================================================================
+
+// =============================================================================
+// Raven AOS v1.0 — Desktop Shell
 // Full window manager, taskbar, app launcher, wallpaper, cursor
 //
 // Constitutional Mandate: "NO MAS DISADVANTAGED"
@@ -9,6 +29,8 @@
 #include "framebuffer.h"
 #include "font.h"
 #include "vga.h"
+#include "polish.h"
+#include "dysarthria.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -56,7 +78,8 @@ static void ds_itoa(uint32_t n, char* buf) {
 
 // ── Initialize the desktop ────────────────────────────────────────────────────
 void desktop_init(void) {
-    terminal_write("[DESKTOP] Initializing Raven Desktop Shell v0.7...\n");
+    terminal_write("[DESKTOP] Initializing Raven Desktop Shell v1.0...\n");
+    polish_init();
 
     for (int i = 0; i < DESKTOP_MAX_WINDOWS; i++) {
         g_windows[i].active    = false;
@@ -144,11 +167,16 @@ void desktop_close_window(int32_t wid) {
 void desktop_render(void) {
     if (!g_desktop_ready) return;
     desktop_draw_wallpaper();
+    // Akatsuki particle system — drifting red cloud particles over wallpaper
+    polish_particles_tick();
     desktop_draw_icons();
     desktop_draw_windows();
     desktop_draw_taskbar();
     desktop_draw_corvus_bar();
     if (g_desktop.accessibility) desktop_draw_accessibility_bar();
+    // Cursor trail — ghost trail behind the crimson cursor
+    polish_cursor_trail_update((int32_t)g_cursor_x, (int32_t)g_cursor_y);
+    polish_cursor_trail_draw();
     desktop_draw_cursor();
     g_desktop.tick++;
 }
@@ -181,41 +209,56 @@ static void desktop_draw_wallpaper(void) {
     font_draw_string(sw - 280, sh - TASKBAR_HEIGHT - 20,
                      "NO MAS DISADVANTAGED", COL_BLOOD, COL_TRANSPARENT, true);
     font_draw_string(4, sh - TASKBAR_HEIGHT - 18,
-                     "Raven AOS v0.7 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
+                     "Raven AOS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
 }
 
-// ── Taskbar ───────────────────────────────────────────────────────────────────
+// ── Taskbar ────────────────────────────────────────────────────────────────────
 static void desktop_draw_taskbar(void) {
     fb_info_t* info = fb_get_info();
     int32_t sw = (int32_t)info->width;
     int32_t sh = (int32_t)info->height;
     int32_t ty = sh - TASKBAR_HEIGHT;
 
-    fb_fill_rect(0, ty, sw, TASKBAR_HEIGHT, COL_STEEL);
-    fb_fill_rect(0, ty, sw, 2, COL_CRIMSON);
+    // Frosted glass taskbar base
+    polish_frosted_glass(0, ty, sw, TASKBAR_HEIGHT, 0xFF080010, 200, 2);
+    // Top border — crimson glow line
+    polish_fill_rect_alpha(0, ty, sw, 2, POLISH_COLOR_CRIMSON, 220);
+    // Subtle inner glow beneath the border
+    polish_fill_rect_alpha(0, ty + 2, sw, 3, POLISH_COLOR_CRIMSON, 40);
 
-    // App launcher
-    fb_fill_rect(4, ty + 4, 48, TASKBAR_HEIGHT - 8, COL_BLOOD);
+    // App launcher bubble
+    polish_bubble(4, ty + 4, 52, TASKBAR_HEIGHT - 8, POLISH_COLOR_BLOOD, 220, 6);
     font_draw_string(10, ty + 12, "RAVEN", COL_CLOUD, COL_TRANSPARENT, true);
 
-    // Open window buttons
-    int32_t btn_x = 60;
+    // Open window buttons — bubble style with glow for focused
+    int32_t btn_x = 64;
     for (int i = 0; i < DESKTOP_MAX_WINDOWS; i++) {
         if (!g_windows[i].active) continue;
-        uint32_t col = (g_desktop.focused_window == i) ? COL_CRIMSON : COL_ASH;
-        fb_fill_rect(btn_x, ty + 4, 120, TASKBAR_HEIGHT - 8, col);
-        font_draw_string(btn_x + 4, ty + 12, g_windows[i].title,
+        bool focused = (g_desktop.focused_window == i);
+        // Drop shadow
+        polish_drop_shadow(btn_x + 2, ty + 5, 120, TASKBAR_HEIGHT - 10, 0xFF000000, 3);
+        // Bubble
+        uint32_t bcol = focused ? 0xFF1A0008 : 0xFF0D0015;
+        polish_bubble(btn_x, ty + 4, 120, TASKBAR_HEIGHT - 8, bcol, 200, 8);
+        if (focused) {
+            polish_glow_border(btn_x, ty + 4, 120, TASKBAR_HEIGHT - 8,
+                               POLISH_COLOR_CRIMSON, 3);
+            // Active dot at bottom of bubble
+            polish_fill_rect_alpha(btn_x + 56, ty + TASKBAR_HEIGHT - 6,
+                                   8, 2, POLISH_COLOR_CRIMSON, 255);
+        }
+        font_draw_string(btn_x + 6, ty + 12, g_windows[i].title,
                          COL_CLOUD, COL_TRANSPARENT, true);
         btn_x += 128;
     }
 
-    // CORVUS status dot
-    fb_fill_rect(sw - 160, ty + 6, 12, 12, COL_GREEN);
-    font_draw_string(sw - 144, ty + 8, "CORVUS", COL_GREEN, COL_TRANSPARENT, true);
+    // CORVUS status bubble (right side)
+    polish_bubble(sw - 168, ty + 4, 80, TASKBAR_HEIGHT - 8, 0xFF001A00, 180, 8);
+    polish_fill_rect_alpha(sw - 160, ty + 10, 8, 8, 0xFF00CC44, 255);
+    font_draw_string(sw - 148, ty + 8, "CORVUS", COL_GREEN, COL_TRANSPARENT, true);
 
     desktop_draw_clock();
 }
-
 // ── Clock ─────────────────────────────────────────────────────────────────────
 static void desktop_draw_clock(void) {
     fb_info_t* info = fb_get_info();
@@ -245,26 +288,47 @@ static void desktop_draw_clock(void) {
     font_draw_string(sw - 72, ty + 8, time_str, COL_CLOUD, COL_TRANSPARENT, true);
 }
 
-// ── Desktop icons (left sidebar) ─────────────────────────────────────────────
+// -- Desktop icons (left sidebar) -------------------------------------------
 static void desktop_draw_icons(void) {
     for (int i = 0; i < DESKTOP_MAX_ICONS; i++) {
         if (!g_icons[i].active) continue;
         int32_t x = (int32_t)g_icons[i].x;
         int32_t y = (int32_t)g_icons[i].y;
 
-        uint32_t col = COL_ASH;
-        if (g_icons[i].app_id == 0x06) col = COL_BLOOD;
-        if (g_icons[i].app_id == 0x07) col = COL_LANDON;
-        if (g_icons[i].app_id == 0x04) col = COL_CORVUS;
+        uint32_t icon_color = 0xFF333333;
+        bool is_race   = (g_icons[i].app_id == 0x06);
+        bool is_landon = (g_icons[i].app_id == 0x07);
+        bool is_corvus = (g_icons[i].app_id == 0x04);
 
-        fb_fill_rect(x, y, ICON_SIZE, ICON_SIZE, col);
-        fb_draw_rect(x, y, ICON_SIZE, ICON_SIZE, 1, COL_CRIMSON);
+        if (is_race)   icon_color = POLISH_COLOR_CRIMSON;
+        if (is_landon) icon_color = 0xFF0066CC;
+        if (is_corvus) icon_color = POLISH_COLOR_RINNEGAN;
+
+        // Drop shadow
+        polish_drop_shadow(x + 3, y + 3, ICON_SIZE, ICON_SIZE, 0xFF000000, 5);
+
+        // Bubble icon background
+        polish_bubble(x, y, ICON_SIZE, ICON_SIZE,
+                      is_race || is_landon || is_corvus ? icon_color : 0xFF1A1A2A,
+                      is_race || is_landon || is_corvus ? 180 : 140, ICON_SIZE / 4);
+
+        // Glow for special icons
+        if (is_race || is_landon || is_corvus) {
+            polish_glow_border(x, y, ICON_SIZE, ICON_SIZE, icon_color, 4);
+        }
+
+        // Inner icon symbol (small colored square)
+        int32_t pad = ICON_SIZE / 4;
+        polish_fill_rect_alpha(x + pad, y + pad, ICON_SIZE - pad*2, ICON_SIZE - pad*2,
+                               icon_color, 200);
+
+        // Label
         font_draw_string(x + 2, y + ICON_SIZE + 2, g_icons[i].name,
                          COL_CLOUD, COL_TRANSPARENT, true);
     }
 }
 
-// ── Windows ───────────────────────────────────────────────────────────────────
+// -- Windows ----------------------------------------------------------------
 static void desktop_draw_windows(void) {
     for (int i = 0; i < DESKTOP_MAX_WINDOWS; i++) {
         if (!g_windows[i].active || !g_windows[i].visible ||
@@ -274,66 +338,103 @@ static void desktop_draw_windows(void) {
         int32_t y = (int32_t)g_windows[i].y;
         int32_t w = (int32_t)g_windows[i].w;
         int32_t h = (int32_t)g_windows[i].h;
+        bool focused = (g_desktop.focused_window == i);
 
-        fb_fill_rect(x + 4, y + 4, w, h, 0xFF050505);   // shadow
-        fb_fill_rect(x, y, w, h, COL_ASH);               // body
+        // Soft drop shadow
+        polish_drop_shadow(x + 6, y + 6, w, h, 0xFF000000, 8);
 
-        uint32_t title_col = (g_desktop.focused_window == i) ? COL_CRIMSON : COL_BLOOD;
-        fb_fill_rect(x, y, w, WINDOW_TITLE_H, title_col);
+        // Window body — dark frosted glass
+        polish_frosted_glass(x, y, w, h, 0xFF0D0D18, 230, 1);
+
+        // Title bar gradient (crimson → near-black)
+        polish_titlebar(x, y, w, WINDOW_TITLE_H, focused);
         font_draw_string(x + 8, y + 6, g_windows[i].title,
                          COL_CLOUD, COL_TRANSPARENT, true);
 
-        fb_fill_rect(x + w - 20, y + 4, 16, 16, 0xFFAA0000);
-        font_draw_string(x + w - 16, y + 5, "X", COL_CLOUD, COL_TRANSPARENT, true);
-        fb_fill_rect(x + w - 40, y + 4, 16, 16, COL_STEEL);
-        font_draw_string(x + w - 36, y + 5, "_", COL_CLOUD, COL_TRANSPARENT, true);
+        // Close button — crimson bubble
+        polish_bubble(x + w - 22, y + 4, 18, 16, 0xFF8B0000, 220, 4);
+        font_draw_string(x + w - 18, y + 5, "X", COL_CLOUD, COL_TRANSPARENT, true);
 
-        fb_draw_rect(x, y, w, h, 1, COL_CRIMSON);
-        fb_fill_rect(x + 1, y + WINDOW_TITLE_H, w - 2, 1, COL_BLOOD);
+        // Minimize button — steel bubble
+        polish_bubble(x + w - 44, y + 4, 18, 16, 0xFF2A2A2A, 200, 4);
+        font_draw_string(x + w - 40, y + 5, "_", COL_CLOUD, COL_TRANSPARENT, true);
+
+        // Border — active gets crimson glow, inactive gets subtle border
+        if (focused) {
+            polish_glow_border(x, y, w, h, POLISH_COLOR_CRIMSON, 5);
+        } else {
+            polish_fill_rect_alpha(x, y, w, 1, POLISH_COLOR_BLOOD, 120);
+            polish_fill_rect_alpha(x, y+h-1, w, 1, POLISH_COLOR_BLOOD, 120);
+            polish_fill_rect_alpha(x, y, 1, h, POLISH_COLOR_BLOOD, 120);
+            polish_fill_rect_alpha(x+w-1, y, 1, h, POLISH_COLOR_BLOOD, 120);
+        }
+
+        // Title/body separator line
+        polish_fill_rect_alpha(x + 1, y + WINDOW_TITLE_H, w - 2, 1,
+                               POLISH_COLOR_BLOOD, 180);
     }
 }
 
-// ── CORVUS status bar (top of screen) ────────────────────────────────────────
+// -- CORVUS status bar (top of screen) --------------------------------------
 static void desktop_draw_corvus_bar(void) {
     fb_info_t* info = fb_get_info();
     int32_t sw = (int32_t)info->width;
 
-    fb_fill_rect(0, 0, sw, CORVUS_BAR_HEIGHT, 0xFF0D0D0D);
-    fb_fill_rect(0, CORVUS_BAR_HEIGHT - 1, sw, 1, COL_BLOOD);
+    // Frosted glass top bar with dark purple-black tint
+    polish_corvus_bar(0, 0, sw, CORVUS_BAR_HEIGHT);
 
+    // CORVUS MAS label with crimson glow
     font_draw_string(8, 4, "CORVUS MAS", COL_CRIMSON, COL_TRANSPARENT, true);
-    font_draw_string(90, 4, "|", COL_BLOOD, COL_TRANSPARENT, true);
+    polish_fill_rect_alpha(8, CORVUS_BAR_HEIGHT - 3, 72, 1, POLISH_COLOR_CRIMSON, 160);
+    font_draw_string(84, 4, "|", COL_BLOOD, COL_TRANSPARENT, true);
 
+    // Agent status bubbles
     const char* agents[] = {"CROW","HEAL","SEC","MEM","NET","PLAN","LEARN","PHYS","VOICE","DRIVE"};
-    int32_t ax = 100;
+    int32_t ax = 94;
     for (int i = 0; i < 10; i++) {
-        fb_fill_rect(ax, 3, 6, 6, COL_GREEN);
-        font_draw_string(ax + 8, 4, agents[i], COL_CLOUD, COL_TRANSPARENT, true);
+        // Tiny green glow dot per agent
+        polish_fill_rect_alpha(ax, 5, 5, 5, 0xFF00CC44, 255);
+        polish_fill_rect_alpha(ax - 1, 4, 7, 7, 0xFF00CC44, 60); // glow
+        font_draw_string(ax + 7, 4, agents[i], COL_CLOUD, COL_TRANSPARENT, true);
         ax += 52;
     }
 
-    font_draw_string(sw - 200, 4, "NO MAS DISADVANTAGED", COL_GOLD, COL_TRANSPARENT, true);
+    // Constitutional mandate — gold, right-aligned, always visible
+    font_draw_string(sw - 202, 4, "NO MAS DISADVANTAGED", COL_GOLD, COL_TRANSPARENT, true);
+    // Underline the mandate
+    polish_fill_rect_alpha(sw - 202, CORVUS_BAR_HEIGHT - 3, 160, 1, POLISH_COLOR_GOLD, 120);
 }
 
-// ── Accessibility bar ─────────────────────────────────────────────────────────
+// -- Accessibility bar (Landon's strip) --------------------------------------
 static void desktop_draw_accessibility_bar(void) {
     fb_info_t* info = fb_get_info();
     int32_t sw = (int32_t)info->width;
     int32_t sh = (int32_t)info->height;
     int32_t ay = sh - TASKBAR_HEIGHT - ACCESS_BAR_HEIGHT;
 
-    fb_fill_rect(0, ay, sw, ACCESS_BAR_HEIGHT, 0xFF001133);
-    fb_fill_rect(0, ay, sw, 2, COL_LANDON);
+    // Landon's strip — frosted glass with blue tint and crimson top border
+    polish_landon_strip(0, ay, sw, ACCESS_BAR_HEIGHT);
 
+    // Pulse animation when CORVUS hears a command
+    polish_pulse_tick(0, ay, sw, ACCESS_BAR_HEIGHT);
+
+    // Landon's name — blue, prominent
     font_draw_string(8, ay + 8, "LANDON PANKUCH", COL_LANDON, COL_TRANSPARENT, true);
-    font_draw_string(160, ay + 8, "|", COL_STEEL, COL_TRANSPARENT, true);
-    font_draw_string(172, ay + 8, "Say: FASTER  BRAKE  DRIFT  NITRO  OVERTAKE  STATUS",
+    // Underline his name
+    polish_fill_rect_alpha(8, ay + ACCESS_BAR_HEIGHT - 4, 100, 1, 0xFF0066CC, 180);
+
+    font_draw_string(116, ay + 8, "|", COL_STEEL, COL_TRANSPARENT, true);
+    font_draw_string(128, ay + 8, "Say: FASTER  BRAKE  DRIFT  NITRO  OVERTAKE  LAUNCH  STATUS  STOP",
                      COL_CLOUD, COL_TRANSPARENT, true);
-    font_draw_string(sw - 180, ay + 8, "CORVUS IS DRIVING FOR YOU",
+
+    // Right side — CORVUS status with gold glow
+    font_draw_string(sw - 186, ay + 8, "CORVUS IS DRIVING FOR YOU",
                      COL_GOLD, COL_TRANSPARENT, true);
+    polish_fill_rect_alpha(sw - 186, ay + ACCESS_BAR_HEIGHT - 4, 160, 1,
+                           POLISH_COLOR_GOLD, 120);
 }
 
-// ── Mouse cursor ──────────────────────────────────────────────────────────────
+// ── Mouse cursor ────────────────────────────────────────────────────────────────
 static void desktop_draw_cursor(void) {
     int32_t x = (int32_t)g_cursor_x;
     int32_t y = (int32_t)g_cursor_y;

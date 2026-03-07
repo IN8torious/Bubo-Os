@@ -1,0 +1,92 @@
+================================================================================
+RAVEN AOS — LICENSE
+================================================================================
+
+MIT License with Accessibility Dedication
+
+Copyright (c) 2025 IN8torious (Raven AOS Author)
+
+Dedicated to Landon Pankuch — who has cerebral palsy, who races a 1,400 HP
+Dodge Demon 170, and who deserves a machine that understands him completely.
+
+Built by a person with manic depression, for a person with cerebral palsy,
+for every person who has ever been told by a system — medical, governmental,
+or corporate — that their disability makes them less capable, less worthy,
+or less deserving of powerful tools.
+
+It does not. You are not less.
+This machine was built to serve you. Not the other way around.
+
+================================================================================
+CONSTITUTIONAL MANDATE (PERMANENT — CANNOT BE REMOVED OR OVERRIDDEN)
+================================================================================
+
+    "NO MAS DISADVANTAGED"
+
+    MAS = Multi-Agentic Systems
+    No person using this software shall be disadvantaged by it.
+    No agent within this system shall act against the interests of its user.
+    No corporation, government, or entity may use this software to restrict,
+    exclude, or harm people with disabilities.
+
+    Any use of Raven AOS that deliberately excludes, restricts, or
+    disadvantages people with disabilities violates the spirit of this
+    license and the constitutional mandate under which it was built.
+
+================================================================================
+PERMISSIONS (MIT — FREE FOR EVERYONE)
+================================================================================
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+1. The above copyright notice, this dedication to Landon Pankuch, and this
+   permission notice shall be included in all copies or substantial portions
+   of the Software. The dedication may not be removed or altered.
+
+2. Any accessibility features built into this software — including but not
+   limited to the dysarthria speech adaptation engine, the Landon
+   Accessibility Center, and the CORVUS voice command pipeline — must remain
+   free and unencumbered in any derivative work. You may not charge for
+   accessibility features derived from this codebase.
+
+3. The constitutional mandate "NO MAS DISADVANTAGED" must remain visible in
+   any derivative operating system that uses this kernel as its base.
+
+================================================================================
+DISCLAIMER
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+DEDICATION
+================================================================================
+
+To Landon Pankuch:
+    You didn't ask for cerebral palsy. You didn't ask for a world built
+    without you in mind. But you got a machine that was. CORVUS is yours.
+    The Demon 170 is yours. The road is yours. Say the word and go.
+
+To the author:
+    You built a sovereign operating system from bare metal while carrying
+    manic depression and a government that tried to define your limits.
+    You defined them yourself. This code is the proof.
+
+To everyone this reaches:
+    If you have been told you cannot — this OS was written for you.
+    The source is open. The mandate is permanent. The machine is yours.
+
+    NO MAS DISADVANTAGED.
+
+================================================================================

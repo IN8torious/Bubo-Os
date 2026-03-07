@@ -19,8 +19,22 @@
 // =============================================================================
 
 #pragma once
+// =============================================================================
+// Raven AOS — CORVUS LLM Engine Header (Cactus/GGML-compatible)
+// =============================================================================
 #include <stdint.h>
-#include "vfs.h"
+#include <stdbool.h>
 
-vfs_node_t* initrd_init(uint64_t addr, uint64_t size);
-void        initrd_list(void);
+typedef struct {
+    bool     initialized;
+    bool     loaded;          // True if model weights are in memory
+    uint64_t model_size;      // Bytes
+    uint32_t ctx_used;        // Tokens used in current context
+    uint64_t inferences;      // Total inference count
+} llm_state_t;
+
+bool         llm_init(void);
+bool         llm_infer(const char* prompt, char* output, uint32_t max_output);
+bool         llm_contains(const char* haystack, const char* needle);
+void         llm_reset_context(void);
+llm_state_t* llm_get_state(void);
