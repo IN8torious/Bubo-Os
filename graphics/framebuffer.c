@@ -53,7 +53,7 @@ bool fb_init_from_multiboot(uint32_t mb2_info_addr) {
         if (tag->type == MB2_TAG_FRAMEBUFFER) {
             mb2_tag_framebuffer_t* fbtag = (mb2_tag_framebuffer_t*)ptr;
 
-            fb.addr   = (uint32_t)(fbtag->framebuffer_addr & 0xFFFFFFFF);
+            fb.addr   = fbtag->framebuffer_addr;  // full 64-bit address
             fb.width  = fbtag->framebuffer_width;
             fb.height = fbtag->framebuffer_height;
             fb.pitch  = fbtag->framebuffer_pitch;
@@ -105,7 +105,7 @@ bool fb_init_from_multiboot(uint32_t mb2_info_addr) {
 // ── Fallback: use a fixed VESA address if multiboot didn't give us one ────────
 void fb_init_fallback(void) {
     // QEMU default VBE framebuffer address
-    fb.addr   = 0xFD000000;
+    fb.addr   = 0xFD000000ULL;
     fb.width  = 1024;
     fb.height = 768;
     fb.pitch  = 1024 * 4;
@@ -131,7 +131,7 @@ bool fb_is_ready(void) {
 // ── Core pixel operations ─────────────────────────────────────────────────────
 
 static inline uint32_t* fb_pixel_ptr(int32_t x, int32_t y) {
-    return (uint32_t*)(fb.addr + (uint32_t)y * fb.pitch + (uint32_t)x * 4);
+    return (uint32_t*)(fb.addr + (uint64_t)y * fb.pitch + (uint64_t)x * 4);
 }
 
 void fb_put_pixel(int32_t x, int32_t y, uint32_t color) {
@@ -149,7 +149,7 @@ uint32_t fb_get_pixel(int32_t x, int32_t y) {
 // ── Fill entire screen with color ─────────────────────────────────────────────
 void fb_clear(uint32_t color) {
     if (!fb_initialized) return;
-    uint32_t* p = (uint32_t*)fb.addr;
+    uint32_t* p = (uint32_t*)(uintptr_t)fb.addr;
     uint32_t  n = fb.pitch * fb.height / 4;
     for (uint32_t i = 0; i < n; i++) p[i] = color;
 }

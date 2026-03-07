@@ -36,7 +36,9 @@ C_SRCS   = kernel/kernel.c \
             graphics/framebuffer.c \
             graphics/font.c \
             graphics/gui.c \
-            engine/raven_engine.c
+            graphics/corvus_display.c \
+            engine/raven_engine.c \
+            engine/racing_game.c
 
 # ── Object files ──────────────────────────────────────────────────────────────
 ASM_OBJS = $(ASM_SRCS:.asm=.o)
@@ -75,7 +77,7 @@ iso: kernel
 run: iso
 	qemu-system-x86_64 -cdrom $(ISO) -m 512M -vga std
 
-# ── Run headless for CI testing ───────────────────────────────────────────────────────────────
+# ── Run headless for CI testing ───────────────────────────────────────────────
 run-headless: iso
 	qemu-system-x86_64 -cdrom $(ISO) -m 512M -nographic -no-reboot
 
@@ -87,5 +89,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS v0.4 — x86-64 port, framebuffer, VFS, Ring3, network, SLM, Vulkan"
+	git commit -m "Raven AOS v0.5 — framebuffer, CORVUS display, Landon's racing game"
 	git push origin main

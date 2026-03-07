@@ -6,7 +6,7 @@
 
 // Framebuffer info struct
 typedef struct {
-    uint32_t addr;      // Physical address of framebuffer
+    uint64_t addr;      // Physical address of framebuffer (64-bit)
     uint32_t width;
     uint32_t height;
     uint32_t pitch;     // Bytes per row
