@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — initrd (Initial RAM Disk)
+// Instinct OS — initrd (Initial RAM Disk)
 // Simple read-only RAM filesystem loaded by GRUB as a multiboot module
 // Format: custom Raven Archive (RVAR) — header + file entries + data
 // =============================================================================

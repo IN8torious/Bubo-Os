@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — User Mode (Ring 3)
+// Instinct OS — User Mode (Ring 3)
 // TSS, syscall interface, user process bootstrap
 // =============================================================================
 #include <stdint.h>

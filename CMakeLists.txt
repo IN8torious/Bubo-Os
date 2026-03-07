@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(RavenAOS VERSION 0.3.0 LANGUAGES C ASM_NASM)
 
 # =============================================================================
-# Raven AOS — CMake Build System
+# Instinct OS — CMake Build System
 # CORVUS is the chef. CMake is the recipe book.
 # =============================================================================
 
@@ -14,7 +14,7 @@ endif()
 
 # ── Output names ─────────────────────────────────────────────────────────────
 set(KERNEL_NAME   "raven.kernel")
-set(ISO_NAME      "RavenOS.iso")
+set(ISO_NAME      "InstinctOS.iso")
 set(ISO_DIR       "${CMAKE_BINARY_DIR}/iso")
 
 # ── Compiler flags (bare-metal i386) ─────────────────────────────────────────
@@ -54,7 +54,7 @@ set(C_SOURCES
     graphics/framebuffer.c
     graphics/font.c
     graphics/gui.c
-    engine/raven_engine.c
+    engine/instinct_engine.c
 )
 
 # ── Kernel target ─────────────────────────────────────────────────────────────

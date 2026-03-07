@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — CORVUS MAS Dashboard
+// Instinct OS — CORVUS MAS Dashboard
 //
 // Shows all 10 agents, their status, needs model, and the constitutional
 // mandate. This is the nerve center of the sovereign intelligence system.

@@ -1,5 +1,5 @@
 # =============================================================================
-# Raven AOS v1.0 — Build System
+# Instinct OS v1.0 — Build System
 #
 # "NO MAS DISADVANTAGED"
 # MAS = Multi-Agentic Systems — Sovereign Intelligence
@@ -56,7 +56,7 @@ C_SRCS   = kernel/kernel.c \
             graphics/corvus_display.c \
             graphics/desktop.c \
             graphics/polish.c \
-            engine/raven_engine.c \
+            engine/instinct_engine.c \
             engine/racing_game.c \
             apps/corvus_dashboard.c \
             apps/landon_center.c \
@@ -68,7 +68,7 @@ C_OBJS   = $(C_SRCS:.c=.o)
 OBJS     = $(ASM_OBJS) $(C_OBJS)
 
 KERNEL   = iso/boot/raven.kernel
-ISO      = RavenOS.iso
+ISO      = InstinctOS.iso
 
 .PHONY: all kernel iso run run-headless clean push
 
@@ -123,5 +123,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS v1.0 — Voice + LLM + Network + Sound + Ring3 — NO MAS DISADVANTAGED"
+	git commit -m "Instinct OS v1.0 — Voice + LLM + Network + Sound + Ring3 — NO MAS DISADVANTAGED"
 	git push origin main

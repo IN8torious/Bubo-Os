@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -102,7 +102,7 @@ static void cmd_clear(void) {
     // Reprint mini header
     uint8_t red = vga_entry_color(VGA_LIGHT_RED, VGA_BLACK);
     terminal_setcolor(red);
-    terminal_writeline("  Raven AOS — CORVUS Shell  |  Type 'help' for commands");
+    terminal_writeline("  Instinct OS — CORVUS Shell  |  Type 'help' for commands");
     terminal_writeline("");
 }
 
@@ -232,7 +232,7 @@ void shell_init(void) {
     terminal_setcolor(red);
     terminal_writeline("  ████████████████████████████████████████████████████████████████");
     terminal_setcolor(white);
-    terminal_writeline("  CORVUS Shell — Raven AOS Layer 7 — Natural Language Interface");
+    terminal_writeline("  CORVUS Shell — Instinct OS Layer 7 — Natural Language Interface");
     terminal_setcolor(grey);
     terminal_writeline("  Type 'help' for commands. All input is processed by CORVUS.");
     terminal_setcolor(red);

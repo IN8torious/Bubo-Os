@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — Network Driver (RTL8139 + Intel E1000)
+// Instinct OS — Network Driver (RTL8139 + Intel E1000)
 //
 // Bare-metal Ethernet driver. CORVUS uses this to reach external APIs,
 // sync SuperMemory, and communicate with the outside world.

@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS v1.1 — Dedicated to Landon Pankuch
+// Instinct OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -136,7 +136,7 @@ static void draw_about_tab(int32_t x, int32_t y) {
     font_draw_string(x, y+176,"Built for everyone told they cannot.", 0xCCCCCC, 0, true);
     font_draw_string(x, y+200,"NO MAS DISADVANTAGED.", 0xFF0000, 0, true);
     font_draw_string(x, y+224,"MIT License — Free for disabilities. Always.", 0x00CC44, 0, true);
-    font_draw_string(x, y+248,"github.com/IN8torious/Corvus-Os", 0x4488FF, 0, true);
+    font_draw_string(x, y+248,"github.com/IN8torious/Instinct-Os", 0x4488FF, 0, true);
 }
 
 // ── Public API ────────────────────────────────────────────────────────────────

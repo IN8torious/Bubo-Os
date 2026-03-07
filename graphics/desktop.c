@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS v1.0 — Desktop Shell
+// Instinct OS v1.0 — Desktop Shell
 // Full window manager, taskbar, app launcher, wallpaper, cursor
 //
 // Constitutional Mandate: "NO MAS DISADVANTAGED"
@@ -209,7 +209,7 @@ static void desktop_draw_wallpaper(void) {
     font_draw_string(sw - 280, sh - TASKBAR_HEIGHT - 20,
                      "NO MAS DISADVANTAGED", COL_BLOOD, COL_TRANSPARENT, true);
     font_draw_string(4, sh - TASKBAR_HEIGHT - 18,
-                     "Raven AOS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
+                     "Instinct OS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
 }
 
 // ── Taskbar ────────────────────────────────────────────────────────────────────

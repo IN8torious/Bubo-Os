@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -388,7 +388,7 @@ void gui_draw_corvus_dashboard(void) {
         GUI_COL_AGENT_OK, 0, true);
     cy += 16;
     font_draw_string(cx + 4, cy,
-        "> Raven AOS v0.3 — framebuffer active.",
+        "> Instinct OS v0.3 — framebuffer active.",
         GUI_COL_DIM_TEXT, 0, true);
     cy += 16;
 

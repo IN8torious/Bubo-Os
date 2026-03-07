@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — Voice Recognition Engine Header
+// Instinct OS — Voice Recognition Engine Header
 // Single source of truth for all VCMD_* command IDs
 // =============================================================================
 #include <stdint.h>

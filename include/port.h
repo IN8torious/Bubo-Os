@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — Port I/O Header
+// Instinct OS — Port I/O Header
 // Inline x86-64 port read/write functions
 // =============================================================================
 #include <stdint.h>

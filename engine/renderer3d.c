@@ -1,6 +1,6 @@
 // =============================================================================
-// RAVEN ENGINE — Software 3D Renderer
-// Raven AOS v1.1 | Built by Nathan Samuel (IN8torious)
+// INSTINCT ENGINE — Software 3D Renderer
+// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //

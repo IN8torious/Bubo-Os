@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 // =============================================================================
 // CORVUS — Chief Orchestration & Reasoning Via Unified Systems
-// Raven AOS Layer 5 — Embedded Reasoning Engine
+// Instinct OS Layer 5 — Embedded Reasoning Engine
 //
 // "The chef who runs the kitchen."
 // =============================================================================
@@ -266,7 +266,7 @@ void corvus_print_dashboard(void) {
     terminal_setcolor(white);
     terminal_writeline("  CORVUS — Chief Orchestration & Reasoning Via Unified Systems");
     terminal_setcolor(grey);
-    terminal_writeline("  Raven AOS Layer 5 | Constitutional Governance: ACTIVE");
+    terminal_writeline("  Instinct OS Layer 5 | Constitutional Governance: ACTIVE");
     terminal_setcolor(red);
     terminal_writeline("  ══════════════════════════════════════════════════════════════════");
 
@@ -351,7 +351,7 @@ void corvus_init(void) {
     }
 
     // Initial vector memory seed
-    corvus_remember(255, TOOL_LOG_WRITE, 0, "CORVUS initialized — Raven AOS online");
+    corvus_remember(255, TOOL_LOG_WRITE, 0, "CORVUS initialized — Instinct OS online");
 
     // Report to terminal
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,  VGA_BLACK);

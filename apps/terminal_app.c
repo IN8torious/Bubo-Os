@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — Terminal App
+// Instinct OS — Terminal App
 // A simple in-desktop terminal emulator backed by the kernel VFS and shell.
 // =============================================================================
 
@@ -78,7 +78,7 @@ void terminal_app_init(void) {
     term_row = 0; term_col = 0;
     input_len = 0; input_buf[0] = 0;
 
-    term_puts("Raven AOS v0.7 — CORVUS Terminal\n");
+    term_puts("Instinct OS v0.7 — CORVUS Terminal\n");
     term_puts("MAS Sovereign Intelligence | NO MAS DISADVANTAGED\n");
     term_puts("Type 'help' for commands.\n");
     term_puts("\n");
@@ -138,7 +138,7 @@ static void term_exec(const char* cmd) {
         term_puts("MAS = Multi-Agentic Systems\n");
         term_puts("Sovereign Intelligence. Not corporate AI.\n");
     } else if (cmd[0]=='v'&&cmd[1]=='e'&&cmd[2]=='r'&&cmd[3]=='s'&&cmd[4]=='i'&&cmd[5]=='o'&&cmd[6]=='n'&&cmd[7]==0) {
-        term_puts("Raven AOS v0.7 | CORVUS MAS | Akatsuki Theme\n");
+        term_puts("Instinct OS v0.7 | CORVUS MAS | Akatsuki Theme\n");
         term_puts("Built for Landon Pankuch — NO MAS DISADVANTAGED\n");
     } else {
         term_puts("Unknown command: ");

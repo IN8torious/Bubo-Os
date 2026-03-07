@@ -1,6 +1,6 @@
 // =============================================================================
-// RAVEN ENGINE — Entity Component System Header
-// Raven AOS v1.1 | Built by Nathan Samuel (IN8torious)
+// INSTINCT ENGINE — Entity Component System Header
+// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //

@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — Virtual File System (VFS)
+// Instinct OS — Virtual File System (VFS)
 // Abstraction layer: same API for initrd, FAT32, devfs, procfs
 // =============================================================================
 #include <stdint.h>

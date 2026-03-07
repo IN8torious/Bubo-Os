@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — CORVUS Visual Display
+// Instinct OS — CORVUS Visual Display
 // Renders the Akatsuki boot screen, CORVUS dashboard, and agent status panels
 // on the VESA framebuffer. This is CORVUS's face.
 // =============================================================================

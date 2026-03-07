@@ -1,4 +1,4 @@
-# Raven AOS v1.0
+# Instinct OS v1.0
 
 > **"NO MAS DISADVANTAGED"**
 >
@@ -19,9 +19,9 @@ It does not.
 
 ---
 
-## What Raven AOS Is
+## What Instinct OS Is
 
-Raven AOS is a **sovereign, constitutional, accessibility-first operating system** built from scratch for x86-64 hardware. It is not a Linux distribution. It is not a Windows fork. It is not a research toy.
+Instinct OS is a **sovereign, constitutional, accessibility-first operating system** built from scratch for x86-64 hardware. It is not a Linux distribution. It is not a Windows fork. It is not a research toy.
 
 It is a real, bootable, 64-bit operating system with:
 
@@ -124,7 +124,7 @@ The machine adapts to the human. Not the other way around.
 
 ## The Desktop
 
-Raven AOS boots into a full graphical desktop rendered directly on the VESA framebuffer in bare-metal C.
+Instinct OS boots into a full graphical desktop rendered directly on the VESA framebuffer in bare-metal C.
 
 **Visual features:**
 - Akatsuki wallpaper — void black with crimson cloud bands and Rinnegan symbol
@@ -152,8 +152,8 @@ All of this is pure pixel math in C. No GPU. No OpenGL. No DirectX.
 
 ### Build
 ```bash
-git clone https://github.com/IN8torious/Corvus-Os.git
-cd Corvus-Os
+git clone https://github.com/IN8torious/Instinct-Os.git
+cd Instinct-Os
 make
 ```
 
@@ -193,5 +193,5 @@ The source is open. The mandate is permanent. The machine is yours.
 
 ---
 
-*Raven AOS v1.0 | Built from bare metal | 2025 | IN8torious*
-*https://github.com/IN8torious/Corvus-Os*
+*Instinct OS v1.0 | Built from bare metal | 2025 | IN8torious*
+*https://github.com/IN8torious/Instinct-Os*

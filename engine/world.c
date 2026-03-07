@@ -1,6 +1,6 @@
 // =============================================================================
-// RAVEN ENGINE — World System
-// Raven AOS v1.1 | Built by Nathan Samuel (IN8torious)
+// INSTINCT ENGINE — World System
+// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -283,7 +283,7 @@ static float g_cam_zoom = 16.0f;
 void world_init(void) {
     for (uint32_t i = 0; i < TILE_CACHE_MAX; i++)
         g_tile_cache[i].loaded = false;
-    terminal_write("[WORLD] RAVEN ENGINE world system initialized.\n");
+    terminal_write("[WORLD] INSTINCT ENGINE world system initialized.\n");
     terminal_write("[WORLD] Default world: Nurburgring Nordschleife 50.3356N 6.9475E\n");
 }
 

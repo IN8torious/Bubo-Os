@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — CORVUS LLM Engine Header (Cactus/GGML-compatible)
+// Instinct OS — CORVUS LLM Engine Header (Cactus/GGML-compatible)
 // =============================================================================
 #include <stdint.h>
 #include <stdbool.h>

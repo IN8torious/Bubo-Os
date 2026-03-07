@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — Landon Pankuch Accessibility Center
+// Instinct OS — Landon Pankuch Accessibility Center
 //
 // This is Landon's command center. Every pixel here exists for him.
 // CORVUS drives the Demon 170 based on his voice commands.

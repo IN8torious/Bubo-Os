@@ -1,10 +1,10 @@
 // =============================================================================
-// RAVEN ENGINE — Entity Component System
-// Raven AOS v1.1 | Built by IN8torious (Nathan Samuel — "Gift of God")
+// INSTINCT ENGINE — Entity Component System
+// Instinct OS v1.1 | Built by IN8torious (Nathan Samuel — "Gift of God")
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
-// engine/ecs.c — The heart of the RAVEN ENGINE
+// engine/ecs.c — The heart of the INSTINCT ENGINE
 // Every entity in every world — Ragnar, CORVUS, Landon, Raphael,
 // Huginn the Raven, the Demon 170, the Road Runner, every building
 // on the Nürburgring — is an ECS entity managed here.
@@ -79,7 +79,7 @@ void ecs_init(void) {
     g_entity_count = 0;
     g_tick         = 0;
     g_initialized  = true;
-    terminal_write("[ECS] RAVEN ENGINE entity system initialized.\n");
+    terminal_write("[ECS] INSTINCT ENGINE entity system initialized.\n");
     terminal_write("[ECS] Max entities: " ECS_MAX_STR "\n");
 }
 

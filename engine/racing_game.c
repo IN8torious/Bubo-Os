@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Racing Game: Landon's Demon 170 vs CORVUS Supra
+// Instinct OS — Racing Game: Landon's Demon 170 vs CORVUS Supra
 // =============================================================================
 // Landon Pankuch commands CORVUS with his voice.
 // CORVUS drives the Dodge Demon 170 (1,400 HP) for him.

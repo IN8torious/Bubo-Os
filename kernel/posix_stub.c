@@ -1,11 +1,11 @@
 // =============================================================================
-// Raven AOS v1.1 — Dedicated to Landon Pankuch
+// Instinct OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious (Nathan Samuel) | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
 // kernel/posix_stub.c — POSIX Compatibility Stub Layer
 // Provides POSIX-compatible syscall stubs so Linux binaries can run on
-// Raven AOS. This is the foundation of the universal POSIX layer (v1.5+).
+// Instinct OS. This is the foundation of the universal POSIX layer (v1.5+).
 // =============================================================================
 
 #include "posix_stub.h"
@@ -113,7 +113,7 @@ int32_t posix_lseek(int32_t fd, int32_t offset, uint32_t whence) {
 // ── sys_exit ──────────────────────────────────────────────────────────────────
 void posix_exit(int32_t code) {
     (void)code;
-    // In Raven AOS, user-mode process exit returns to kernel scheduler
+    // In Instinct OS, user-mode process exit returns to kernel scheduler
     // For now, infinite loop (will be replaced with scheduler yield in v1.5)
     while (1) {}
 }

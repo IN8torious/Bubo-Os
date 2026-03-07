@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS v1.1 — Dedicated to Landon Pankuch
+// Instinct OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -7,7 +7,7 @@
 //
 // Scans PCI bus for NVIDIA GPU, maps BAR0/BAR1 MMIO registers,
 // sets up hardware linear framebuffer, provides hardware-accelerated
-// 2D blitting and compositing for the Raven AOS desktop.
+// 2D blitting and compositing for the Instinct OS desktop.
 //
 // RTX ray-tracing pipeline stub — ready for v2.0 NVK Vulkan integration.
 // =============================================================================
@@ -242,7 +242,7 @@ void gpu_fill_rect(uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t colo
 
 // ── RTX Ray-Tracing Pipeline (v2.0 stub) ─────────────────────────────────────
 // This is the architectural foundation for RTX integration.
-// When NVK Vulkan driver is ported to Raven AOS, these functions
+// When NVK Vulkan driver is ported to Instinct OS, these functions
 // will dispatch real ray-tracing workloads to the RT cores.
 
 void gpu_rtx_init_pipeline(void) {

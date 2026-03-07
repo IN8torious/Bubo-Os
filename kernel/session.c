@@ -1,9 +1,9 @@
 // =============================================================================
-// Raven AOS v1.1 — Dedicated to Landon Pankuch
+// Instinct OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
-// kernel/session.c — Persistent state across reboots for Raven AOS
+// kernel/session.c — Persistent state across reboots for Instinct OS
 // =============================================================================
 
 #include "session.h"

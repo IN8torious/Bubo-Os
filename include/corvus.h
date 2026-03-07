@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -23,7 +23,7 @@
 
 // =============================================================================
 // CORVUS — Chief Orchestration & Reasoning Via Unified Systems
-// Layer 5 of the Raven AOS 7-Layer Architecture
+// Layer 5 of the Instinct OS 7-Layer Architecture
 //
 // CORVUS is the embedded reasoning engine of Raven OS.
 // It coordinates all kernel agents, interprets user intent,

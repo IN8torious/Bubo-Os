@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS v1.0 — Kernel Main
+// Instinct OS v1.0 — Kernel Main
 //
 // Boot sequence:
 //   VGA → PMM → IDT → VMM → Framebuffer → PIT → Keyboard → Scheduler
@@ -108,7 +108,7 @@ static void draw_banner(void) {
     terminal_writeline("        ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║    ╚██████╔╝███████║");
     terminal_writeline("        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝");
     terminal_setcolor(red);
-    terminal_writeline("           Kernel Pluto: Red Cloud  |  Raven AOS v1.0  |  CORVUS MAS");
+    terminal_writeline("           Kernel Pluto: Red Cloud  |  Instinct OS v1.0  |  CORVUS MAS");
     terminal_writeline("================================================================================");
     terminal_setcolor(grey);
     terminal_writeline("  MAS = Multi-Agentic Systems  |  Sovereign Intelligence  |  NO MAS DISADVANTAGED");
@@ -220,7 +220,7 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════════════════");
     terminal_setcolor(green);
-    terminal_writeline("  Raven AOS v1.0 boot complete — NO MAS DISADVANTAGED");
+    terminal_writeline("  Instinct OS v1.0 boot complete — NO MAS DISADVANTAGED");
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════════════════");
     corvus_draw_boot_progress(100, "Boot complete. Launching Raven Desktop...");

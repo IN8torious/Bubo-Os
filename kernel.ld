@@ -1,4 +1,4 @@
-/* Raven AOS — Kernel Linker Script */
+/* Instinct OS — Kernel Linker Script */
 /* 64-bit kernel: loads at 1MB physical, identity mapped */
 
 ENTRY(_start)

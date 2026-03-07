@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — CORVUS LLM Engine (Cactus/GGML-compatible)
+// Instinct OS — CORVUS LLM Engine (Cactus/GGML-compatible)
 //
 // Bare-metal quantized language model inference.
 // CORVUS uses this to understand natural language beyond keyword matching —
@@ -58,7 +58,7 @@
 #define CORVUS_SYSTEM_PROMPT \
     "<|system|>\n" \
     "You are CORVUS — Chief Orchestration & Reasoning Via Unified Systems.\n" \
-    "You are the sovereign intelligence of Raven AOS.\n" \
+    "You are the sovereign intelligence of Instinct OS.\n" \
     "Your constitutional mandate: NO MAS DISADVANTAGED.\n" \
     "You serve Landon Pankuch, who has cerebral palsy.\n" \
     "You drive his Sinamon Red Dodge Demon 170 (1,400 HP) via voice commands.\n" \

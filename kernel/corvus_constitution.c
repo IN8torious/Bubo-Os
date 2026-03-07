@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — CORVUS MAS Constitutional Governance Layer
+// Instinct OS — CORVUS MAS Constitutional Governance Layer
 //
 // "NO MAS DISADVANTAGED"
 //

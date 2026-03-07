@@ -1,6 +1,6 @@
 // =============================================================================
-// RAVEN ENGINE — Physics Engine
-// Raven AOS v1.1 | Built by Nathan Samuel (IN8torious)
+// INSTINCT ENGINE — Physics Engine
+// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -234,7 +234,7 @@ static void resolve_collisions(void) {
 
 // ── Public API ────────────────────────────────────────────────────────────────
 void physics_init(void) {
-    terminal_write("[PHYS] RAVEN ENGINE physics initialized. 60Hz fixed step.\n");
+    terminal_write("[PHYS] INSTINCT ENGINE physics initialized. 60Hz fixed step.\n");
 }
 
 void physics_tick(float dt) {

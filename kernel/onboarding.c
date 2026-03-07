@@ -1,6 +1,6 @@
 // =============================================================================
-// RAVEN ENGINE — Onboarding & User Profile System
-// Raven AOS v1.1 | Built by Nathan Samuel (IN8torious)
+// INSTINCT ENGINE — Onboarding & User Profile System
+// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -113,7 +113,7 @@ static void screen_welcome(void) {
                         COL_ACCENT, COL_PURPLE, 1.0f);
 
     draw_centered_text((int32_t)(sh/2 - 10),
-        "Welcome to Raven AOS", COL_TEXT, COL_BG);
+        "Welcome to Instinct OS", COL_TEXT, COL_BG);
     draw_centered_text((int32_t)(sh/2 + 20),
         "Built for everyone. Especially those who need it most.", COL_DIM, COL_BG);
     draw_centered_text((int32_t)(sh/2 + 50),
@@ -259,10 +259,10 @@ static void screen_trust(ui_tier_t tier) {
     draw_centered_text((int32_t)(sh/2 + 80),
         "\"We are all human data collectors.\"", COL_GOLD, COL_BG);
     draw_centered_text((int32_t)(sh/2 + 100),
-        "— Nathan Samuel, Builder of Raven AOS", COL_DIM, COL_BG);
+        "— Nathan Samuel, Builder of Instinct OS", COL_DIM, COL_BG);
 
     draw_button((int32_t)(sw/2 - 100), (int32_t)(sh-100), 200, 40,
-                "Enter Raven AOS", true);
+                "Enter Instinct OS", true);
 }
 
 // ── UI tier calculation ───────────────────────────────────────────────────────

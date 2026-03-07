@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven AOS — User Mode (Ring 3)
+// Instinct OS — User Mode (Ring 3)
 // TSS setup, syscall dispatch, user process bootstrap
 // CORVUS is the trusted bridge between user apps and the kernel
 // =============================================================================

@@ -1,5 +1,5 @@
 // =============================================================================
-// Raven AOS — Dedicated to Landon Pankuch
+// Instinct OS — Dedicated to Landon Pankuch
 // =============================================================================
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Raven AOS — CORVUS Dysarthria Adaptation Engine
+// Instinct OS — CORVUS Dysarthria Adaptation Engine
 //
 // Built for Landon Pankuch. Built for anyone whose brain moves faster
 // than their mouth. Built for anyone who has ever been told a machine
