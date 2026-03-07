@@ -29,8 +29,13 @@ C_SRCS   = kernel/kernel.c \
             kernel/keyboard.c \
             kernel/scheduler.c \
             kernel/corvus.c \
+            kernel/corvus_brain.c \
             kernel/shell.c \
-            drivers/vga.c
+            drivers/vga.c \
+            graphics/framebuffer.c \
+            graphics/font.c \
+            graphics/gui.c \
+            engine/raven_engine.c
 
 # ── Object files ──────────────────────────────────────────────────────────────
 ASM_OBJS = $(ASM_SRCS:.asm=.o)
@@ -81,5 +86,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS — CORVUS shell, IDT, VMM, PIT, keyboard, scheduler"
+	git commit -m "Raven AOS v0.3 — CORVUS brain, Raven Engine, GUI, framebuffer, font renderer"
 	git push origin main
