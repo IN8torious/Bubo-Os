@@ -23,12 +23,12 @@ typedef enum {
 
 // CPU context (saved during context switch)
 typedef struct {
-    uint32_t esp;   // Stack pointer
-    uint32_t eip;   // Instruction pointer
-    uint32_t eflags;
-    uint32_t eax, ebx, ecx, edx;
-    uint32_t esi, edi, ebp;
-    uint32_t cs, ds, ss;
+    uint64_t rsp;       // Stack pointer
+    uint64_t rbp;       // Base pointer
+    uint64_t rbx;       // Callee-saved
+    uint64_t r12, r13, r14, r15;  // Callee-saved
+    uint64_t rflags;    // CPU flags
+    uint64_t rip;       // Instruction pointer (for new tasks)
 } cpu_context_t;
 
 // Process Control Block (PCB)
@@ -39,8 +39,8 @@ typedef struct {
     process_type_t type;
     cpu_context_t  context;
 
-    uint32_t       stack_base;
-    uint32_t       stack_top;
+    uint64_t       stack_base;
+    uint64_t       stack_top;
 
     uint8_t        priority;    // Base priority 0-255
     uint8_t        quantum;     // Time slices before preemption

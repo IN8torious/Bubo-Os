@@ -33,7 +33,7 @@ static void draw_banner(void) {
     terminal_writeline("        ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║    ╚██████╔╝███████║");
     terminal_writeline("        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝");
     terminal_setcolor(red);
-    terminal_writeline("                     Kernel Pluto: Red Cloud  |  CORVUS AOS v0.2");
+    terminal_writeline("                     Kernel Pluto: Red Cloud  |  CORVUS AOS v0.3 (x86-64)");
     terminal_writeline("================================================================================");
     terminal_setcolor(grey);
     terminal_writeline("  7-Layer Agentic OS  |  10 Kernel Agents  |  Constitutional Governance");
@@ -41,7 +41,8 @@ static void draw_banner(void) {
 }
 
 // ── Kernel main ───────────────────────────────────────────────────────────────
-void kernel_main(uint32_t multiboot_magic, uint32_t multiboot_info_addr) {
+// In 64-bit: rdi = multiboot2 magic, rsi = multiboot2 info pointer
+void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
 
     // ── Layer 0: VGA terminal ─────────────────────────────────────────────────
     terminal_init();
@@ -64,7 +65,7 @@ void kernel_main(uint32_t multiboot_magic, uint32_t multiboot_info_addr) {
     }
 
     // ── Layer 2: Physical Memory Manager ─────────────────────────────────────
-    pmm_init(multiboot_info_addr);
+    pmm_init((uint32_t)multiboot_info_addr);
 
     // ── Layer 3: Interrupt Descriptor Table ───────────────────────────────────
     idt_init();

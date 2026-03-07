@@ -1,5 +1,5 @@
-/* Raven OS — Kernel Linker Script */
-/* Links the multiboot2 header, kernel code, and data into a flat binary */
+/* Raven AOS — Kernel Linker Script */
+/* 64-bit kernel: loads at 1MB physical, identity mapped */
 
 ENTRY(_start)
 
@@ -13,23 +13,29 @@ SECTIONS {
     }
 
     /* Kernel text (code) */
-    .text BLOCK(4K) : ALIGN(4K) {
-        *(.text)
+    .text ALIGN(4K) : {
+        *(.text*)
     }
 
     /* Read-only data */
-    .rodata BLOCK(4K) : ALIGN(4K) {
-        *(.rodata)
+    .rodata ALIGN(4K) : {
+        *(.rodata*)
     }
 
     /* Initialized data */
-    .data BLOCK(4K) : ALIGN(4K) {
-        *(.data)
+    .data ALIGN(4K) : {
+        *(.data*)
     }
 
     /* Uninitialized data (zero-filled) */
-    .bss BLOCK(4K) : ALIGN(4K) {
+    .bss ALIGN(4K) : {
         *(COMMON)
-        *(.bss)
+        *(.bss*)
+    }
+
+    /DISCARD/ : {
+        *(.eh_frame)
+        *(.note*)
+        *(.comment)
     }
 }

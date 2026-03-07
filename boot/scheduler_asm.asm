@@ -1,47 +1,41 @@
 ; =============================================================================
-; Raven OS — Context Switch (Assembly)
+; Raven AOS — Context Switch (64-bit long mode)
 ; Saves current CPU state into old_ctx, loads new_ctx
-; Called by the C scheduler when switching processes
+; System V AMD64 ABI: rdi = old_ctx, rsi = new_ctx
 ; =============================================================================
 
-bits 32
+bits 64
 
 global scheduler_switch
 
 ; void scheduler_switch(cpu_context_t* old_ctx, cpu_context_t* new_ctx)
-; [esp+4] = old_ctx pointer
-; [esp+8] = new_ctx pointer
+; rdi = old_ctx, rsi = new_ctx
 scheduler_switch:
-    ; Get parameters
-    mov eax, [esp+4]    ; old_ctx
-    mov ecx, [esp+8]    ; new_ctx
+    ; ── Save callee-saved registers into old_ctx ─────────────────────────────
+    mov [rdi+0],   rsp
+    mov [rdi+8],   rbp
+    mov [rdi+16],  rbx
+    mov [rdi+24],  r12
+    mov [rdi+32],  r13
+    mov [rdi+40],  r14
+    mov [rdi+48],  r15
+    ; Save rflags
+    pushfq
+    pop rax
+    mov [rdi+56],  rax
 
-    ; Save current context into old_ctx
-    mov [eax+0],  esp
-    mov [eax+8],  ebx
-    mov [eax+12], ecx
-    mov [eax+16], edx   ; Note: ecx is new_ctx, but we save the original
-    mov [eax+20], esi
-    mov [eax+24], edi
-    mov [eax+28], ebp
+    ; ── Restore callee-saved registers from new_ctx ──────────────────────────
+    mov rsp, [rsi+0]
+    mov rbp, [rsi+8]
+    mov rbx, [rsi+16]
+    mov r12, [rsi+24]
+    mov r13, [rsi+32]
+    mov r14, [rsi+40]
+    mov r15, [rsi+48]
+    ; Restore rflags
+    mov rax, [rsi+56]
+    push rax
+    popfq
 
-    ; Save eflags
-    pushf
-    pop edx
-    mov [eax+4], edx    ; eflags
-
-    ; Load new context from new_ctx
-    mov esp, [ecx+0]    ; Restore stack pointer
-    mov ebx, [ecx+8]
-    mov edx, [ecx+16]
-    mov esi, [ecx+20]
-    mov edi, [ecx+24]
-    mov ebp, [ecx+28]
-
-    ; Restore eflags
-    mov eax, [ecx+4]
-    push eax
-    popf
-
-    ; Return — EIP is now the new process's return address
+    ; Return — RIP is the new process's saved return address on its stack
     ret

@@ -76,8 +76,8 @@ process_t* scheduler_create(const char* name, void (*entry)(void),
             *(--sp) = 0;            // edi
             *(--sp) = 0x10;         // ds
 
-            p->context.esp = (uint32_t)sp;
-            p->context.eip = (uint32_t)entry;
+            p->context.rsp = (uint32_t)sp;
+            p->context.rip = (uint32_t)entry;
 
             process_count++;
             return p;

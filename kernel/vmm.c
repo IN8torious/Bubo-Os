@@ -179,17 +179,17 @@ void vmm_init(void) {
     // Identity map first 4MB (kernel lives here)
     // Using a pre-allocated page table for speed
     for (int i = 0; i < 1024; i++) {
-        first_page_table[i] = (uint32_t)(i * PAGE_SIZE) | VMM_PRESENT | VMM_WRITABLE;
+        first_page_table[i] = (uint64_t)(i * PAGE_SIZE) | VMM_PRESENT | VMM_WRITABLE;
     }
-    page_directory[0] = (uint32_t)first_page_table | VMM_PRESENT | VMM_WRITABLE;
+    page_directory[0] = (uint64_t)first_page_table | VMM_PRESENT | VMM_WRITABLE;
 
     // Load page directory into CR3
-    __asm__ volatile("mov %0, %%cr3" : : "r"((uint32_t)page_directory));
+    __asm__ volatile("mov %0, %%cr3" : : "r"((uint64_t)page_directory));
 
     // Enable paging in CR0
-    uint32_t cr0;
+    uint64_t cr0;
     __asm__ volatile("mov %%cr0, %0" : "=r"(cr0));
-    cr0 |= 0x80000000;
+    cr0 |= 0x80000001ULL;  // PE + PG
     __asm__ volatile("mov %0, %%cr0" : : "r"(cr0));
 
     // Initialize heap — map first 4 pages at HEAP_START

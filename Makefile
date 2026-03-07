@@ -7,14 +7,15 @@ CC      = gcc
 AS      = nasm
 LD      = ld
 
-# Cross-compile flags for bare-metal x86 32-bit
-CFLAGS  = -m32 -ffreestanding -fno-stack-protector -fno-builtin \
+# Bare-metal x86-64 flags
+CFLAGS  = -m64 -ffreestanding -fno-stack-protector -fno-builtin \
+          -fno-pie -fno-pic -mno-red-zone -mcmodel=kernel \
           -nostdlib -nostdinc -Wall -Wextra -O2 \
           -I./include
 
-ASFLAGS = -f elf32
+ASFLAGS = -f elf64
 
-LDFLAGS = -m elf_i386 -T kernel.ld --oformat elf32-i386
+LDFLAGS = -m elf_x86_64 -T kernel.ld --oformat elf64-x86-64 -z max-page-size=0x1000
 
 # ── Source files ──────────────────────────────────────────────────────────────
 ASM_SRCS = boot/boot.asm \
@@ -72,11 +73,11 @@ iso: kernel
 
 # ── Run in QEMU (with display) ────────────────────────────────────────────────
 run: iso
-	qemu-system-i386 -cdrom $(ISO) -m 256M -vga std
+	qemu-system-x86_64 -cdrom $(ISO) -m 512M -vga std
 
-# ── Run headless for CI testing ───────────────────────────────────────────────
+# ── Run headless for CI testing ───────────────────────────────────────────────────────────────
 run-headless: iso
-	qemu-system-i386 -cdrom $(ISO) -m 256M -nographic -no-reboot
+	qemu-system-x86_64 -cdrom $(ISO) -m 512M -nographic -no-reboot
 
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:
@@ -86,5 +87,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Raven AOS v0.3 — CORVUS brain, Raven Engine, GUI, framebuffer, font renderer"
+	git commit -m "Raven AOS v0.4 — x86-64 port, framebuffer, VFS, Ring3, network, SLM, Vulkan"
 	git push origin main

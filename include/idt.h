@@ -10,39 +10,42 @@
 
 #define IDT_ENTRIES 256
 
-// IDT gate types
-#define IDT_GATE_INTERRUPT  0x8E  // Present, Ring 0, 32-bit interrupt gate
-#define IDT_GATE_TRAP       0x8F  // Present, Ring 0, 32-bit trap gate
-#define IDT_GATE_USER       0xEE  // Present, Ring 3, 32-bit interrupt gate (syscalls)
+// 64-bit IDT gate types
+#define IDT_GATE_INTERRUPT  0x8E  // Present, Ring 0, 64-bit interrupt gate
+#define IDT_GATE_TRAP       0x8F  // Present, Ring 0, 64-bit trap gate
+#define IDT_GATE_USER       0xEE  // Present, Ring 3, 64-bit interrupt gate (syscalls)
 
-// IDT entry (gate descriptor)
+// 64-bit IDT entry (16 bytes)
 typedef struct {
-    uint16_t offset_low;    // Lower 16 bits of handler address
-    uint16_t selector;      // Kernel code segment selector
-    uint8_t  zero;          // Always 0
-    uint8_t  type_attr;     // Gate type + DPL + Present bit
-    uint16_t offset_high;   // Upper 16 bits of handler address
+    uint16_t offset_low;    // bits 0-15 of handler address
+    uint16_t selector;      // kernel code segment selector
+    uint8_t  ist;           // interrupt stack table (0 = none)
+    uint8_t  type_attr;     // gate type + DPL + present
+    uint16_t offset_mid;    // bits 16-31 of handler address
+    uint32_t offset_high;   // bits 32-63 of handler address
+    uint32_t reserved;      // must be zero
 } __attribute__((packed)) idt_entry_t;
 
 // IDT pointer (for LIDT instruction)
 typedef struct {
     uint16_t limit;
-    uint32_t base;
+    uint64_t base;
 } __attribute__((packed)) idt_ptr_t;
 
-// CPU register state pushed by interrupt stubs
+// CPU register state pushed by 64-bit interrupt stubs
 typedef struct {
-    uint32_t ds;
-    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax; // pusha
-    uint32_t int_no, err_code;
-    uint32_t eip, cs, eflags, useresp, ss;            // pushed by CPU
+    uint64_t r15, r14, r13, r12, r11, r10, r9, r8;
+    uint64_t rbp, rdi, rsi, rdx, rcx, rbx, rax;
+    uint64_t int_no, err_code;
+    // CPU auto-pushes on interrupt:
+    uint64_t rip, cs, rflags, rsp, ss;
 } __attribute__((packed)) registers_t;
 
 // Initialize IDT and install all handlers
 void idt_init(void);
 
-// Set a single IDT gate
-void idt_set_gate(uint8_t num, uint32_t handler, uint16_t selector, uint8_t flags);
+// Set a single IDT gate (64-bit handler pointer)
+void idt_set_gate(uint8_t num, uint64_t handler, uint16_t selector, uint8_t flags);
 
 // Generic interrupt handler (called from ASM stubs)
 void isr_handler(registers_t* regs);

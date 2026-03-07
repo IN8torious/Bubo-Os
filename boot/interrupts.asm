@@ -1,39 +1,75 @@
 ; =============================================================================
-; Raven OS — Interrupt Service Routine Stubs
+; Raven AOS — Interrupt Service Routine Stubs (64-bit long mode)
 ; Generates ISR stubs for CPU exceptions (0-31) and IRQ handlers (32-47)
-; Each stub saves CPU state and calls the C handler
+; Each stub saves full 64-bit CPU state and calls the C handler
 ; =============================================================================
 
-bits 32
+bits 64
 
-; ── Macros ────────────────────────────────────────────────────────────────────
+extern isr_handler
+extern irq_handler
 
-; ISR with no error code pushed by CPU (we push a dummy 0)
+; ── Save/restore all GP registers ────────────────────────────────────────────
+; Order must match registers_t struct (reversed — last pushed = first in struct)
+%macro PUSH_ALL 0
+    push rax
+    push rbx
+    push rcx
+    push rdx
+    push rsi
+    push rdi
+    push rbp
+    push r8
+    push r9
+    push r10
+    push r11
+    push r12
+    push r13
+    push r14
+    push r15
+%endmacro
+
+%macro POP_ALL 0
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop r11
+    pop r10
+    pop r9
+    pop r8
+    pop rbp
+    pop rdi
+    pop rsi
+    pop rdx
+    pop rcx
+    pop rbx
+    pop rax
+%endmacro
+
+; ── ISR with no error code (push dummy 0) ────────────────────────────────────
 %macro ISR_NOERR 1
 global isr%1
 isr%1:
-    cli
-    push byte 0         ; dummy error code
-    push byte %1        ; interrupt number
+    push qword 0        ; dummy error code
+    push qword %1       ; interrupt number
     jmp isr_common_stub
 %endmacro
 
-; ISR where CPU pushes an error code automatically
+; ── ISR where CPU auto-pushes error code ─────────────────────────────────────
 %macro ISR_ERR 1
 global isr%1
 isr%1:
-    cli
-    push byte %1        ; interrupt number (error code already on stack)
+    push qword %1       ; interrupt number (error code already on stack)
     jmp isr_common_stub
 %endmacro
 
-; IRQ stub — maps IRQ N to interrupt (N+32)
+; ── IRQ stub ─────────────────────────────────────────────────────────────────
 %macro IRQ 2
 global irq%1
 irq%1:
-    cli
-    push byte 0         ; dummy error code
-    push byte %2        ; interrupt number
+    push qword 0        ; dummy error code
+    push qword %2       ; interrupt number
     jmp irq_common_stub
 %endmacro
 
@@ -46,7 +82,7 @@ ISR_NOERR  4    ; Overflow
 ISR_NOERR  5    ; Bound range exceeded
 ISR_NOERR  6    ; Invalid opcode
 ISR_NOERR  7    ; Device not available
-ISR_ERR    8    ; Double fault (has error code)
+ISR_ERR    8    ; Double fault
 ISR_NOERR  9    ; Coprocessor segment overrun
 ISR_ERR   10    ; Invalid TSS
 ISR_ERR   11    ; Segment not present
@@ -72,77 +108,37 @@ ISR_ERR   30    ; Security exception
 ISR_NOERR 31    ; Reserved
 
 ; ── Hardware IRQs (32-47) ─────────────────────────────────────────────────────
-IRQ  0, 32    ; PIT Timer
-IRQ  1, 33    ; Keyboard
-IRQ  2, 34    ; Cascade (used internally)
-IRQ  3, 35    ; COM2
-IRQ  4, 36    ; COM1
-IRQ  5, 37    ; LPT2
-IRQ  6, 38    ; Floppy
-IRQ  7, 39    ; LPT1 / Spurious
-IRQ  8, 40    ; CMOS RTC
-IRQ  9, 41    ; Free / ACPI
-IRQ 10, 42    ; Free
-IRQ 11, 43    ; Free
-IRQ 12, 44    ; PS/2 Mouse
-IRQ 13, 45    ; FPU / Coprocessor
-IRQ 14, 46    ; Primary ATA
-IRQ 15, 47    ; Secondary ATA
+IRQ  0, 32   ; PIT timer
+IRQ  1, 33   ; Keyboard
+IRQ  2, 34   ; Cascade
+IRQ  3, 35   ; COM2
+IRQ  4, 36   ; COM1
+IRQ  5, 37   ; LPT2
+IRQ  6, 38   ; Floppy
+IRQ  7, 39   ; LPT1 / spurious
+IRQ  8, 40   ; CMOS RTC
+IRQ  9, 41   ; Free
+IRQ 10, 42   ; Free
+IRQ 11, 43   ; Free
+IRQ 12, 44   ; PS/2 Mouse
+IRQ 13, 45   ; FPU
+IRQ 14, 46   ; ATA primary
+IRQ 15, 47   ; ATA secondary
 
 ; ── Common ISR stub ───────────────────────────────────────────────────────────
-extern isr_handler
-
 isr_common_stub:
-    pusha               ; Push EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI
-    mov ax, ds
-    push eax            ; Save data segment
-
-    mov ax, 0x10        ; Load kernel data segment
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-
-    push esp            ; Pass pointer to registers struct
+    PUSH_ALL
+    mov rdi, rsp        ; rdi = pointer to registers_t (System V ABI arg0)
     call isr_handler
-    add esp, 4          ; Clean up pointer
-
-    pop eax             ; Restore data segment
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-
-    popa                ; Restore general registers
-    add esp, 8          ; Clean up error code + interrupt number
-    sti
-    iret
+    POP_ALL
+    add rsp, 16         ; pop int_no + err_code
+    iretq               ; 64-bit interrupt return
 
 ; ── Common IRQ stub ───────────────────────────────────────────────────────────
-extern irq_handler
-
 irq_common_stub:
-    pusha
-    mov ax, ds
-    push eax
-
-    mov ax, 0x10
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-
-    push esp
+    PUSH_ALL
+    mov rdi, rsp
     call irq_handler
-    add esp, 4
-
-    pop eax
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-
-    popa
-    add esp, 8
-    sti
-    iret
+    POP_ALL
+    add rsp, 16
+    iretq
