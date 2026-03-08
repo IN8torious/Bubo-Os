@@ -35,6 +35,15 @@
 static fb_info_t fb;
 static bool fb_initialized = false;
 
+// ── Global framebuffer accessors ────────────────────────────────────────────────────
+// bubo_boot.c and other files declare these as extern.
+// They are the single source of truth for framebuffer geometry.
+// Set once during init, never change after that.
+uint32_t *fb_base   = (uint32_t *)0;  // Framebuffer base address
+uint32_t  fb_width  = 0;              // Screen width in pixels
+uint32_t  fb_height = 0;              // Screen height in pixels
+uint32_t  fb_pitch  = 0;              // Bytes per scanline
+
 // ── Multiboot2 tag types ──────────────────────────────────────────────────────
 #define MB2_TAG_FRAMEBUFFER  8
 #define MB2_TAG_END          0
@@ -80,8 +89,13 @@ bool fb_init_from_multiboot(uint32_t mb2_info_addr) {
             fb.bpp    = fbtag->framebuffer_bpp;
             fb.type   = fbtag->framebuffer_type;
             fb.size   = fb.pitch * fb.height;
-
             fb_initialized = true;
+
+            // Sync global accessors so extern references in other files link
+            fb_base   = (uint32_t *)(uintptr_t)fb.addr;
+            fb_width  = fb.width;
+            fb_height = fb.height;
+            fb_pitch  = fb.pitch;
 
             // Report via VGA text (before we switch to framebuffer)
             uint8_t green = vga_entry_color(VGA_LIGHT_GREEN, VGA_BLACK);
@@ -133,6 +147,12 @@ void fb_init_fallback(void) {
     fb.type   = 1;
     fb.size   = fb.pitch * fb.height;
     fb_initialized = true;
+
+    // Sync global accessors
+    fb_base   = (uint32_t *)(uintptr_t)fb.addr;
+    fb_width  = fb.width;
+    fb_height = fb.height;
+    fb_pitch  = fb.pitch;
 
     uint8_t white = vga_entry_color(VGA_WHITE, VGA_BLACK);
     terminal_setcolor(white);

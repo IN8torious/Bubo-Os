@@ -169,4 +169,10 @@ void vera_resume(void);
 /* Get Vera's current state (read-only) */
 const vera_state_t *vera_get_state(void);
 
+/* Notify Vera that a desktop face/context is ready */
+void vera_notify_face_ready(int face_id);
+
+/* Submit a single Unicode character to Vera's keyboard input stream */
+void vera_submit_keyboard_char(uint32_t key);
+
 #endif /* VERA_WORKFLOW_H */

@@ -171,8 +171,10 @@ lv_theme_t *lv_theme_akatsuki_init(lv_display_t *disp)
     lv_style_set_shadow_opa(&style_taskbar, LV_OPA_30);
     lv_style_set_pad_all(&style_taskbar, 8);
 
-    // Init theme struct
-    lv_theme_init(&g_theme, NULL, NULL, theme_apply, lv_display_get_dpi(disp));
+    // Init theme struct (LVGL v9: lv_theme_init removed)
+    // Zero the struct, then wire up the apply callback
+    lv_memzero(&g_theme, sizeof(g_theme));
+    lv_theme_set_apply_cb(&g_theme, theme_apply);
     lv_display_set_theme(disp, &g_theme);
 
     return &g_theme;

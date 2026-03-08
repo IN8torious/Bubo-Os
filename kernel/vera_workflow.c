@@ -384,3 +384,35 @@ void vera_pause(void)  { vera.paused = 1; }
 void vera_resume(void) { vera.paused = 0; }
 
 const vera_state_t *vera_get_state(void) { return &vera; }
+
+/* =============================================================================
+ * vera_notify_face_ready — called by desktop/shell when a context comes online
+ * ============================================================================= */
+void vera_notify_face_ready(int face_id)
+{
+    if (face_id >= 0 && face_id < RINNEGAN_TOMOE_COUNT) {
+        vera_face_online((uint8_t)face_id);
+    }
+}
+
+/* =============================================================================
+ * vera_submit_keyboard_char — submit a single Unicode character from the desktop
+ * ============================================================================= */
+void vera_submit_keyboard_char(uint32_t key)
+{
+    vera_submit_keyboard_event((uint8_t)(key & 0xFF), 1, 0, 0, 0, 0);
+}
+
+/* vera_notify_face_ready — called by desktop/shell when a context comes online */
+void vera_notify_face_ready(int face_id)
+{
+    if (face_id >= 0 && face_id < RINNEGAN_TOMOE_COUNT) {
+        vera_face_online((uint8_t)face_id);
+    }
+}
+
+/* vera_submit_keyboard_char — submit a single Unicode character from the desktop */
+void vera_submit_keyboard_char(uint32_t key)
+{
+    vera_submit_keyboard_event((uint8_t)(key & 0xFF), 1, 0, 0, 0, 0);
+}

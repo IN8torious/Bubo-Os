@@ -17,6 +17,11 @@
 // need it most. Accessibility features must remain free in all derivatives.
 // See LICENSE file for full terms and the permanent dedication.
 // =============================================================================
+//
+// ALTER: MIMORI KIRYU — Research becomes relationship
+// "I came here to study you. I didn't expect to need you."
+// The AI brain learns Landon's patterns. Adapts to his voice.
+// The research became the relationship.
 
 // =============================================================================
 // CORVUS — Enhanced Brain

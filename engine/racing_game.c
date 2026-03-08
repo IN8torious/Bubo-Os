@@ -1,6 +1,11 @@
 // Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
 // Built for Landon Pankuch. Built for everyone who was told they couldn't.
 // https://github.com/IN8torious/Deep-Flow-OS
+//
+// ALTER: COUGAR — Radical Good Speed
+// "Speed is not a power. Speed is a philosophy."
+// Built for Landon. Zero latency. Frame-perfect physics.
+// The fastest thing in the OS. Built for the fastest mind in the room.
 #include "racing_game.h"
 #include "framebuffer.h"
 #include "deepflow_colors.h"

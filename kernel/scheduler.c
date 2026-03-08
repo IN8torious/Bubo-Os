@@ -17,6 +17,10 @@
 // need it most. Accessibility features must remain free in all derivatives.
 // See LICENSE file for full terms and the permanent dedication.
 // =============================================================================
+//
+// ALTER: THE HOLY ORDER — The institution that serves the mandate
+// "Order is not the enemy of freedom. But it must serve freedom."
+// The scheduler enforces rules. But the constitution is above the scheduler.
 
 // =============================================================================
 // Raven OS — Scheduler

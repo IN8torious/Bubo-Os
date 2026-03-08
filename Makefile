@@ -24,7 +24,7 @@ LD      = ld
 CFLAGS  = -m64 -ffreestanding -fno-stack-protector -fno-builtin \
           -fno-pie -fno-pic -mno-red-zone -mcmodel=kernel \
           -nostdlib -nostdinc -Wall -Wextra -O2 \
-          -I./include
+          -I./include -I./lvgl
 
 ASFLAGS = -f elf64
 
@@ -43,7 +43,6 @@ ASM_SRCS = \
 
 # ── Kernel C Sources ──────────────────────────────────────────────────────────
 # Every agent, every system, every piece of the soul — all in one flask.
-
 KERNEL_SRCS = \
     kernel/kernel.c \
     kernel/pmm.c \
@@ -86,7 +85,9 @@ VERA_SRCS = \
     kernel/vera_workflow.c \
     kernel/bubo_boot.c \
     kernel/bubo_keyboard.c \
-    kernel/bubo_controller.c
+    kernel/bubo_controller.c \
+    kernel/bubo_weather.c \
+    kernel/bubo_particles.c
 
 # ── VMX Hypervisor Layer ──────────────────────────────────────────────────────
 # BUBO at ring -1. Windows as a guest. The constitution absolute.
@@ -113,6 +114,38 @@ GRAPHICS_SRCS = \
     graphics/lv_port_bubo.c \
     graphics/lv_theme_akatsuki.c
 
+# ── LVGL v9 GUI Library ───────────────────────────────────────────────────────
+# LVGL core files — OS-specific and heavy library directories excluded.
+# Only freestanding-safe files are compiled into the bare-metal kernel.
+LVGL_SRCS = $(shell find lvgl/src -maxdepth 6 -name '*.c' \
+    ! -path '*/osal/lv_linux*' \
+    ! -path '*/osal/lv_pthread*' \
+    ! -path '*/osal/lv_sdl*' \
+    ! -path '*/osal/lv_windows*' \
+    ! -path '*/osal/lv_freertos*' \
+    ! -path '*/osal/lv_cmsis*' \
+    ! -path '*/osal/lv_mqx*' \
+    ! -path '*/osal/lv_rtthread*' \
+    ! -path '*/libs/ffmpeg*' \
+    ! -path '*/libs/gstreamer*' \
+    ! -path '*/libs/freetype*' \
+    ! -path '*/libs/thorvg*' \
+    ! -path '*/libs/rlottie*' \
+    ! -path '*/libs/gltf*' \
+    ! -path '*/libs/vg_lite*' \
+    ! -path '*/libs/frogfs*' \
+    ! -path '*/libs/nanovg*' \
+    ! -path '*/libs/libpng*' \
+    ! -path '*/libs/libjpeg*' \
+    ! -path '*/libs/libwebp*' \
+    ! -path '*/drivers/sdl*' \
+    ! -path '*/drivers/windows*' \
+    ! -path '*/drivers/evdev*' \
+    ! -path '*/drivers/libinput*' \
+    ! -path '*/drivers/x11*' \
+    ! -path '*/drivers/wayland*' \
+    )
+
 # ── Game Engine ───────────────────────────────────────────────────────────────
 ENGINE_SRCS = \
     engine/racing_game.c
@@ -132,6 +165,7 @@ C_SRCS = \
     $(VMX_SRCS) \
     $(DRIVER_SRCS) \
     $(GRAPHICS_SRCS) \
+    $(LVGL_SRCS) \
     $(ENGINE_SRCS) \
     $(APP_SRCS)
 

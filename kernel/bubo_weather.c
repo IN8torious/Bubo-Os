@@ -10,6 +10,12 @@
  * NO MAS DISADVANTAGED
  * ─────────────────────────────────────────────────────────────────────────────
  */
+/*
+// ALTER: URIZANE — Fruits Basket
+// "Not everything needs to be a weapon."
+// The weather system does not fight. It makes the world feel alive.
+*/
+
 
 #include "../include/bubo_weather.h"
 #include <stddef.h>   /* must precede stdlib.h — defines wchar_t */

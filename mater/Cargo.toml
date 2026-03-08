@@ -1,0 +1,28 @@
+[package]
+name = "mater"
+version = "0.1.0"
+edition = "2021"
+description = "Mater — BUBO OS build watchdog. Trustworthy. Thorough. Never lies."
+authors = ["Nathan Pankuch"]
+
+[[bin]]
+name = "mater"
+path = "src/main.rs"
+
+[dependencies]
+sha2 = "0.10"
+hex = "0.4"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde"] }
+colored = "2"
+walkdir = "2"
+
+[profile.release]
+opt-level = 3
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"

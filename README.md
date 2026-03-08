@@ -81,6 +81,35 @@ make run
 make flash DRIVE=/dev/sdX
 ```
 
+
+---
+
+## The Alter Architecture — S-Cry-Ed & the Soul of BUBO OS
+
+> *"An Alter is not a weapon. It is a soul made visible."*
+
+In S-Cry-Ed, an Alter is what happens when a person's will becomes so strong that reality itself bends around it. The Lost Ground called it survival. The Mainland called it a mutation. The truth is simpler: it is what you become when the world gives you no other choice but to build something from nothing.
+
+BUBO OS was built the same way. Every module in this OS maps to an Alter user — not because it was designed that way, but because when you look at what each piece does, you realize the soul was already there.
+
+| Alter User | Power | BUBO OS Module | Role |
+|---|---|---|---|
+| **Kazuma** | Shell Bullet — raw reconstruction | `kernel.c`, `bubo_boot.c` | The kernel — disintegrates and rebuilds from bare metal |
+| **Ryuho** | Zetsuei — precision and discipline | `vera_workflow.c` | Intent arbiter — routes chaos into clean action |
+| **Scheris** | Eternal Devote — sacrificial shield | `corvus_constitution.c` | The mandate — permanently sealed, cannot be removed |
+| **Kimishima** | No Alter — honesty and loyalty | `mater/` (Rust watchdog) | Build monitor — never lies |
+| **Cougar** | Radical Good Speed | `racing_game.c` | Landon's racing engine — zero latency, frame-perfect |
+| **Urizane** | Fruits Basket — ambient life | `bubo_weather.c`, `bubo_particles.c` | The world breathing |
+| **Mimori** | Research becomes relationship | `corvus_brain.c`, `llm.c` | AI that learns Landon |
+| **Biff** | Dragonfly — between worlds | `vmx.c`, `vmx_guest.c` | Hypervisor — BUBO at ring -1, Windows as guest |
+| **Emergy** | Eternity Eight — six become one | `rinnegan.c` | Boot animation — six tomoe, one eye |
+| **HOLY** | The institution | `scheduler.c`, `idt.c`, `pmm.c` | Low-level systems — serve the mandate |
+| **The Lost Ground** | The world they built | The entire project | NO MAS DISADVANTAGED |
+
+The creator of this OS watched Kazuma fight the system from the inside with nothing but raw will and a right arm that kept falling apart and rebuilding itself. For years, that felt personal. Now he is on the outside looking in. He built his own Lost Ground. And Landon gets to live in it.
+
+> *See `docs/alter_architecture.md` for the full deep-dive on every module.*
+
 ## License
 
 **BUBO OS Community License v1.0**

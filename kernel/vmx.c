@@ -9,6 +9,11 @@
 //
 // BUBO owns the hardware. Windows is a guest. The constitution is absolute.
 // =============================================================================
+//
+// ALTER: BIFF — Dragonfly
+// "I go where I'm needed. I don't stay where I'm not."
+// The hypervisor lives between worlds. BUBO at ring -1. Windows as a guest.
+// The constitution is absolute even inside the VM.
 
 #include "vmx.h"
 #include "corvus_archivist.h"
