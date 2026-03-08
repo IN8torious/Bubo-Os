@@ -58,6 +58,7 @@ typedef uint32_t df_color_t;
 #define DF_AGENT_MUGEN       ((df_color_t)0xFFFF4500)  // Chaos: Unpredictable orange
 #define DF_AGENT_EDWARD      ((df_color_t)0xFFFFBF00)  // Patcher: Amber/alchemist fire
 #define DF_AGENT_YODA        ((df_color_t)0xFFDAA520)  // FCN: Deep gold/ancient
+#define DF_AGENT_HEAL        ((df_color_t)0xFF0066CC)  // Healer: Landon blue (tomoe 4)
 
 // ── Error Depth Encoding ──────────────────────────────────────────────────────
 // Errors are encoded by severity. Not all errors are equal.
@@ -131,7 +132,19 @@ typedef uint32_t df_color_t;
     { 63, 26, 0  }, /* F: Orange — solution bright   */ \
 }
 
-// ── Helper macros ─────────────────────────────────────────────────────────────
+// ── Text colors ───────────────────────────────────────────────────────────────────────────────
+#define DF_TEXT_PRIMARY      ((df_color_t)0xFFF0F0F0)  // Cloud white — primary UI text
+#define DF_TEXT_SECONDARY    ((df_color_t)0xFFAAAAAA)  // Dim grey — secondary text
+#define DF_TEXT_ACCENT       ((df_color_t)0xFFCC2222)  // Akatsuki red — accent text
+
+// ── Vera face constants ────────────────────────────────────────────────────────────────────────────
+#define VERA_FACE_BOOT       0
+#define VERA_FACE_DESKTOP    1
+#define VERA_FACE_FOCUS      2
+#define VERA_FACE_ALERT      3
+#define VERA_FACE_LANDON     4
+
+// ── Helper macros ────────────────────────────────────────────────────────────────────────────────
 #define DF_COLOR_R(c)   (((c) >> 16) & 0xFF)
 #define DF_COLOR_G(c)   (((c) >>  8) & 0xFF)
 #define DF_COLOR_B(c)   (((c)      ) & 0xFF)

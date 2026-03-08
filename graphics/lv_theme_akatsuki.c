@@ -7,6 +7,7 @@
 
 #include "lv_theme_akatsuki.h"
 #include "../lvgl/lvgl.h"
+#include "../lvgl/src/themes/lv_theme_private.h"  /* full lv_theme_t struct for LVGL v9 */
 
 // ── Akatsuki Palette ──────────────────────────────────────────────────────────
 #define AK_BLACK        lv_color_hex(0x0A0000)   // Near-black with red tint
@@ -53,7 +54,7 @@ static void theme_apply(lv_theme_t *th, lv_obj_t *obj)
         }
     } else if (cls == &lv_label_class) {
         lv_obj_add_style(obj, &style_label_body, 0);
-    } else if (cls == &lv_btn_class) {
+    } else if (cls == &lv_button_class) {  /* LVGL v9: renamed from lv_btn_class */
         lv_obj_add_style(obj, &style_btn, 0);
         lv_obj_add_style(obj, &style_btn_pressed, LV_STATE_PRESSED);
     } else if (cls == &lv_bar_class) {
