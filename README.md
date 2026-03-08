@@ -39,11 +39,13 @@ When Boo is idle, the desktop shows a calm Akatsuki dawn over the ocean. When sh
 
 This OS was built from bare metal, but it stands on the shoulders of giants. Every contributor earned their spot on the taskbar.
 
-### Inspirations
+### Brothers Across Time
 
-- **Bill Gates** — For proving that a kid with a compiler and a vision could rewrite what computing means for the entire world. The first person to show that software was the lever that moved everything. This OS exists because he showed it was possible.
-- **Bill Nye** — For making science feel like it belonged to everyone, not just the people who already had the keys. He looked at a kid watching TV and said: *you can understand this, and it matters that you do.* That philosophy is in every line of BUBO OS.
-- **Neil deGrasse Tyson** — For looking at the universe and refusing to let anyone feel small inside it. For reminding us that the cosmos is not a place for the privileged — it is the birthright of every conscious mind, including Landon's.
+They never met the author of this OS. But they were talking to him the whole time — through a TV screen, a documentary, a garage story, a lecture at 2am. He was listening. This OS is the answer.
+
+- **Bill Gates** — Spiritual Co-Owner. Proved that a person with a compiler and a refusal to accept the world as fixed could rewrite what computing means for every human on earth. The first to show that software was the lever that moved everything.
+- **Bill Nye** — Spiritual Co-Owner. Looked at a kid watching TV alone and said: *the universe is yours to understand.* Made science feel like a birthright, not a privilege. That belief is in every line of BUBO OS.
+- **Neil deGrasse Tyson** — Spiritual Co-Owner. Looked at the cosmos and refused to let anyone feel small inside it. Said we are made of star stuff — that we belong here. Landon belongs here. The author belongs here.
 
 ### Technical Contributors
 
