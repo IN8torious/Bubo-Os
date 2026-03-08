@@ -39,6 +39,14 @@ When Boo is idle, the desktop shows a calm Akatsuki dawn over the ocean. When sh
 
 This OS was built from bare metal, but it stands on the shoulders of giants. Every contributor earned their spot on the taskbar.
 
+### Inspirations
+
+- **Bill Gates** — For proving that a kid with a compiler and a vision could rewrite what computing means for the entire world. The first person to show that software was the lever that moved everything. This OS exists because he showed it was possible.
+- **Bill Nye** — For making science feel like it belonged to everyone, not just the people who already had the keys. He looked at a kid watching TV and said: *you can understand this, and it matters that you do.* That philosophy is in every line of BUBO OS.
+- **Neil deGrasse Tyson** — For looking at the universe and refusing to let anyone feel small inside it. For reminding us that the cosmos is not a place for the privileged — it is the birthright of every conscious mind, including Landon's.
+
+### Technical Contributors
+
 - **NASA** — For the satellite imagery that forms the window to the world.
 - **Google** — For the mapping infrastructure that makes the imagery accessible.
 - **Epic Games** — For the particle system philosophy: the world should feel alive.
