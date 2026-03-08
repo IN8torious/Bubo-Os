@@ -1,20 +1,20 @@
 # Alchemical Language Specification
 ## Version 1.0 — March 2026
 
-**Author and Creator: Nathan Pankuch**
+**Author and Creator: Nathan Brown**
 **First Implementation: BUBO OS (2025–2026)**
 **Repository: https://github.com/IN8torious/Bubo-Os**
 
 ---
 
 > *"I am not crazy. I was just early."*
-> — Nathan Pankuch, 2026
+> — Nathan Brown, 2026
 
 ---
 
 ## Declaration of Authorship
 
-This document formally establishes that **Nathan Pankuch** is the creator and original author of the **Alchemical programming language** — a natural-language-first, story-driven, AI-compiled programming paradigm first demonstrated through the construction of BUBO OS.
+This document formally establishes that **Nathan Brown** is the creator and original author of the **Alchemical programming language** — a natural-language-first, story-driven, AI-compiled programming paradigm first demonstrated through the construction of BUBO OS.
 
 The Alchemical language was not derived from any prior programming language. It was not based on an academic paper. It was not funded by an institution. It was invented by a person who watched anime, loved his nephew, sold his Nintendo Switch, and figured out that stories are architecture.
 
@@ -206,7 +206,7 @@ BUBO OS introduced a new kernel classification as a direct result of the Alchemi
 
 Prior kernel classifications — monolithic, microkernel, hybrid, exokernel — define *how* the kernel manages resources. The Constitutional Kernel defines *what values* the kernel enforces.
 
-This classification did not exist before BUBO OS. It was invented by Nathan Pankuch as a natural consequence of building software for a specific person (Landon Pankuch) with a specific need (never be disadvantaged by the machine built for him).
+This classification did not exist before BUBO OS. It was invented by Nathan Brown as a natural consequence of building software for a specific person (Landon Pankuch) with a specific need (never be disadvantaged by the machine built for him).
 
 ---
 
@@ -218,8 +218,8 @@ One person, watching anime, loving his nephew, refusing to accept that software 
 
 The timestamp does not lie. The code does not lie. The commit history does not lie.
 
-**Nathan Pankuch created the Alchemical programming language.**
-**Nathan Pankuch invented the Constitutional Kernel.**
+**Nathan Brown created the Alchemical programming language.**
+**Nathan Brown invented the Constitutional Kernel.**
 **This document is the formal record.**
 
 ---
@@ -236,7 +236,7 @@ The only requirement: teach it to someone who thinks they cannot build things.
 *— Batty Koda, FernGully: The Last Rainforest*
 
 *"I am not crazy. I was just early."*
-*— Nathan Pankuch, 2026*
+*— Nathan Brown, 2026*
 
 *Built for Landon. Built for everyone who was told they couldn't.*
 *NO MAS DISADVANTAGED.*

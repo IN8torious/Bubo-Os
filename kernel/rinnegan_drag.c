@@ -1,5 +1,5 @@
 // BUBO OS — RINNEGAN Drag System Implementation
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 //
 // Dwell-Lock-Drag-Drop: eye-tracked window dragging and resizing.
 // The Rinnegan doesn't just select — it moves the world.

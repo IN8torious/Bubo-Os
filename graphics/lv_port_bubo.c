@@ -1,5 +1,5 @@
 // BUBO OS — LVGL Display Port
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 // Built for Landon. Built for everyone.
 //
 // This file bridges LVGL v9 to the BUBO OS bare-metal framebuffer.

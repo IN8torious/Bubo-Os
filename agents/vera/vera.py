@@ -15,7 +15,7 @@ ALTER: THE MANY-FACED GOD — All rivers flow to the sea.
        She has seen every face. She knows every path.
 
 Constitutional Mandate: NO MAS DISADVANTAGED
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 """
 
 import os

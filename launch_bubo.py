@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
     print()
     print("  🦉 BUBO OS — Starting...")
-    print("  Built by Nathan Pankuch for Landon Pankuch.")
+    print("  Built by Nathan Brown for Landon Pankuch.")
     print("  NO MAS DISADVANTAGED.")
     print()
 

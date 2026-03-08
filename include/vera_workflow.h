@@ -22,7 +22,7 @@
  * Vera serves the user. Always. Without exception.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #ifndef VERA_WORKFLOW_H

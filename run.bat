@@ -5,7 +5,7 @@ color 04
 echo.
 echo  ============================================================
 echo   BUBO OS — Blue OS
-echo   Built by Nathan Pankuch for Landon Pankuch
+echo   Built by Nathan Brown for Landon Pankuch
 echo   NO MAS DISADVANTAGED
 echo  ============================================================
 echo.

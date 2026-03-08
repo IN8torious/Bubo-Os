@@ -1,5 +1,5 @@
 // BUBO OS — Hand Gesture Recognition Implementation
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 //
 // Bare-metal hand gesture detection from raw YUYV webcam frames.
 // No GPU. No OpenCV. No dynamic memory. Pure C math.

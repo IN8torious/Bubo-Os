@@ -14,7 +14,7 @@
 ::
 :: Part of BUBO OS Agent Suite — Alchemical Framework
 :: Built for Landon Pankuch. NO MAS DISADVANTAGED.
-:: Copyright (c) 2025 Nathan Pankuch — MIT License
+:: Copyright (c) 2025 Nathan Brown — MIT License
 :: =============================================================================
 
 setlocal enabledelayedexpansion

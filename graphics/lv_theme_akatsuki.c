@@ -1,5 +1,5 @@
 // BUBO OS — LVGL Akatsuki Theme
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 //
 // Three colors. That's all the Akatsuki ever needed.
 // Black. Crimson. Gold.

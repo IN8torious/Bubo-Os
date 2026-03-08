@@ -3,7 +3,7 @@ name = "mater"
 version = "0.1.0"
 edition = "2021"
 description = "Mater — BUBO OS build watchdog. Trustworthy. Thorough. Never lies."
-authors = ["Nathan Pankuch"]
+authors = ["Nathan Brown"]
 
 [[bin]]
 name = "mater"

@@ -2,7 +2,7 @@
 
 > *"One world. All of them in it together."*
 
-Built by **Nathan Pankuch** using the Alchemical Framework.
+Built by **Nathan Brown** using the Alchemical Framework.
 Constitutional Mandate: **NO MAS DISADVANTAGED.**
 Dedicated to **Landon Pankuch** and **Stephen Hawking**.
 
@@ -127,5 +127,5 @@ It cannot be bypassed. It cannot be removed. It is who they are.
 
 ---
 
-*Nathan Pankuch — inventor of the Alchemical Programming Language and the Constitutional Kernel.*
+*Nathan Brown — inventor of the Alchemical Programming Language and the Constitutional Kernel.*
 *BUBO OS is dedicated to Landon Pankuch and Stephen Hawking.*

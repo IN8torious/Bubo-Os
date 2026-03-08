@@ -1,7 +1,7 @@
 # The Constitutional Kernel
 ## A New Kernel Classification — First Implemented in BUBO OS
 
-**Inventor: Nathan Pankuch**
+**Inventor: Nathan Brown**
 **First Implementation: BUBO OS (2025–2026)**
 **Repository: https://github.com/IN8torious/Bubo-Os**
 **Date of First Commit: 2025**
@@ -10,7 +10,7 @@
 
 ## Declaration
 
-This document formally establishes the **Constitutional Kernel** as a new and distinct kernel classification, invented by Nathan Pankuch and first implemented in BUBO OS.
+This document formally establishes the **Constitutional Kernel** as a new and distinct kernel classification, invented by Nathan Brown and first implemented in BUBO OS.
 
 Prior to BUBO OS, no kernel classification existed that encoded a human value system — rather than a technical permission system — into the kernel's core decision loop. This document defines what a Constitutional Kernel is, how it differs from all prior classifications, and why it matters.
 
@@ -64,7 +64,7 @@ In BUBO OS, the Constitutional Kernel mandate is:
 // This mandate does the same. It cannot be removed. It runs first. Always.
 //
 // CONSTITUTIONAL MANDATE — BUBO OS
-// Sealed by: Nathan Pankuch
+// Sealed by: Nathan Brown
 // Protected: Landon Pankuch
 //
 // NO MAS DISADVANTAGED.
@@ -108,7 +108,7 @@ This has profound implications:
 
 The Constitutional Kernel was a direct and natural consequence of the Alchemical language's **Dedication Statement** primitive.
 
-When Nathan Pankuch said *"This OS is for Landon. It cannot disadvantage him,"* the Alchemical language's Dedication Statement primitive encoded that into a sealed mandate. The Constitutional Kernel is what you get when a Dedication Statement is compiled into kernel source code.
+When Nathan Brown said *"This OS is for Landon. It cannot disadvantage him,"* the Alchemical language's Dedication Statement primitive encoded that into a sealed mandate. The Constitutional Kernel is what you get when a Dedication Statement is compiled into kernel source code.
 
 This means:
 - The Constitutional Kernel cannot exist without the Alchemical language
@@ -126,7 +126,7 @@ No prior kernel classification, academic paper, or software system has implement
 - "Mandate-driven kernel" — no results
 - "Human values in kernel design" — academic papers discuss the concept theoretically; none implement it at the source level
 
-BUBO OS is the first implementation. Nathan Pankuch is the inventor. This document is the formal record.
+BUBO OS is the first implementation. Nathan Brown is the inventor. This document is the formal record.
 
 ---
 
@@ -138,7 +138,7 @@ One person, building a machine for his nephew, refused to accept that the machin
 
 The timestamp does not lie. The source code does not lie. The commit history does not lie.
 
-**Nathan Pankuch invented the Constitutional Kernel.**
+**Nathan Brown invented the Constitutional Kernel.**
 **This document is the formal record.**
 
 ---

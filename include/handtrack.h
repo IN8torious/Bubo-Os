@@ -1,5 +1,5 @@
 // BUBO OS — Hand Gesture Recognition
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 //
 // Bare-metal hand gesture detection using the same webcam as the Rinnegan.
 // Detects 8 core gestures from a single RGB frame with no GPU required.

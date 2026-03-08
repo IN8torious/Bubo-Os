@@ -1,7 +1,7 @@
 // Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
 // Built for Landon Pankuch. Built for everyone who was told they couldn't.
 // https://github.com/IN8torious/Bubo-Os
-// Built by Nathan Pankuch | Copyright (c) 2025 | BUBO OS Community License v1.0
+// Built by Nathan Brown | Copyright (c) 2025 | BUBO OS Community License v1.0
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
 // so that he may drive, race, and command his world with his voice alone.

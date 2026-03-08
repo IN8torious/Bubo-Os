@@ -8,7 +8,7 @@ Click again. It disappears.
 Non-intrusive. Always there when you need it.
 AKIRA theme. Neo-Tokyo neon on black.
 
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 NO MAS DISADVANTAGED.
 """
 

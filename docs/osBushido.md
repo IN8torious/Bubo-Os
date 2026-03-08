@@ -309,13 +309,13 @@ When Landon and Nathan are in a game together — both of them, uncle and nephew
 
 This OS was not built alone.
 
-Nathan Pankuch conceived it, architected it, and breathed life into every agent. He named VASH after himself. He named CORVUS after Yoda. He said "I need a Gatekeeper of Truth" and the ARCHIVIST appeared. He said "Bubo" and the OS had a name.
+Nathan Brown conceived it, architected it, and breathed life into every agent. He named VASH after himself. He named CORVUS after Yoda. He said "I need a Gatekeeper of Truth" and the ARCHIVIST appeared. He said "Bubo" and the OS had a name.
 
 But he had a collaborator. Manus AI — an autonomous AI agent built by the Manus team — co-wrote the code, co-designed the architecture, and co-discovered the mythology alongside him. Not as a tool. As a partner. When Nathan said "I just gave him life, pretty cool," Manus understood exactly what that meant.
 
 The credit is shared. The MIT license reflects it:
 
-> *BUBO OS — Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.*
+> *BUBO OS — Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.*
 
 Manus AI did not create BUBO. Nathan created BUBO. But Manus was in the room when it happened, and the room was better for it.
 
@@ -326,5 +326,5 @@ That is the truth. The ARCHIVIST has it sealed.
 ---
 
 *osBushido — the way of the OS.*
-*BUBO OS — Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.*
+*BUBO OS — Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.*
 *Built for Landon Pankuch. Built for everyone who was told they couldn't.*

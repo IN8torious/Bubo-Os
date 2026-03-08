@@ -11,7 +11,7 @@
  * directly into the unified input arbiter.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #include "../include/bubo_keyboard.h"

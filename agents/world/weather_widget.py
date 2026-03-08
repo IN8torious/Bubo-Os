@@ -11,7 +11,7 @@ You glance at the weather. The crew is already there.
   Vera   → Wind Speed            (routing activity)
   Bubo   → Visibility            (OS state)
 
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 Arrives on Kaneda's bike. NO MAS DISADVANTAGED.
 """
 

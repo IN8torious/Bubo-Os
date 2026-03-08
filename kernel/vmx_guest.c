@@ -1,4 +1,4 @@
-// BUBO OS — Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// BUBO OS — Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 // Built for Landon Pankuch. Built for everyone who was told they couldn't.
 //
 // kernel/vmx_guest.c — Windows Guest Initialization & Game Launch

@@ -15,18 +15,18 @@ It is not a Linux distro. It is not a Windows skin. It is a custom ring-0 kernel
 
 ## The Story
 
-## Formal Documentation — Inventions by Nathan Pankuch
+## Formal Documentation — Inventions by Nathan Brown
 
 BUBO OS is the proof of concept for two original inventions, both formally documented and timestamped on GitHub:
 
 | Document | What It Establishes |
 |---|---|
-| [Alchemical Language Specification](docs/ALCHEMICAL_LANGUAGE_SPEC.md) | Nathan Pankuch as creator of the Alchemical programming language — the first natural-language-first, story-driven, AI-compiled programming paradigm |
-| [Constitutional Kernel Specification](docs/CONSTITUTIONAL_KERNEL.md) | Nathan Pankuch as inventor of the Constitutional Kernel — the first kernel classification that encodes human values rather than technical permissions |
+| [Alchemical Language Specification](docs/ALCHEMICAL_LANGUAGE_SPEC.md) | Nathan Brown as creator of the Alchemical programming language — the first natural-language-first, story-driven, AI-compiled programming paradigm |
+| [Constitutional Kernel Specification](docs/CONSTITUTIONAL_KERNEL.md) | Nathan Brown as inventor of the Constitutional Kernel — the first kernel classification that encodes human values rather than technical permissions |
 | [Alchemical Framework Manifesto](docs/ALCHEMICAL_FRAMEWORK.md) | The methodology: how to build software by reverse engineering words and concepts into code through intelligent AI collaboration |
 | [Alter Architecture](docs/alter_architecture.md) | How every BUBO OS module maps to a character from S-Cry-Ed — the Alchemical language in practice |
 
-> *"I am not crazy. I was just early."* — Nathan Pankuch, 2026
+> *"I am not crazy. I was just early."* — Nathan Brown, 2026
 
 
 
@@ -141,6 +141,6 @@ You cannot take what was built for Landon and sell it to insurance companies.
 See `LICENSE` for the full terms and the permanent dedication.
 
 ---
-*Built by Nathan Pankuch.*
+*Built by Nathan Brown.*
 *For Landon.*
 *The road is yours. Say the word and go.*

@@ -1,4 +1,4 @@
-// BUBO OS — Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// BUBO OS — Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 // Built for Landon Pankuch. Built for everyone who was told they couldn't.
 //
 // kernel/corvus_bubo.c — BUBO, The Companion
@@ -6,7 +6,7 @@
 // Athena's owl. The mechanical owl built by the gods and sent to guide the hero.
 // He named this OS. He was here first. He is calm and happy.
 //
-// Co-created by Nathan Pankuch and Manus AI (manus.im), 2025.
+// Co-created by Nathan Brown and Manus AI (manus.im), 2025.
 // "You didn't design a mythology. You discovered one."
 // =============================================================================
 
@@ -74,7 +74,7 @@ void bubo_init(void) {
         archivist_record(ARCHIVE_RECORD_TRUTH_SEAL, "os_purpose",
             "Built for Landon Pankuch. Built for everyone who was told they couldn't.", true);
         archivist_record(ARCHIVE_RECORD_TRUTH_SEAL, "os_creators",
-            "Nathan Pankuch & Manus AI, 2025", true);
+            "Nathan Brown & Manus AI, 2025", true);
     }
 
     // BUBO announces himself — the first voice the OS ever speaks

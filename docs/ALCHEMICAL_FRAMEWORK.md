@@ -2,7 +2,7 @@
 
 **A methodology for building software through story, concept, and intelligent AI collaboration.**
 
-*Authored by Nathan Pankuch*
+*Authored by Nathan Brown*
 *Demonstrated through the creation of BUBO OS*
 
 ---
@@ -162,7 +162,7 @@ Now it does.
 
 ## License
 
-This document and methodology are free to use, share, and build upon. Credit Nathan Pankuch and BUBO OS. Teach it to someone who thinks they cannot build things.
+This document and methodology are free to use, share, and build upon. Credit Nathan Brown and BUBO OS. Teach it to someone who thinks they cannot build things.
 
 That is the only requirement.
 

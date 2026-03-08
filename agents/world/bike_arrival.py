@@ -12,7 +12,7 @@ He looks at you. Ready.
 This sequence plays when Nathan summons Kami (Ctrl+Shift+K).
 It runs on top of the rain canvas.
 
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 Blue OS. NO MAS DISADVANTAGED.
 Mud Mouth — Yelawolf — playing.
 """

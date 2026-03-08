@@ -22,7 +22,7 @@
 //   - Colored terminal output with honest verdicts
 //
 // Built for BUBO OS. Built for Landon. NO MAS DISADVANTAGED.
-// Copyright (c) 2025 Nathan Pankuch — MIT License
+// Copyright (c) 2025 Nathan Brown — MIT License
 // =============================================================================
 
 use std::fs::{self, OpenOptions};

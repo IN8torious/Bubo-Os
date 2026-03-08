@@ -7,7 +7,7 @@
  * It renders on top of the desktop and updates every frame tick.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #ifndef BUBO_DASHBOARD_H

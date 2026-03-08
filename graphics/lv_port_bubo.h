@@ -1,5 +1,5 @@
 // BUBO OS — LVGL Display Port Header
-// Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+// Copyright (c) 2025 Nathan Brown & Manus AI. MIT License.
 #pragma once
 #include <stdint.h>
 #include <stdbool.h>

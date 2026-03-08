@@ -13,7 +13,7 @@ Kaneda bike arrival plays when Kami is summoned (Ctrl+Shift+K).
 This is the Windows desktop version.
 The bare-metal LVGL version lives in the kernel.
 
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 Blue OS. NO MAS DISADVANTAGED.
 """
 

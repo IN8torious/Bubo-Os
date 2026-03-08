@@ -22,7 +22,7 @@
  * In gaming mode, they map directly to the Windows VM via virtio-input.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #ifndef BUBO_CONTROLLER_H

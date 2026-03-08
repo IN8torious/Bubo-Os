@@ -12,7 +12,7 @@
  * This driver is one face. The unified input arbiter is the god behind it.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #include "../include/bubo_controller.h"

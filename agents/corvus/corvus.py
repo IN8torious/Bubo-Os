@@ -22,7 +22,7 @@ ALTER: THE RAVEN — Memory. Pattern. Adaptation.
        — Stevie Nicks, Landslide
 
 Constitutional Mandate: NO MAS DISADVANTAGED
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 """
 
 import os

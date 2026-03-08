@@ -35,7 +35,7 @@
  * Target: under 3 seconds from power button to desktop.
  *
  * Constitutional mandate: NO MAS DISADVANTAGED
- * Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
+ * Copyright (c) 2025 Nathan Brown — BUBO OS Community License v1.0
  */
 
 #include "../include/vera_workflow.h"

@@ -9,7 +9,7 @@ The World Bus is the nervous system of the agent crew.
 Vera routes intent. Corvus remembers. Mater watches.
 Batty checks health. Kami executes. The bus connects them all.
 
-Built by Nathan Pankuch using the Alchemical Framework.
+Built by Nathan Brown using the Alchemical Framework.
 """
 
 import threading
@@ -26,7 +26,7 @@ from typing import Callable, Dict, List, Optional
 # Cannot be bypassed. Cannot be removed.
 # ─────────────────────────────────────────────
 CONSTITUTIONAL_MANDATE = {
-    "author": "Nathan Pankuch",
+    "author": "Nathan Brown",
     "protected": "Landon Pankuch",
     "principle": "NO MAS DISADVANTAGED",
     "rule": "No message that would disadvantage Landon shall be dispatched."

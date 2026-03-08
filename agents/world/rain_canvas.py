@@ -10,7 +10,7 @@ The weather widget and pull-down tray float on top of it.
 
 Pure tkinter. No dependencies. Runs on Windows, Linux, macOS.
 
-Built using the Alchemical Framework by Nathan Pankuch.
+Built using the Alchemical Framework by Nathan Brown.
 Blue OS. NO MAS DISADVANTAGED.
 """
 
