@@ -1,5 +1,8 @@
 # BUBO OS — Athena's Owl
 
+> **A N8torious AI Project** — Built by Nathan Brown for Landon Pankuch
+> [github.com/IN8torious](https://github.com/IN8torious)
+
 > **NO MAS DISADVANTAGED**
 
 > *"She chose loyalty. She chose the bond. That's not instinct. That's character."*
