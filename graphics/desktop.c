@@ -1,7 +1,7 @@
 // Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
 // Built for Landon Pankuch. Built for everyone who was told they couldn't.
-// https://github.com/IN8torious/Deep-Flow-OS
-// Built by IN8torious | Copyright (c) 2025 | MIT License
+// https://github.com/IN8torious/Bubo-Os
+// Built by Nathan Pankuch | Copyright (c) 2025 | BUBO OS Community License v1.0
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
 // so that he may drive, race, and command his world with his voice alone.
@@ -32,21 +32,23 @@
 #include "vga.h"
 #include "polish.h"
 #include "dysarthria.h"
+#include "vera_workflow.h"
+#include "bubo_input_map.h"
 #include <stdint.h>
 #include <stdbool.h>
 
-// ── Akatsuki color palette ────────────────────────────────────────────────────
-#define COL_VOID        DF_BG_DEEP
-#define COL_CRIMSON     DF_ERROR_STANDARD
-#define COL_BLOOD       DF_ERROR_WARNING
-#define COL_ASH         DF_BG_PANEL
-#define COL_STEEL       0xFF2A2A2A
-#define COL_CLOUD       DF_RED_BRIGHT
-#define COL_GOLD        DF_SOL_TESTING
-#define COL_CORVUS      DF_AGENT_JIN
-#define COL_LANDON      0xFF0066CC
-#define COL_GREEN       DF_HEALTH_GREEN
-#define COL_TRANSPARENT 0x00000000
+// ── Akatsuki color palette (all values from deepflow_colors.h — no magic numbers) ──
+#define COL_VOID        DF_BG_DEEP          // #0D0D18 — the void between stars
+#define COL_CRIMSON     DF_ERROR_STANDARD   // #8B0000 — Akatsuki red
+#define COL_BLOOD       DF_ERROR_WARNING    // #CC0000 — active crimson
+#define COL_ASH         DF_BG_PANEL         // #1A1A2A — panel background
+#define COL_STEEL       DF_BG_MID           // #141420 — steel dark
+#define COL_CLOUD       DF_TEXT_PRIMARY     // #F0F0F0 — cloud white
+#define COL_GOLD        DF_SOL_TESTING      // #FFD700 — constitutional gold
+#define COL_CORVUS      DF_AGENT_JIN        // #9B59B6 — Rinnegan purple
+#define COL_LANDON      DF_AGENT_HEAL       // #0066CC — Landon blue (tomoe 4)
+#define COL_GREEN       DF_HEALTH_GREEN     // #00FF88 — agent online green
+#define COL_TRANSPARENT 0x00000000          // fully transparent
 
 // ── Desktop state ─────────────────────────────────────────────────────────────
 static desktop_state_t g_desktop;
@@ -79,7 +81,8 @@ static void ds_itoa(uint32_t n, char* buf) {
 
 // ── Initialize the desktop ────────────────────────────────────────────────────
 void desktop_init(void) {
-    terminal_write("[DESKTOP] Initializing Raven Desktop Shell v1.0...\n");
+    terminal_write("[DESKTOP] Initializing BUBO OS Desktop Shell v2.0...\n");
+    terminal_write("[DESKTOP] Vera Workflow: connecting input faces...\n");
     polish_init();
 
     for (int i = 0; i < DESKTOP_MAX_WINDOWS; i++) {
@@ -108,6 +111,11 @@ void desktop_init(void) {
     desktop_register_icon("Access Hub",   0x07, 20, 450);
 
     g_desktop_ready = true;
+
+    // Notify Vera that the desktop face is online
+    // This lights tomoe 6 (RINNEGAN_TOMOE_DESKTOP) in the boot animation
+    vera_notify_face_ready(VERA_FACE_DESKTOP);
+
     terminal_write("[DESKTOP] Desktop shell ready — NO MAS DISADVANTAGED\n");
 }
 
@@ -465,7 +473,9 @@ void desktop_move_cursor(int32_t dx, int32_t dy) {
 
 // ── Handle keyboard input ─────────────────────────────────────────────────────
 void desktop_handle_key(char key) {
-    (void)key;
+    // Route raw key through Vera Workflow instead of handling directly
+    // Vera resolves it to a semantic intent and routes to the correct agent
+    vera_submit_keyboard_char(key);
 }
 
 // ── Toggle Landon accessibility mode ─────────────────────────────────────────

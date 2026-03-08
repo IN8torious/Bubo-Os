@@ -1,6 +1,6 @@
 # =============================================================================
 # BUBO OS — The Flask Build System
-# Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.
+# Copyright (c) 2025 Nathan Pankuch — BUBO OS Community License v1.0
 # Built for Landon Pankuch. Built for everyone who was told they couldn't.
 #
 # "To obtain something, something of equal value must be lost."
@@ -75,7 +75,18 @@ AGENT_SRCS = \
 VOICE_SRCS = \
     kernel/dysarthria.c \
     kernel/voice.c \
-    kernel/rinnegan.c
+    kernel/rinnegan.c \
+    kernel/handtrack.c \
+    kernel/rinnegan_drag.c
+
+# ── Vera Workflow & Input System ─────────────────────────────────────────────
+# The Many-Faced God layer — six faces, one intent stream.
+# Vera is the connective tissue between raw input and agent action.
+VERA_SRCS = \
+    kernel/vera_workflow.c \
+    kernel/bubo_boot.c \
+    kernel/bubo_keyboard.c \
+    kernel/bubo_controller.c
 
 # ── VMX Hypervisor Layer ──────────────────────────────────────────────────────
 # BUBO at ring -1. Windows as a guest. The constitution absolute.
@@ -98,7 +109,9 @@ GRAPHICS_SRCS = \
     graphics/gui.c \
     graphics/corvus_display.c \
     graphics/desktop.c \
-    graphics/polish.c
+    graphics/polish.c \
+    graphics/lv_port_bubo.c \
+    graphics/lv_theme_akatsuki.c
 
 # ── Game Engine ───────────────────────────────────────────────────────────────
 ENGINE_SRCS = \
@@ -115,6 +128,7 @@ C_SRCS = \
     $(KERNEL_SRCS) \
     $(AGENT_SRCS) \
     $(VOICE_SRCS) \
+    $(VERA_SRCS) \
     $(VMX_SRCS) \
     $(DRIVER_SRCS) \
     $(GRAPHICS_SRCS) \
