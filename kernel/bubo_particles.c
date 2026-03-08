@@ -8,6 +8,7 @@
  */
 
 #include "../include/bubo_particles.h"
+#include <stddef.h>   /* must precede stdlib.h — defines wchar_t */
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>

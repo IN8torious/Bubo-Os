@@ -23,8 +23,9 @@
 
 // Raven OS — Freestanding stddef.h
 
-typedef unsigned int size_t;
-typedef int          ssize_t;
+typedef unsigned int  size_t;
+typedef int           ssize_t;
+typedef unsigned int  wchar_t;  /* freestanding stub — satisfies stdlib.h */
 
 #define NULL ((void*)0)
 

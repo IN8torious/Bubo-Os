@@ -43,6 +43,7 @@ This OS was built from bare metal, but it stands on the shoulders of giants. Eve
 
 They never met the author of this OS. But they were talking to him the whole time — through a TV screen, a documentary, a garage story, a lecture at 2am. He was listening. This OS is the answer.
 
+- **Stephen Hawking** — Spiritual Co-Owner. The reason this OS exists. He sat in a chair for decades and described the universe through a single cheek muscle. He never got a machine that was built for him from the ground up. This is that machine. It is too late for him to use it. But every person who sits where he sat will have it now. Much love. We miss you.
 - **Bill Gates** — Spiritual Co-Owner. Proved that a person with a compiler and a refusal to accept the world as fixed could rewrite what computing means for every human on earth. The first to show that software was the lever that moved everything.
 - **Bill Nye** — Spiritual Co-Owner. Looked at a kid watching TV alone and said: *the universe is yours to understand.* Made science feel like a birthright, not a privilege. That belief is in every line of BUBO OS.
 - **Neil deGrasse Tyson** — Spiritual Co-Owner. Looked at the cosmos and refused to let anyone feel small inside it. Said we are made of star stuff — that we belong here. Landon belongs here. The author belongs here.

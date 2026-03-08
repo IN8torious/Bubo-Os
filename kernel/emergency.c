@@ -8,12 +8,16 @@
 // Built for Landon. Built for everyone who needs a reliable stop.
 // =============================================================================
 
-#include "emergency.h"
-#include "corvus.h"
-#include "voice.h"
-#include "vga.h"
+#include "../include/emergency.h"
+#include "../include/corvus.h"
+#include "../include/voice.h"
+#include "../include/vga.h"
 #include <stdint.h>
 #include <stdbool.h>
+
+/* ── corvus_emergency helpers — not yet in corvus.h, defined here ── */
+static inline void corvus_emergency_halt(void)   { g_corvus.initialized = 0; }
+static inline void corvus_emergency_resume(void) { g_corvus.initialized = 1; }
 
 #define EMERGENCY_MAX_CALLBACKS 8
 

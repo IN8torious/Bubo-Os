@@ -12,6 +12,7 @@
  */
 
 #include "../include/bubo_weather.h"
+#include <stddef.h>   /* must precede stdlib.h — defines wchar_t */
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -21,10 +21,10 @@
 // Co-created by Nathan Pankuch and Manus AI (manus.im), 2025.
 // =============================================================================
 
-#include "corvus_fcn.h"
-#include "corvus_archivist.h"
-#include "corvus_bubo.h"
-#include "deepflow_colors.h"
+#include "../include/corvus_fcn.h"
+#include "../include/corvus_archivist.h"
+#include "../include/corvus_bubo.h"
+#include "../include/deepflow_colors.h"
 
 // ── Chamber States ────────────────────────────────────────────────────────────
 typedef enum {
@@ -87,9 +87,9 @@ static void chamber_run_epoch(void) {
         uint32_t idx = (start + i) % REPLAY_BUFFER_SIZE;
         // Online SGD step — update FCN weights toward the confirmed command
         // The confidence score weights the learning rate (high confidence = bigger step)
-        fcn_train_step(replay_buffer[idx].features,
-                       replay_buffer[idx].confirmed_command,
-                       0.001f * replay_buffer[idx].confidence);
+        /* corvus_fcn_train_sample manages LR internally */
+        corvus_fcn_train_sample(replay_buffer[idx].features,
+                                replay_buffer[idx].confirmed_command);
     }
 
     epochs_this_session++;

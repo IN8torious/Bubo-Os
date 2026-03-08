@@ -11,15 +11,38 @@
 // "We are all human data collectors." — Nathan Samuel
 // =============================================================================
 
-#include "onboarding.h"
-#include "framebuffer.h"
-#include "font.h"
-#include "polish.h"
-#include "keyboard.h"
-#include "vga.h"
-#include "vfs.h"
+#include "../include/onboarding.h"
+#include "../include/framebuffer.h"
+#include "../include/font.h"
+#include "../include/polish.h"
+#include "../include/keyboard.h"
+#include "../include/vga.h"
+#include "../include/vfs.h"
 #include <stdint.h>
 #include <stdbool.h>
+
+/* ── polish API shims — map old names to current polish.h ── */
+/* polish_rounded_rect → polish_glass_rect (radius arg dropped) */
+#define polish_rounded_rect(x,y,w,h,r,c)  polish_glass_rect((x),(y),(w),(h),(c),220)
+/* polish_glow_circle → polish_glow_border on a square bounding box */
+#define polish_glow_circle(cx,cy,r,c1,c2,a) \
+    polish_glow_border((cx)-(r),(cy)-(r),(r)*2,(r)*2,(c1),(uint8_t)((a)*255.0f))
+
+/* ── keyboard shims — map scancode API to keyboard_getchar ── */
+static inline uint8_t keyboard_read_scancode(void)         { return (uint8_t)keyboard_getchar(); }
+static inline char    keyboard_scancode_to_char(uint8_t k) { return (char)k; }
+
+/* ── vfs path-based wrappers — onboarding uses path strings, not fds ── */
+static inline int32_t vfs_write_path(const char *path, const void *buf, uint32_t sz) {
+    int32_t fd = vfs_open(path, 2);
+    if (fd < 0) return fd;
+    return vfs_write(fd, buf, sz);
+}
+static inline int32_t vfs_read_path(const char *path, void *buf, uint32_t sz) {
+    int32_t fd = vfs_open(path, 0);
+    if (fd < 0) return fd;
+    return vfs_read(fd, buf, sz);
+}
 
 // ── Key code defines (PS/2 scan codes mapped to ASCII-adjacent values) ────────
 #define KEY_ENTER     0x0D
@@ -305,13 +328,13 @@ static void profile_to_string(char* buf, uint32_t max) {
 static void save_profile(void) {
     char buf[512];
     profile_to_string(buf, 512);
-    vfs_write("/etc/raven_profile", buf, str_len(buf));
+    vfs_write_path("/etc/raven_profile", buf, str_len(buf));
     terminal_write("[ONBOARD] Profile saved to /etc/raven_profile\n");
 }
 
 static bool load_profile_from_disk(void) {
     char buf[512];
-    int32_t n = vfs_read("/etc/raven_profile", buf, 511);
+    int32_t n = vfs_read_path("/etc/raven_profile", buf, 511);
     if (n <= 0) return false;
     buf[n] = 0;
 
