@@ -82,7 +82,10 @@ class BuboDesktop:
 
         # Full screen
         self.root.geometry(f"{self.sw}x{self.sh}+0+0")
-        self.root.state("zoomed")  # Windows maximize
+        if sys.platform == "win32":
+            self.root.state("zoomed")   # Windows maximize
+        else:
+            self.root.attributes("-zoomed", True)  # Linux maximize
 
     def _build_rain(self):
         """AKIRA rain canvas fills the entire window."""
