@@ -179,7 +179,7 @@ SLOT_Y = bar_cy - ICON_SLOT_SIZE // 2
 
 contributors = [
     ('logo_nasa',   (255, 80,  80),  'NASA'),
-    ('logo_google', (80,  160, 255), 'Google'),
+    ('logo_google_g', (80,  160, 255), 'Google'),
     ('logo_owm',    (80,  200, 255), 'OpenWeatherMap'),
     ('logo_qt',     (100, 220, 100), 'Qt'),
     ('logo_epic',   (200, 200, 200), 'Epic'),
