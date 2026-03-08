@@ -27,6 +27,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 from world_bus import bus, registry
 from rain_canvas import RainCanvas, BG, NEON_RED, NEON_BLUE, NEON_WHITE
 from bike_arrival import BikeArrivalSequence
+from dock import FloatingDock
+from desktop_icons import DesktopIconManager
 
 import psutil
 from datetime import datetime
@@ -61,9 +63,11 @@ class BuboDesktop:
         self.root = tk.Tk()
         self._setup_window()
         self._build_rain()
+        self._build_desktop_icons()
         self._build_weather_overlay()
         self._build_tray()
         self._build_arrival()
+        self._build_dock()
         self._start_agents()
         self._bind_hotkeys()
         self.tray_expanded = False
@@ -89,6 +93,20 @@ class BuboDesktop:
             drop_count=250
         )
         self.rain.place(x=0, y=0)
+
+    def _build_desktop_icons(self):
+        """Desktop icons on the rain canvas — two columns, left side."""
+        self.icon_manager = DesktopIconManager(
+            self.rain.canvas,
+            summon_kami_fn=self._summon_kami
+        )
+
+    def _build_dock(self):
+        """Mac-style floating dock — centered at bottom."""
+        self.dock = FloatingDock(
+            self.root,
+            summon_kami_fn=self._summon_kami
+        )
 
     def _build_weather_overlay(self):
         """Weather widget floats in the top-right corner over the rain."""
