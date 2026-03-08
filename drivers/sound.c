@@ -227,7 +227,7 @@ bool sound_init(void) {
 
     g_sound.initialized = true;
     terminal_write("[SOUND] Audio driver initialized — 16kHz mono 16-bit\n");
-    terminal_write("[SOUND] Microphone ready — CORVUS is listening for Landon\n");
+    terminal_write("[SOUND] Microphone ready — BUBO is listening for Landon\n");
     return true;
 }
 
@@ -310,7 +310,7 @@ void sound_corvus_ack(void) {
 }
 
 void sound_corvus_ready(void) {
-    // Three-tone ready signal: CORVUS is listening
+    // Three-tone ready signal: BUBO is listening
     sound_beep(440, 100);
     sound_beep(660, 100);
     sound_beep(880, 150);

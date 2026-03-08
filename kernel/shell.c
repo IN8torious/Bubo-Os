@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Raven OS — CORVUS Shell
+// Raven OS — BUBO Shell
 // Layer 7: Natural Language Interface
 // User types intent → CORVUS processes → agents act
 // =============================================================================
@@ -68,7 +68,7 @@ static void cmd_help(void) {
 
     terminal_setcolor(red);
     terminal_writeline("  ╔══════════════════════════════════════════════════════════════╗");
-    terminal_writeline("  ║              CORVUS Shell — Command Reference               ║");
+    terminal_writeline("  ║              BUBO Shell — Command Reference               ║");
     terminal_writeline("  ╚══════════════════════════════════════════════════════════════╝");
 
     terminal_setcolor(white);
@@ -102,7 +102,7 @@ static void cmd_clear(void) {
     // Reprint mini header
     uint8_t red = vga_entry_color(VGA_LIGHT_RED, VGA_BLACK);
     terminal_setcolor(red);
-    terminal_writeline("  Deep Flow OS — CORVUS Shell  |  Type 'help' for commands");
+    terminal_writeline("  Deep Flow OS — BUBO Shell  |  Type 'help' for commands");
     terminal_writeline("");
 }
 
@@ -232,7 +232,7 @@ void shell_init(void) {
     terminal_setcolor(red);
     terminal_writeline("  ████████████████████████████████████████████████████████████████");
     terminal_setcolor(white);
-    terminal_writeline("  CORVUS Shell — Deep Flow OS Layer 7 — Natural Language Interface");
+    terminal_writeline("  BUBO Shell — Deep Flow OS Layer 7 — Natural Language Interface");
     terminal_setcolor(grey);
     terminal_writeline("  Type 'help' for commands. All input is processed by CORVUS.");
     terminal_setcolor(red);

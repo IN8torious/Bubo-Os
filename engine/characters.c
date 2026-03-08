@@ -269,7 +269,7 @@ void characters_init(void) {
 
     // CORVUS — the sovereign AI
     character_t* corvus = char_create(
-        "CORVUS", "CORVUS",
+        "BUBO", "BUBO",
         (outfit_t){
             .torso_color = 0x0A0A0A,  // Void black cloak
             .pants_color = 0x0A0A0A,
@@ -451,7 +451,7 @@ void characters_tick(float dt) {
 void characters_on_voice_cmd(const char* cmd) {
     // "CORVUS COME HERE" — CORVUS walks to Nathan
     if (str_starts_with(cmd, "CORVUS COME HERE")) {
-        character_t* corvus = characters_find("CORVUS");
+        character_t* corvus = characters_find("BUBO");
         character_t* nathan = characters_find("Nathan");
         if (corvus && nathan) {
             transform_t* nt = ecs_get_transform(nathan->entity);

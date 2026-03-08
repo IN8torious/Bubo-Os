@@ -132,14 +132,14 @@ static void term_exec(const char* cmd) {
         for (int r=0;r<TERM_ROWS;r++) for(int c=0;c<=TERM_COLS;c++) term_lines[r][c]=0;
         term_row=0; term_col=0;
     } else if (cmd[0]=='c'&&cmd[1]=='o'&&cmd[2]=='r'&&cmd[3]=='v'&&cmd[4]=='u'&&cmd[5]=='s'&&cmd[6]==0) {
-        term_puts("CORVUS MAS — 10 agents active\n");
+        term_puts("BUBO MAS — 10 agents active\n");
         term_puts("Mandate: NO MAS DISADVANTAGED\n");
     } else if (cmd[0]=='m'&&cmd[1]=='a'&&cmd[2]=='n'&&cmd[3]=='d'&&cmd[4]=='a'&&cmd[5]=='t'&&cmd[6]=='e'&&cmd[7]==0) {
         term_puts("NO MAS DISADVANTAGED\n");
         term_puts("MAS = Multi-Agentic Systems\n");
         term_puts("Sovereign Intelligence. Not corporate AI.\n");
     } else if (cmd[0]=='v'&&cmd[1]=='e'&&cmd[2]=='r'&&cmd[3]=='s'&&cmd[4]=='i'&&cmd[5]=='o'&&cmd[6]=='n'&&cmd[7]==0) {
-        term_puts("Deep Flow OS v0.7 | CORVUS MAS | Akatsuki Theme\n");
+        term_puts("Deep Flow OS v0.7 | BUBO MAS | Akatsuki Theme\n");
         term_puts("Built for Landon Pankuch — NO MAS DISADVANTAGED\n");
     } else {
         term_puts("Unknown command: ");

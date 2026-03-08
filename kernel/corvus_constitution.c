@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Deep Flow OS — CORVUS MAS Constitutional Governance Layer
+// Deep Flow OS — BUBO MAS Constitutional Governance Layer
 //
 // "NO MAS DISADVANTAGED"
 //
@@ -70,8 +70,8 @@ bool corvus_evaluate_action(uint32_t agent_id, const char* action_desc) {
     return true;
 }
 
-void corvus_print_constitution(void) {
-    terminal_write("\n=== CORVUS MAS CONSTITUTION ===\n");
+void bubo_print_constitution(void) {
+    terminal_write("\n=== BUBO MAS CONSTITUTION ===\n");
     terminal_write("MANDATE: ");
     terminal_write(CORVUS_MANDATE);
     terminal_write("\n\n");

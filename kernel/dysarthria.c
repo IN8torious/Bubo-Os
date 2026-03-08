@@ -148,8 +148,8 @@ static dysarthria_cmd_t g_commands[DYSARTHRIA_MAX_COMMANDS] = {
         12, 3, 0
     },
     {
-        "CORVUS", 13, // VCMD_CORVUS
-        { "CORVIS", "CORVISS", "CORVUS", "CORBUS", "CORBIS",
+        "BUBO", 13, // VCMD_CORVUS
+        { "CORVIS", "CORVISS", "BUBO", "CORBUS", "CORBIS",
           "CORVS", "CORV", "CORBUS", "CORVISS", "CORVIS",
           "CORBISS", "CORVUHS" },
         12, 4, 0

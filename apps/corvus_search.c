@@ -36,7 +36,7 @@ static struct {
 
 // Built-in app list
 static const char* app_names[] = {
-    "CORVUS Dashboard", "Accessibility Hub", "Terminal",
+    "BUBO Dashboard", "Accessibility Hub", "Terminal",
     "File Manager", "Settings", "CORVUS Browser",
     "Screen Recorder", "CORVUS Live Mode", 0
 };

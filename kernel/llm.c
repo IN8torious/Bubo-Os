@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Deep Flow OS — CORVUS LLM Engine (Cactus/GGML-compatible)
+// Deep Flow OS — BUBO LLM Engine (Cactus/GGML-compatible)
 //
 // Bare-metal quantized language model inference.
 // CORVUS uses this to understand natural language beyond keyword matching —
@@ -275,7 +275,7 @@ static char detokenize_char(uint32_t token) {
 
 // ── Initialize LLM engine ─────────────────────────────────────────────────────
 bool llm_init(void) {
-    terminal_write("[LLM] Initializing CORVUS reasoning engine...\n");
+    terminal_write("[LLM] Initializing BUBO reasoning engine...\n");
 
     g_llm.loaded       = false;
     g_llm.model_size   = 0;
@@ -322,7 +322,7 @@ bool llm_init(void) {
     }
 
     g_llm.initialized = true;
-    terminal_write("[LLM] CORVUS reasoning engine ready\n");
+    terminal_write("[LLM] BUBO reasoning engine ready\n");
     return true;
 }
 

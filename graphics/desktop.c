@@ -102,7 +102,7 @@ void desktop_init(void) {
     desktop_register_icon("Terminal", 0x01, 20,  30);
     desktop_register_icon("Files",    0x02, 20, 100);
     desktop_register_icon("Settings", 0x03, 20, 170);
-    desktop_register_icon("CORVUS",   0x04, 20, 240);
+    desktop_register_icon("BUBO",   0x04, 20, 240);
     desktop_register_icon("Tasks",    0x05, 20, 310);
     desktop_register_icon("Race",     0x06, 20, 380);
     desktop_register_icon("Access Hub",   0x07, 20, 450);
@@ -210,7 +210,7 @@ static void desktop_draw_wallpaper(void) {
     font_draw_string(sw - 280, sh - TASKBAR_HEIGHT - 20,
                      "NO MAS DISADVANTAGED", COL_BLOOD, COL_TRANSPARENT, true);
     font_draw_string(4, sh - TASKBAR_HEIGHT - 18,
-                     "Deep Flow OS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
+                     "Deep Flow OS v1.0 | BUBO MAS", COL_BLOOD, COL_TRANSPARENT, true);
 }
 
 // ── Taskbar ────────────────────────────────────────────────────────────────────
@@ -256,7 +256,7 @@ static void desktop_draw_taskbar(void) {
     // CORVUS status bubble (right side)
     polish_bubble(sw - 168, ty + 4, 80, TASKBAR_HEIGHT - 8, 0xFF001A00, 180, 8);
     polish_fill_rect_alpha(sw - 160, ty + 10, 8, 8, DF_HEALTH_GREEN, 255);
-    font_draw_string(sw - 148, ty + 8, "CORVUS", COL_GREEN, COL_TRANSPARENT, true);
+    font_draw_string(sw - 148, ty + 8, "BUBO", COL_GREEN, COL_TRANSPARENT, true);
 
     desktop_draw_clock();
 }
@@ -384,8 +384,8 @@ static void desktop_draw_corvus_bar(void) {
     // Frosted glass top bar with dark purple-black tint
     polish_corvus_bar(0, 0, sw, CORVUS_BAR_HEIGHT);
 
-    // CORVUS MAS label with crimson glow
-    font_draw_string(8, 4, "CORVUS MAS", COL_CRIMSON, COL_TRANSPARENT, true);
+    // BUBO MAS label with crimson glow
+    font_draw_string(8, 4, "BUBO MAS", COL_CRIMSON, COL_TRANSPARENT, true);
     polish_fill_rect_alpha(8, CORVUS_BAR_HEIGHT - 3, 72, 1, POLISH_COLOR_CRIMSON, 160);
     font_draw_string(84, 4, "|", COL_BLOOD, COL_TRANSPARENT, true);
 
@@ -513,7 +513,7 @@ void desktop_launch_app(uint32_t app_id) {
     case 0x01: desktop_open_window("Terminal",                100, 60, 500, 350, app_id); break;
     case 0x02: desktop_open_window("File Manager",            150, 80, 480, 320, app_id); break;
     case 0x03: desktop_open_window("Settings",                200,100, 400, 300, app_id); break;
-    case 0x04: desktop_open_window("CORVUS Dashboard",         80, 50, 560, 400, app_id); break;
+    case 0x04: desktop_open_window("BUBO Dashboard",         80, 50, 560, 400, app_id); break;
     case 0x05: desktop_open_window("Task Manager",            180, 90, 440, 280, app_id); break;
     case 0x06: desktop_open_window("CORVUS Race — Demon 170", 60, 50, 600, 420, app_id); break;
     case 0x07:

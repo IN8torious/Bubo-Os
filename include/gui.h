@@ -82,7 +82,7 @@ void            gui_draw_panel(int32_t x, int32_t y, int32_t w, int32_t h,
 void            gui_draw_progress(int32_t x, int32_t y, int32_t w, int32_t h,
                                   float pct, uint32_t color);
 void            gui_draw_separator(int32_t x, int32_t y, int32_t w);
-void            gui_draw_corvus_dashboard(void);
+void            gui_draw_bubo_dashboard(void);
 void            gui_render_all(void);
 void            gui_focus_window(int win_id);
 void            gui_close_window(int win_id);

@@ -110,7 +110,7 @@ typedef enum {
     ADMIN_NONE       = 0,
     ADMIN_SHUTDOWN   = 1,
     ADMIN_REBOOT     = 2,
-    ADMIN_STATUS     = 3,   // show full CORVUS dashboard
+    ADMIN_STATUS     = 3,   // show full BUBO dashboard
     ADMIN_PATCH      = 4,   // trigger self-patch loop
     ADMIN_CALIBRATE  = 5,   // dysarthria recalibration for Landon
     ADMIN_VM_START   = 6,   // start Windows/Linux guest VM
@@ -160,7 +160,7 @@ const flow_multipliers_t* flow_get_multipliers(void);
 // Get the pre-load queue (for Ultra Instinct particle pulse)
 const flow_preload_t* flow_get_preload(void);
 
-// Get the full memory (for CORVUS dashboard)
+// Get the full memory (for BUBO dashboard)
 const flow_memory_t* flow_get_memory(void);
 
 // Set context multiplier (DESKTOP / GAME / VM / ADMIN)

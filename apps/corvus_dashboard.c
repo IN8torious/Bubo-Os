@@ -11,13 +11,13 @@
 // =============================================================================
 
 // =============================================================================
-// BUBO OS — CORVUS MAS Dashboard
+// BUBO OS — BUBO MAS Dashboard
 //
 // Akatsuki Theme: Pure Black, Deep Crimson, Gold. No other colors.
 // 2x5 Grid layout for 10 agents.
 // =============================================================================
 
-#include "corvus_dashboard.h"
+#include "bubo_dashboard.h"
 #include "framebuffer.h"
 #include "deepflow_colors.h"
 #include "font.h"
@@ -54,8 +54,8 @@ static uint8_t needs_connection  = 75;
 static uint8_t needs_purpose     = 88;
 static uint8_t needs_growth      = 70;
 
-void corvus_dashboard_init(void) {
-    terminal_write("[CORVUS DASHBOARD] Initialized — Akatsuki theme active\n");
+void bubo_dashboard_init(void) {
+    terminal_write("[BUBO DASHBOARD] Initialized — Akatsuki theme active\n");
 }
 
 static void draw_bar(uint32_t x, uint32_t y, uint32_t w, uint32_t h,
@@ -66,7 +66,7 @@ static void draw_bar(uint32_t x, uint32_t y, uint32_t w, uint32_t h,
     fb_draw_rect(x, y, w, h, AK_BLOOD, 1);
 }
 
-void corvus_dashboard_render(uint32_t wx, uint32_t wy, uint32_t ww, uint32_t wh) {
+void bubo_dashboard_render(uint32_t wx, uint32_t wy, uint32_t ww, uint32_t wh) {
     uint32_t cx = wx + 1;
     uint32_t cy = wy + 24;
     uint32_t cw = ww - 2;
@@ -78,7 +78,7 @@ void corvus_dashboard_render(uint32_t wx, uint32_t wy, uint32_t ww, uint32_t wh)
     // ── Header ──────────────────────────────────────────────────────────────
     fb_fill_rect(cx, cy, cw, 36, AK_PANEL);
     fb_fill_rect(cx, cy + 36, cw, 2, AK_CRIMSON); // Thin crimson border line
-    font_draw_string_scaled(cx + 16, cy + 8, "CORVUS MAS", AK_CRIMSON, 0, true, 2);
+    font_draw_string_scaled(cx + 16, cy + 8, "BUBO MAS", AK_CRIMSON, 0, true, 2);
     font_draw_string(cx + cw - 180, cy + 12, "NO MAS DISADVANTAGED", AK_GOLD, 0, true);
 
     // ── Agent Grid (2 rows x 5 columns) ──────────────────────────────────────

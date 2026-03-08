@@ -104,7 +104,7 @@ void gui_draw_taskbar(void) {
     // CORVUS logo / start button
     fb_fill_rect(4, tb_y + 4, 80, GUI_TASKBAR_HEIGHT - 8, GUI_COL_WIN_TITLE);
     fb_draw_rect(4, tb_y + 4, 80, GUI_TASKBAR_HEIGHT - 8, 1, GUI_COL_WIN_BORDER);
-    font_draw_string(12, tb_y + 10, "CORVUS", GUI_COL_WIN_BORDER_FOCUS, 0, true);
+    font_draw_string(12, tb_y + 10, "BUBO", GUI_COL_WIN_BORDER_FOCUS, 0, true);
 
     // Clock area (right side)
     font_draw_string(tb_w - 80, tb_y + 10, "00:00:00", GUI_COL_DIM_TEXT, 0, true);
@@ -282,9 +282,9 @@ void gui_draw_separator(int32_t x, int32_t y, int32_t w) {
     fb_draw_hline(x, y + 1, w, 0x050505);
 }
 
-// ── CORVUS Dashboard Window ───────────────────────────────────────────────────
+// ── BUBO Dashboard Window ───────────────────────────────────────────────────
 // The main CORVUS control panel — shows all 10 agents, system stats, shell
-void gui_draw_corvus_dashboard(void) {
+void gui_draw_bubo_dashboard(void) {
     fb_info_t* fb = fb_get_info();
     if (!fb) return;
 
@@ -378,8 +378,8 @@ void gui_draw_corvus_dashboard(void) {
     gui_draw_separator(cx, cy, dash_w - 16);
     cy += 8;
 
-    // ── Section: CORVUS Shell Input ───────────────────────────────────────────
-    gui_draw_panel(cx, cy, dash_w - 16, 80, "CORVUS Shell");
+    // ── Section: BUBO Shell Input ───────────────────────────────────────────
+    gui_draw_panel(cx, cy, dash_w - 16, 80, "BUBO Shell");
     cy += GUI_TITLEBAR_HEIGHT;
 
     // Recent output

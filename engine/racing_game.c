@@ -138,7 +138,7 @@ void racing_game_init(void) {
     g_race.supra.nitro       = 50;
     g_race.supra.lap         = 1;
     g_race.supra.race_pos    = 2;
-    g_race.supra.driver_name = "CORVUS";
+    g_race.supra.driver_name = "BUBO";
     g_race.supra.color       = COLOR_SUPRA_BLACK;
     g_race.supra.roof_color  = COLOR_CRIMSON;
 

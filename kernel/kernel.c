@@ -43,14 +43,14 @@
 #include "corvus.h"
 #include "shell.h"
 #include "framebuffer.h"
-#include "corvus_display.h"
+#include "bubo_display.h"
 #include "vfs.h"
 #include "initrd.h"
 #include "usermode.h"
 #include "desktop.h"
 #include "corvus_constitution.h"
 #include "landon_center.h"
-#include "corvus_dashboard.h"
+#include "bubo_dashboard.h"
 #include "terminal_app.h"
 #include "sound.h"
 #include "voice.h"
@@ -69,13 +69,13 @@
 //   → CORVUS agents execute
 //   → Desktop updates
 static void on_voice_command(voice_cmd_t cmd, const char* response) {
-    terminal_write("[CORVUS→LANDON] ");
+    terminal_write("[BUBO] ");
     terminal_write(response);
     terminal_write("\n");
 
     // Route constitutional commands directly
     if (cmd == VCMD_MANDATE) {
-        corvus_print_constitution();
+        bubo_print_constitution();
     } else if (cmd == VCMD_UNKNOWN || cmd == VCMD_CORVUS) {
         // Natural language — route through LLM for full understanding
         char llm_out[512];
@@ -108,7 +108,7 @@ static void draw_banner(void) {
     terminal_writeline("        ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║    ╚██████╔╝███████║");
     terminal_writeline("        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝");
     terminal_setcolor(red);
-    terminal_writeline("           Kernel Pluto: Red Cloud  |  BUBO OS v1.0  |  CORVUS MAS");
+    terminal_writeline("           Kernel Pluto: Red Cloud  |  BUBO OS v1.0  |  BUBO MAS");
     terminal_writeline("================================================================================");
     terminal_setcolor(grey);
     terminal_writeline("  MAS = Multi-Agentic Systems  |  Sovereign Intelligence  |  NO MAS DISADVANTAGED");
@@ -151,70 +151,70 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     bool fb_ok = fb_init_from_multiboot((uint32_t)multiboot_info_addr);
     if (!fb_ok) fb_init_fallback();
 
-    corvus_draw_boot_screen();
-    corvus_draw_boot_progress(5, "Memory subsystems initialized...");
+    bubo_draw_boot_screen();
+    bubo_draw_boot_progress(5, "Memory subsystems initialized...");
 
     // ── Layer 4: PIT Timer (100Hz) ────────────────────────────────────────────
     pit_init(100);
-    corvus_draw_boot_progress(12, "PIT timer running at 100Hz...");
+    bubo_draw_boot_progress(12, "PIT timer running at 100Hz...");
 
     // ── Layer 4: Keyboard ─────────────────────────────────────────────────────
     keyboard_init();
-    corvus_draw_boot_progress(18, "Keyboard perception module online...");
+    bubo_draw_boot_progress(18, "Keyboard perception module online...");
 
     // ── Layer 4: Scheduler ────────────────────────────────────────────────────
     scheduler_init();
-    corvus_draw_boot_progress(24, "Scheduler initialized...");
+    bubo_draw_boot_progress(24, "Scheduler initialized...");
 
     // ── Layer 5: VFS + initrd ─────────────────────────────────────────────────
     vfs_init();
-    corvus_draw_boot_progress(30, "Virtual filesystem online...");
+    bubo_draw_boot_progress(30, "Virtual filesystem online...");
 
     // ── Layer 5.5: User Mode (Ring 3) ─────────────────────────────────────────
     usermode_init();
-    corvus_draw_boot_progress(36, "Ring 3 user mode ready — apps isolated from kernel...");
+    bubo_draw_boot_progress(36, "Ring 3 user mode ready — apps isolated from kernel...");
 
     // ── Layer 6: Sound Driver ─────────────────────────────────────────────────
     bool sound_ok = sound_init();
-    corvus_draw_boot_progress(42, sound_ok ?
+    bubo_draw_boot_progress(42, sound_ok ?
         "Audio driver online — microphone ready..." :
         "Audio: PC speaker fallback active...");
 
     // ── Layer 6: Voice Recognition ────────────────────────────────────────────
     voice_init();
     voice_set_callback(on_voice_command);
-    corvus_draw_boot_progress(48, "Voice recognition engine ready — CORVUS is listening...");
+    bubo_draw_boot_progress(48, "Voice recognition engine ready — BUBO is listening...");
 
     // ── Layer 6: Network ──────────────────────────────────────────────────────
     bool net_ok = net_init();
     if (net_ok) tcpip_init();
-    corvus_draw_boot_progress(54, net_ok ?
+    bubo_draw_boot_progress(54, net_ok ?
         "Network stack online — CORVUS can reach the world..." :
         "Network: no NIC detected — offline mode...");
 
-    // ── Layer 6: CORVUS LLM Engine ────────────────────────────────────────────
+    // ── Layer 6: BUBO LLM Engine ────────────────────────────────────────────
     llm_init();
-    corvus_draw_boot_progress(62,
-        "CORVUS reasoning engine ready — constitutional fast-path active...");
+    bubo_draw_boot_progress(62,
+        "BUBO reasoning engine ready — constitutional fast-path active...");
 
-    // ── Layer 5: CORVUS Constitutional Governance ─────────────────────────────
+    // ── Layer 5: BUBO Constitutional Governance ─────────────────────────────
     corvus_constitution_init();
-    corvus_draw_boot_progress(68,
+    bubo_draw_boot_progress(68,
         "Constitutional governance: NO MAS DISADVANTAGED — hardcoded in kernel");
 
-    // ── Layer 5: CORVUS Orchestration Engine ──────────────────────────────────
+    // ── Layer 5: BUBO Orchestration Engine ──────────────────────────────────
     corvus_init();
-    corvus_draw_boot_progress(76, "CORVUS MAS — 10 sovereign agents activated...");
+    bubo_draw_boot_progress(76, "BUBO MAS — 10 sovereign agents activated...");
 
     // ── Layer 7: Desktop Shell ────────────────────────────────────────────────
     desktop_init();
-    corvus_draw_boot_progress(82, "Desktop shell initialized — Akatsuki theme loaded...");
+    bubo_draw_boot_progress(82, "Desktop shell initialized — Akatsuki theme loaded...");
 
     // ── Layer 7: App Subsystems ───────────────────────────────────────────────
     terminal_app_init();
-    corvus_dashboard_init();
+    bubo_dashboard_init();
     landon_center_init();
-    corvus_draw_boot_progress(90, "Applications ready — Accessibility Hub online...");
+    bubo_draw_boot_progress(90, "Applications ready — Accessibility Hub online...");
 
     // ── Boot complete ─────────────────────────────────────────────────────────
     terminal_setcolor(red);
@@ -223,9 +223,9 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     terminal_writeline("  BUBO OS — Boot complete — NO MAS DISADVANTAGED");
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════════════════");
-    corvus_draw_boot_progress(100, "Boot complete. Launching BUBO Desktop...");
+    bubo_draw_boot_progress(100, "Boot complete. Launching BUBO Desktop...");
 
-    corvus_print_constitution();
+    bubo_print_constitution();
 
     // Boot audio
     if (sound_ok) sound_corvus_ready();
@@ -234,10 +234,10 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
 
     // ── Launch Desktop ────────────────────────────────────────────────────────
     desktop_launch_app(0x07);   // Landon's Voice Control Center — always first
-    desktop_launch_app(0x04);   // CORVUS Dashboard
+    desktop_launch_app(0x04);   // BUBO Dashboard
     desktop_render();
 
-    // ── CORVUS Shell (text fallback) ──────────────────────────────────────────
+    // ── BUBO Shell (text fallback) ──────────────────────────────────────────
     shell_init();
 
     // ── Start voice listening ─────────────────────────────────────────────────

@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Deep Flow OS — CORVUS LLM Engine Header (Cactus/GGML-compatible)
+// Deep Flow OS — BUBO LLM Engine Header (Cactus/GGML-compatible)
 // =============================================================================
 #include <stdint.h>
 #include <stdbool.h>

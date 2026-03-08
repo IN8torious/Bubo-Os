@@ -167,7 +167,7 @@ gov_verdict_t corvus_governance_check(uint8_t agent_id, uint8_t tool_id,
 void corvus_remember(uint8_t agent_id, uint8_t tool_id,
                      uint8_t outcome, const char* context);
 
-// Print CORVUS dashboard to VGA terminal
+// Print BUBO dashboard to VGA terminal
 void corvus_print_dashboard(void);
 
 // Get pointer to the agents array (for rendering and health bar)

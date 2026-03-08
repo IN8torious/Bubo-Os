@@ -20,7 +20,7 @@
 
 // =============================================================================
 // Deep Flow OS — CORVUS Visual Display
-// Renders the Akatsuki boot screen, CORVUS dashboard, and agent status panels
+// Renders the Akatsuki boot screen, BUBO dashboard, and agent status panels
 // on the VESA framebuffer. This is CORVUS's face.
 // =============================================================================
 
@@ -111,7 +111,7 @@ static void draw_red_cloud(int32_t x, int32_t y, int32_t size) {
 }
 
 // ── Boot splash screen ────────────────────────────────────────────────────────
-void corvus_draw_boot_screen(void) {
+void bubo_draw_boot_screen(void) {
     if (!fb_is_ready()) return;
 
     // Black background
@@ -138,7 +138,7 @@ void corvus_draw_boot_screen(void) {
     draw_text(cx - 120, cy + 110, "RAVEN  AOS", AK_WHITE);
     draw_text(cx - 121, cy + 109, "RAVEN  AOS", AK_LIGHT_GREY); // shadow
 
-    // "CORVUS" subtitle in crimson
+    // "BUBO" subtitle in crimson
     draw_text(cx - 72, cy + 130, "CORVUS  v0.4", AK_CRIMSON);
 
     // Red cloud decorations
@@ -157,7 +157,7 @@ void corvus_draw_boot_screen(void) {
 }
 
 // ── Progress bar during boot ──────────────────────────────────────────────────
-void corvus_draw_boot_progress(uint32_t percent, const char* label) {
+void bubo_draw_boot_progress(uint32_t percent, const char* label) {
     if (!fb_is_ready()) return;
 
     int32_t bar_x = SCREEN_W/2 - 200;
@@ -216,7 +216,7 @@ void corvus_draw_desktop(void) {
     draw_text(32, 9, "RAVEN AOS", AK_LIGHT_GREY);
 
     // Taskbar: right side — time placeholder
-    draw_text(SCREEN_W - 80, 8, "CORVUS", AK_CRIMSON);
+    draw_text(SCREEN_W - 80, 8, "BUBO", AK_CRIMSON);
 
     // Bottom taskbar
     fb_fill_rect(0, SCREEN_H - TASKBAR_H, SCREEN_W, TASKBAR_H, AK_DARK_GREY);
@@ -225,7 +225,7 @@ void corvus_draw_desktop(void) {
     // Bottom bar: agent status indicators
     const char* agent_names[10] = {
         "CROW", "CROW2", "CROW3", "CROW4", "CROW5",
-        "HEALER", "SECURITY", "MEMORY", "NETWORK", "CORVUS"
+        "HEALER", "SECURITY", "MEMORY", "NETWORK", "BUBO"
     };
     for (int i = 0; i < 10; i++) {
         int32_t ax = 8 + i * 100;
@@ -310,7 +310,7 @@ void corvus_draw_shell_window(int32_t x, int32_t y, int32_t w, int32_t h) {
     fb_fill_rect(x + 1, y + 23, w - 2, h - 24, 0x050505);
 
     // CORVUS prompt
-    draw_text(x + 8, y + 30, "RAVEN AOS v0.4 — CORVUS Orchestration Engine", AK_CRIMSON);
+    draw_text(x + 8, y + 30, "RAVEN AOS v0.4 — BUBO Orchestration Engine", AK_CRIMSON);
     draw_text(x + 8, y + 46, "10 agents initialized. Constitutional governance: ACTIVE", AK_LIGHT_GREY);
     draw_text(x + 8, y + 62, "Type 'help' for commands. Type 'agents' for agent status.", AK_GREY);
     draw_text(x + 8, y + 86, "corvus> _", AK_BRIGHT_RED);
@@ -334,7 +334,7 @@ void corvus_draw_memory_bar(int32_t x, int32_t y, int32_t w,
     }
 }
 
-// ── Full CORVUS dashboard (combines all panels) ───────────────────────────────
+// ── Full BUBO dashboard (combines all panels) ───────────────────────────────
 void corvus_draw_dashboard(void) {
     if (!fb_is_ready()) return;
 

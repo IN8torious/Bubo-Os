@@ -140,7 +140,7 @@ void corvus_home_init(void) {
                                -1.5f, 0.0f, 0x1A1A2E, 0xCC0000, true);
 
     // CORVUS — black cloak, purple Rinnegan glow
-    e_corvus_char = make_character("CORVUS", CHAR_CORVUS,
+    e_corvus_char = make_character("BUBO", CHAR_CORVUS,
                                     0.0f, 0.0f, 0x0D0D0D, 0x8800FF, false);
 
     // Landon — racing suit, seated in his chair
@@ -308,7 +308,7 @@ void corvus_home_draw(void) {
     int32_t sy = (int32_t)sh - 28;
     polish_glass_rect(0, sy, (int32_t)sw, 28, 0x0D0820, 210);
 
-    const char* chars[] = { "Nathan", "CORVUS", "Landon", "Raphael" };
+    const char* chars[] = { "Nathan", "BUBO", "Landon", "Raphael" };
     entity_id_t ids[]   = { e_nathan, e_corvus_char, e_landon, e_raphael };
     for (uint32_t i = 0; i < 4; i++) {
         int32_t cx = 8 + (int32_t)(i * 180);

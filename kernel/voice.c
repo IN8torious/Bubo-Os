@@ -49,7 +49,7 @@ static const voice_keyword_t KEYWORDS[] = {
     { "STATUS",    VCMD_STATUS,    "CORVUS: Reporting race status" },
     { "STOP",      VCMD_STOP,      "CORVUS: Full stop — all systems halting" },
     { "HELP",      VCMD_HELP,      "CORVUS: Commands: FASTER BRAKE DRIFT NITRO OVERTAKE LAUNCH STATUS STOP" },
-    { "CORVUS",    VCMD_CORVUS,    "CORVUS: Sovereign intelligence online — ready for you" },
+    { "BUBO",    VCMD_CORVUS,    "CORVUS: Sovereign intelligence online — ready for you" },
     { "MANDATE",   VCMD_MANDATE,   "CORVUS: NO MAS DISADVANTAGED — constitutional mandate active" },
 };
 #define KEYWORD_COUNT 14
@@ -287,7 +287,7 @@ void voice_start_listening(void) {
     g_voice.listening = true;
     sound_start_capture();
     sound_corvus_ready();
-    terminal_write("[VOICE] CORVUS is listening...\n");
+    terminal_write("[VOICE] BUBO is listening...\n");
 }
 
 void voice_stop_listening(void) {

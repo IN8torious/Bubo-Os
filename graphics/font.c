@@ -21,7 +21,7 @@
 // =============================================================================
 // Raven OS — Bitmap Font Renderer
 // Embedded 8x16 VGA-compatible font, renders to framebuffer
-// Used by GUI windows, CORVUS dashboard, game HUD
+// Used by GUI windows, BUBO dashboard, game HUD
 // =============================================================================
 
 #include "font.h"

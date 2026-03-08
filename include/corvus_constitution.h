@@ -20,11 +20,11 @@
 
 #pragma once
 // =============================================================================
-// Deep Flow OS — CORVUS MAS Constitutional Governance Layer Header
+// Deep Flow OS — BUBO MAS Constitutional Governance Layer Header
 // =============================================================================
 #include <stdint.h>
 #include <stdbool.h>
 
 void corvus_constitution_init(void);
 bool corvus_evaluate_action(uint32_t agent_id, const char* action_desc);
-void corvus_print_constitution(void);
+void bubo_print_constitution(void);

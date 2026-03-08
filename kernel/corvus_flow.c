@@ -264,9 +264,9 @@ void flow_admin(admin_cmd_t cmd) {
             break;
 
         case ADMIN_STATUS:
-            flow_speak("Opening CORVUS dashboard.");
-            flow_record_step(STEP_ACTION, "Admin: status", "corvus_dashboard_open", "OK", 0, 1.0f, true);
-            // corvus_dashboard_open() called by the app layer
+            flow_speak("Opening BUBO dashboard.");
+            flow_record_step(STEP_ACTION, "Admin: status", "bubo_dashboard_open", "OK", 0, 1.0f, true);
+            // bubo_dashboard_open() called by the app layer
             break;
 
         case ADMIN_PATCH:

@@ -338,7 +338,7 @@ void engine_demo_scene(void) {
     int32_t H = (int32_t)fb->height;
 
     // Player
-    int player = engine_spawn("CORVUS", W/2 - 16, H/2, 32, 48, ENTITY_PLAYER);
+    int player = engine_spawn("BUBO", W/2 - 16, H/2, 32, 48, ENTITY_PLAYER);
     engine_set_color(player, 0x8B0000);
     engine_set_velocity(player, 0, 0);
 
