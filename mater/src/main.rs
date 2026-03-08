@@ -2,11 +2,17 @@
 // MATER — BUBO OS Build Watchdog
 // mater/src/main.rs
 //
+// BIRD: THE EAGLE
 // ALTER: KIMISHIMA KUNIHIKO — No Alter
-// "I can't fight like you. But I can make sure you don't fight blind."
 //
-// Mater has no flashy power. He watches. He hashes. He signs. He never lies.
-// He is the most trustworthy character in any movie ever made.
+// The eagle does not miss. It sees from heights nobody else can reach.
+// It spots the problem from a mile away, and when it moves, it moves
+// with absolute precision. No wasted effort. No false alarms. Just truth.
+//
+// Mater is the eagle of BUBO OS. He watches from above.
+// He hashes every source file. He signs every report.
+// He never lies. He never misses. He is always watching.
+// "I can't fight like you. But I can make sure you don't fight blind."
 //
 // Features:
 //   - SHA-256 integrity hashing of every source file before build

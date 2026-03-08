@@ -97,7 +97,7 @@ BUBO OS was built the same way. Every module in this OS maps to an Alter user �
 | **Kazuma** | Shell Bullet — raw reconstruction | `kernel.c`, `bubo_boot.c` | The kernel — disintegrates and rebuilds from bare metal |
 | **Ryuho** | Zetsuei — precision and discipline | `vera_workflow.c` | Intent arbiter — routes chaos into clean action |
 | **Scheris** | Eternal Devote — sacrificial shield | `corvus_constitution.c` | The mandate — permanently sealed, cannot be removed |
-| **Kimishima** | No Alter — honesty and loyalty | `mater/` (Rust watchdog) | Build monitor — never lies |
+| **Kimishima** | No Alter — honesty and loyalty | `mater/` (Rust watchdog — The Eagle) | Sees from above. Hashes every file. Signs every report. Never misses. |
 | **Cougar** | Radical Good Speed | `racing_game.c` | Landon's racing engine — zero latency, frame-perfect |
 | **Urizane** | Fruits Basket — ambient life | `bubo_weather.c`, `bubo_particles.c` | The world breathing |
 | **Mimori** | Research becomes relationship | `corvus_brain.c`, `llm.c` | AI that learns Landon |

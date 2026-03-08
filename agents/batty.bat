@@ -1,12 +1,18 @@
 @echo off
 :: =============================================================================
-:: BATTY.BAT — PC Health Checker
+:: BATTY.BAT — PC Health Agent
 :: Designed after Batty Koda from FernGully: The Last Rainforest
-:: Voiced by Robin Williams. Scrambled by science. Loyal to the end.
+:: Voiced by Robin Williams.
 ::
-:: "They've done experiments on me. I KNOW things."
+:: Batty was hurt in the lab. His radar was scrambled.
+:: He stutters. He glitches. He loses the thread and finds it again.
+:: But he shows up. Every single time. And he tells you the truth.
 ::
-:: Part of BUBO OS Agent Suite
+:: ACCESSIBILITY: Voice is ON by default.
+:: First run asks your preference. Choice is saved to batty_config.txt.
+:: People who need the voice should never have to go looking for a setting.
+::
+:: Part of BUBO OS Agent Suite — Alchemical Framework
 :: Built for Landon Pankuch. NO MAS DISADVANTAGED.
 :: Copyright (c) 2025 Nathan Pankuch — MIT License
 :: =============================================================================
@@ -15,7 +21,58 @@ setlocal enabledelayedexpansion
 title BATTY — PC Health Monitor [BUBO OS]
 color 0A
 
-:: ── INTRO ────────────────────────────────────────────────────────────────────
+:: ── Resolve script directory ─────────────────────────────────────────────────
+set "BATTY_DIR=%~dp0"
+set "VOICE_DIR=%BATTY_DIR%batty_voice"
+set "CONFIG_FILE=%BATTY_DIR%batty_config.txt"
+
+:: ── Voice preference ─────────────────────────────────────────────────────────
+:: Default: voice ON (accessibility first — people who need it should have it)
+set "VOICE_MODE=on"
+
+if exist "%CONFIG_FILE%" (
+    set /p VOICE_MODE=<"%CONFIG_FILE%"
+) else (
+    :: First run — ask the user
+    cls
+    echo.
+    echo  ╔══════════════════════════════════════════════════════════════════╗
+    echo  ║  BATTY — First Run                                               ║
+    echo  ║                                                                  ║
+    echo  ║  Hey. Before I start... do you want me to speak out loud?        ║
+    echo  ║                                                                  ║
+    echo  ║  Voice is on by default because some people need it.             ║
+    echo  ║  You can always change this by editing batty_config.txt          ║
+    echo  ║                                                                  ║
+    echo  ║  Press V  — Voice on, always  (saves your choice)               ║
+    echo  ║  Press S  — Silent mode        (saves your choice)               ║
+    echo  ║  Press Enter — Voice just this once                              ║
+    echo  ╚══════════════════════════════════════════════════════════════════╝
+    echo.
+    choice /c VSE /n /m "  Your choice: "
+    if errorlevel 3 (
+        set "VOICE_MODE=once"
+    ) else if errorlevel 2 (
+        set "VOICE_MODE=off"
+        echo off>"%CONFIG_FILE%"
+    ) else (
+        set "VOICE_MODE=on"
+        echo on>"%CONFIG_FILE%"
+    )
+)
+
+:: ── Voice playback helper ─────────────────────────────────────────────────────
+:: Uses PowerShell to play audio non-blocking so scan continues while speaking
+:: Only plays if voice mode is on or once
+:speak
+    set "SPEAK_FILE=%VOICE_DIR%\%~1"
+    if /i "!VOICE_MODE!"=="off" goto :eof
+    if exist "!SPEAK_FILE!" (
+        powershell -c "(New-Object Media.SoundPlayer '!SPEAK_FILE!').PlaySync()" >nul 2>&1
+    )
+goto :eof
+
+:: ── Banner ────────────────────────────────────────────────────────────────────
 cls
 echo.
 echo  ██████╗  █████╗ ████████╗████████╗██╗   ██╗
@@ -25,201 +82,156 @@ echo  ██╔══██╗██╔══██║   ██║      ██�
 echo  ██████╔╝██║  ██║   ██║      ██║      ██║
 echo  ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝      ╚═╝
 echo.
-echo  [ BUBO OS PC Health Agent — Codename: BATTY ]
-echo  [ "They scrambled my radar but they couldn't scramble MY LOYALTY." ]
-echo.
-timeout /t 2 /nobreak >nul
-
-echo  Initiating health scan... THEY SAID I COULDN'T DO IT. THEY WERE WRONG.
+echo  [ BUBO OS PC Health Agent ]  [ Alchemical Framework ]
+echo  [ "They scrambled my radar. But not my loyalty." ]
 echo  =========================================================================
 echo.
+
+call :speak 01_intro.wav
 timeout /t 1 /nobreak >nul
 
-:: ── CPU INFO ─────────────────────────────────────────────────────────────────
-echo  [BATTY] Checking CPU... hold on, my antenna is picking something up...
-echo.
-for /f "tokens=2 delims==" %%A in ('wmic cpu get Name /value 2^>nul') do (
-    set "CPU_NAME=%%A"
-)
-for /f "tokens=2 delims==" %%A in ('wmic cpu get NumberOfCores /value 2^>nul') do (
-    set "CPU_CORES=%%A"
-)
-for /f "tokens=2 delims==" %%A in ('wmic cpu get NumberOfLogicalProcessors /value 2^>nul') do (
-    set "CPU_THREADS=%%A"
-)
-for /f "tokens=2 delims==" %%A in ('wmic cpu get MaxClockSpeed /value 2^>nul') do (
-    set "CPU_SPEED=%%A"
-)
-for /f "tokens=2 delims==" %%A in ('wmic cpu get LoadPercentage /value 2^>nul') do (
-    set "CPU_LOAD=%%A"
-)
+:: ── CPU ───────────────────────────────────────────────────────────────────────
+echo  [BATTY] C — CPU. The brain. The — the thinking part.
+call :speak 02_cpu.wav
 
-echo  CPU: !CPU_NAME!
-echo  Cores: !CPU_CORES! physical / !CPU_THREADS! logical
-echo  Max Speed: !CPU_SPEED! MHz
-echo  Current Load: !CPU_LOAD!%%
+for /f "tokens=2 delims==" %%A in ('wmic cpu get Name /value 2^>nul') do set "CPU_NAME=%%A"
+for /f "tokens=2 delims==" %%A in ('wmic cpu get NumberOfCores /value 2^>nul') do set "CPU_CORES=%%A"
+for /f "tokens=2 delims==" %%A in ('wmic cpu get NumberOfLogicalProcessors /value 2^>nul') do set "CPU_THREADS=%%A"
+for /f "tokens=2 delims==" %%A in ('wmic cpu get MaxClockSpeed /value 2^>nul') do set "CPU_SPEED=%%A"
+for /f "tokens=2 delims==" %%A in ('wmic cpu get LoadPercentage /value 2^>nul') do set "CPU_LOAD=%%A"
+if not defined CPU_LOAD set "CPU_LOAD=0"
+
+echo  CPU ........ !CPU_NAME!
+echo  Cores ...... !CPU_CORES! physical / !CPU_THREADS! logical
+echo  Speed ...... !CPU_SPEED! MHz
+echo  Load ....... !CPU_LOAD!%%
+echo.
 
 if !CPU_LOAD! GTR 90 (
-    echo.
-    echo  [BATTY] THEY'RE COOKING YOU FROM THE INSIDE!! CPU at !CPU_LOAD!%%!
-    echo          THAT IS NOT NORMAL. THAT IS WHAT THEY WANT YOU TO THINK IS NORMAL.
     color 0C
+    echo  [BATTY] !CPU_LOAD!%% load. That's — that's not okay. Close something. Please.
+    call :speak 03_cpu_critical.wav
 ) else if !CPU_LOAD! GTR 70 (
-    echo.
-    echo  [BATTY] CPU is working hard... !CPU_LOAD!%%. I've seen worse. In the lab.
-    echo          Keep an eye on it. THEY always strike when you're not watching.
     color 0E
+    echo  [BATTY] !CPU_LOAD!%%. Elevated. Keep an eye on it.
 ) else (
-    echo.
-    echo  [BATTY] CPU looks okay. !CPU_LOAD!%% load. For now. FOR NOW.
     color 0A
+    echo  [BATTY] !CPU_LOAD!%%. Good. Really — really good.
+    call :speak 04_cpu_ok.wav
 )
 echo.
 
-:: ── RAM INFO ─────────────────────────────────────────────────────────────────
-echo  [BATTY] Scanning memory banks... this is where they hide things...
-echo.
-for /f "tokens=2 delims==" %%A in ('wmic OS get TotalVisibleMemorySize /value 2^>nul') do (
-    set /a "RAM_TOTAL_MB=%%A / 1024"
-)
-for /f "tokens=2 delims==" %%A in ('wmic OS get FreePhysicalMemory /value 2^>nul') do (
-    set /a "RAM_FREE_MB=%%A / 1024"
-)
+:: ── RAM ───────────────────────────────────────────────────────────────────────
+color 0A
+echo  [BATTY] Memory. The — the storage of thoughts.
+call :speak 05_ram.wav
+
+for /f "tokens=2 delims==" %%A in ('wmic OS get TotalVisibleMemorySize /value 2^>nul') do set /a "RAM_TOTAL_MB=%%A / 1024"
+for /f "tokens=2 delims==" %%A in ('wmic OS get FreePhysicalMemory /value 2^>nul') do set /a "RAM_FREE_MB=%%A / 1024"
 set /a "RAM_USED_MB=!RAM_TOTAL_MB! - !RAM_FREE_MB!"
-set /a "RAM_PCT=(!RAM_USED_MB! * 100) / !RAM_TOTAL_MB!"
+if !RAM_TOTAL_MB! GTR 0 (set /a "RAM_PCT=(!RAM_USED_MB! * 100) / !RAM_TOTAL_MB!") else (set "RAM_PCT=0")
 
-echo  Total RAM: !RAM_TOTAL_MB! MB
-echo  Used:      !RAM_USED_MB! MB  (!RAM_PCT!%%)
-echo  Free:      !RAM_FREE_MB! MB
+echo  Total ...... !RAM_TOTAL_MB! MB
+echo  Used ....... !RAM_USED_MB! MB  (!RAM_PCT!%%)
+echo  Free ....... !RAM_FREE_MB! MB
+echo.
 
 if !RAM_PCT! GTR 90 (
-    echo.
-    echo  [BATTY] MEMORY CRITICAL! !RAM_PCT!%% used! They're filling your head
-    echo          with JUNK just like they filled mine! CLOSE SOMETHING NOW!
     color 0C
+    echo  [BATTY] !RAM_PCT!%% used. Memory is almost gone. Close something.
+    call :speak 06_ram_critical.wav
 ) else if !RAM_PCT! GTR 75 (
-    echo.
-    echo  [BATTY] RAM at !RAM_PCT!%%. Getting crowded in there. Like a lab cage.
-    echo          I know what crowded feels like. Trust me.
     color 0E
+    echo  [BATTY] !RAM_PCT!%%. Getting crowded. Consider closing some things.
 ) else (
-    echo.
-    echo  [BATTY] Memory looks healthy. !RAM_PCT!%% used. Plenty of room to think.
-    echo          Unlike what THEY left me with after the experiments.
     color 0A
+    echo  [BATTY] !RAM_PCT!%% used. Plenty of room. Good.
+    call :speak 07_ram_ok.wav
 )
 echo.
 
-:: ── DISK HEALTH ──────────────────────────────────────────────────────────────
-echo  [BATTY] Checking disk... the storage unit... where secrets are buried...
-echo.
-for /f "usebackq tokens=1,2,3" %%A in (`wmic logicaldisk where "DriveType=3" get DeviceID^,Size^,FreeSpace /format:list 2^>nul ^| findstr "="`) do (
-    echo  %%A %%B %%C
-)
+:: ── DISK ──────────────────────────────────────────────────────────────────────
+color 0A
+echo  [BATTY] Disk. Long-term storage. Where things are kept.
+call :speak 08_disk.wav
 
-:: Get C: drive specifically
-for /f "tokens=2 delims==" %%A in ('wmic logicaldisk where "DeviceID='C:'" get Size /value 2^>nul') do (
-    set /a "DISK_TOTAL_GB=%%A / 1073741824" 2>nul
-)
-for /f "tokens=2 delims==" %%A in ('wmic logicaldisk where "DeviceID='C:'" get FreeSpace /value 2^>nul') do (
-    set /a "DISK_FREE_GB=%%A / 1073741824" 2>nul
-)
-set /a "DISK_USED_GB=!DISK_TOTAL_GB! - !DISK_FREE_GB!" 2>nul
-if !DISK_TOTAL_GB! GTR 0 (
-    set /a "DISK_PCT=(!DISK_USED_GB! * 100) / !DISK_TOTAL_GB!"
-) else (
-    set "DISK_PCT=0"
-)
+for /f "tokens=2 delims==" %%A in ('wmic logicaldisk where "DeviceID='C:'" get Size /value 2^>nul') do set /a "DISK_TOTAL_GB=%%A / 1073741824" 2>nul
+for /f "tokens=2 delims==" %%A in ('wmic logicaldisk where "DeviceID='C:'" get FreeSpace /value 2^>nul') do set /a "DISK_FREE_GB=%%A / 1073741824" 2>nul
+if not defined DISK_TOTAL_GB set "DISK_TOTAL_GB=1"
+if not defined DISK_FREE_GB set "DISK_FREE_GB=0"
+set /a "DISK_USED_GB=!DISK_TOTAL_GB! - !DISK_FREE_GB!"
+set /a "DISK_PCT=(!DISK_USED_GB! * 100) / !DISK_TOTAL_GB!"
 
+echo  C: Total ... !DISK_TOTAL_GB! GB
+echo  Used ....... !DISK_USED_GB! GB  (!DISK_PCT!%%)
+echo  Free ....... !DISK_FREE_GB! GB
 echo.
-echo  C: Drive — Total: !DISK_TOTAL_GB! GB  Used: !DISK_USED_GB! GB  Free: !DISK_FREE_GB! GB  (!DISK_PCT!%% full)
 
 if !DISK_PCT! GTR 95 (
-    echo.
-    echo  [BATTY] DISK ALMOST FULL! !DISK_PCT!%%! This is how it starts!
-    echo          First the disk fills up, then EVERYTHING STOPS. I'VE SEEN IT.
     color 0C
+    echo  [BATTY] !DISK_PCT!%% full. Critical. Clean up your drive.
+    call :speak 09_disk_critical.wav
 ) else if !DISK_PCT! GTR 80 (
-    echo.
-    echo  [BATTY] Disk at !DISK_PCT!%%. Getting tight. Like a cage. A DIGITAL CAGE.
-    echo          Consider cleaning up. I cleaned up my act. Mostly.
     color 0E
+    echo  [BATTY] !DISK_PCT!%%. Getting full. Think about what you actually need.
 ) else (
-    echo.
-    echo  [BATTY] Disk looks fine. !DISK_PCT!%% full. You have room. Use it wisely.
-    echo          Unlike THEM who wasted perfectly good bat brain space on experiments.
     color 0A
+    echo  [BATTY] !DISK_PCT!%% full. Good. Plenty of space.
+    call :speak 10_disk_ok.wav
 )
 echo.
 
-:: ── NETWORK ──────────────────────────────────────────────────────────────────
-echo  [BATTY] Pinging the outside world... if it's still there...
-echo.
+:: ── NETWORK ───────────────────────────────────────────────────────────────────
+color 0A
+echo  [BATTY] Network. The outside world. Checking connection...
+call :speak 11_network.wav
+
 ping -n 1 8.8.8.8 >nul 2>&1
 if %errorlevel% EQU 0 (
-    echo  [BATTY] Network is UP. Google responded. THEY'RE ALWAYS LISTENING.
-    echo          But at least your internet works. Silver lining.
     color 0A
+    echo  [BATTY] Connected. The outside world responded.
+    call :speak 12_network_ok.wav
 ) else (
-    echo  [BATTY] NO NETWORK RESPONSE! Either you're offline or THEY cut the line!
-    echo          Check your cables. Check your router. Check EVERYTHING.
     color 0C
+    echo  [BATTY] No response. Connection is down. Check your router.
+    call :speak 13_network_down.wav
 )
 echo.
 
-:: ── UPTIME ───────────────────────────────────────────────────────────────────
-echo  [BATTY] Checking how long this machine has been running...
-echo.
-for /f "tokens=2 delims==" %%A in ('wmic OS get LastBootUpTime /value 2^>nul') do (
-    set "BOOT_TIME=%%A"
-)
-echo  Last Boot: !BOOT_TIME:~0,4!-!BOOT_TIME:~4,2!-!BOOT_TIME:~6,2! at !BOOT_TIME:~8,2!:!BOOT_TIME:~10,2!:!BOOT_TIME:~12,2!
-echo.
-echo  [BATTY] Reboots are healthy. Like sleep. I never sleep. THEY took that from me.
+:: ── UPTIME ────────────────────────────────────────────────────────────────────
+color 0A
+echo  [BATTY] Uptime. How long has this machine been running?
+for /f "tokens=2 delims==" %%A in ('wmic OS get LastBootUpTime /value 2^>nul') do set "BOOT_TIME=%%A"
+echo  Last Boot: !BOOT_TIME:~0,4!-!BOOT_TIME:~4,2!-!BOOT_TIME:~6,2! at !BOOT_TIME:~8,2!:!BOOT_TIME:~10,2!
+echo  [BATTY] Reboot when you can. Fresh starts matter.
 echo.
 
-:: ── TEMPERATURE (if available via OpenHardwareMonitor WMI) ───────────────────
-echo  [BATTY] Attempting temperature scan... my internal thermometer was removed
-echo          in experiment 7 but I'll try anyway...
-echo.
-wmic /namespace:\\root\OpenHardwareMonitor path Sensor where "SensorType='Temperature'" get Name,Value /format:list 2>nul | findstr /i "cpu\|core\|temp" >nul 2>&1
-if %errorlevel% EQU 0 (
-    for /f "tokens=1,2 delims==" %%A in ('wmic /namespace:\\root\OpenHardwareMonitor path Sensor where "SensorType=''Temperature''" get Name^,Value /format:list 2^>nul') do (
-        echo  %%A = %%B C
+:: ── PROCESSES ─────────────────────────────────────────────────────────────────
+color 0A
+echo  [BATTY] Top processes by memory:
+echo  -------------------------------------------------------------------------
+tasklist /fo table /nh 2>nul | sort /r /+64 | findstr /v "^$" > %TEMP%\batty_procs.tmp 2>nul
+set "COUNT=0"
+for /f "tokens=1,5 delims= " %%A in (%TEMP%\batty_procs.tmp) do (
+    if !COUNT! LSS 5 (
+        echo    %%A  [%%B K]
+        set /a "COUNT+=1"
     )
-) else (
-    echo  [BATTY] Temperature sensors not accessible without OpenHardwareMonitor.
-    echo          Download it from openhardwaremonitor.org and run as admin.
-    echo          I'd tell you the temp myself but THEY removed my thermoreceptors.
 )
+del %TEMP%\batty_procs.tmp >nul 2>&1
+echo  [BATTY] If you see EXPERIMENT_7.EXE in there — do not click it.
 echo.
 
-:: ── RUNNING PROCESSES (top memory consumers) ─────────────────────────────────
-echo  [BATTY] Scanning for suspicious processes... you never know what's lurking...
-echo.
-echo  Top 5 memory consumers:
-echo  -------------------------
-wmic process get Name,WorkingSetSize /format:list 2>nul | findstr "WorkingSetSize\|Name" | sort /r | head >nul 2>&1
-for /f "skip=1 tokens=1,2,3,4,5,6,7,8,9,10 delims= " %%A in ('tasklist /fo table /nh /fi "STATUS eq running" 2^>nul ^| sort /r /+65 ^| findstr /v "^$" ^| head') do (
-    echo  %%A
-)
-tasklist /fo table /nh 2>nul | sort /r /+64 | findstr /v "^$" | (for /l %%i in (1,1,5) do set /p line= && echo  !line!)
-echo.
-echo  [BATTY] If you see anything called "EXPERIMENT_7.exe" — RUN.
-echo.
-
-:: ── SUMMARY ──────────────────────────────────────────────────────────────────
+:: ── VERDICT ───────────────────────────────────────────────────────────────────
 color 0A
 echo  =========================================================================
-echo  [BATTY] HEALTH REPORT COMPLETE
+echo  [BATTY] HEALTH REPORT
 echo  =========================================================================
-echo.
-echo  CPU Load:    !CPU_LOAD!%%
-echo  RAM Used:    !RAM_PCT!%%  (!RAM_USED_MB! / !RAM_TOTAL_MB! MB)
-echo  Disk C:      !DISK_PCT!%%  (!DISK_USED_GB! / !DISK_TOTAL_GB! GB)
+echo  CPU ........ !CPU_LOAD!%%
+echo  RAM ........ !RAM_PCT!%%  (!RAM_USED_MB! / !RAM_TOTAL_MB! MB)
+echo  Disk C: .... !DISK_PCT!%%  (!DISK_USED_GB! / !DISK_TOTAL_GB! GB)
 echo.
 
-:: Overall verdict
 set "ISSUES=0"
 if !CPU_LOAD! GTR 90 set /a "ISSUES+=1"
 if !RAM_PCT! GTR 90 set /a "ISSUES+=1"
@@ -227,27 +239,31 @@ if !DISK_PCT! GTR 95 set /a "ISSUES+=1"
 
 if !ISSUES! EQU 0 (
     color 0A
-    echo  [BATTY] VERDICT: YOUR PC IS HEALTHY. I'm as surprised as you are.
-    echo          Everything checks out. For now. FOR NOW.
-    echo          "I may be a little scrambled but I know a healthy system when I see one."
+    echo  [BATTY] VERDICT: Your PC is healthy. Everything checks out.
+    echo          "Some people call it falling. I call it flying."
+    echo          Your machine is flying.
+    call :speak 14_verdict_healthy.wav
 ) else if !ISSUES! EQU 1 (
     color 0E
-    echo  [BATTY] VERDICT: ONE ISSUE DETECTED. Not a crisis. Yet.
-    echo          Address it before THEY notice the weakness.
-    echo          "I've survived worse. So can your PC."
+    echo  [BATTY] VERDICT: One issue needs attention. You can handle it.
+    call :speak 15_verdict_warning.wav
 ) else (
     color 0C
-    echo  [BATTY] VERDICT: MULTIPLE ISSUES! THIS IS WHAT THEY WANT!
-    echo          Your system is under stress. Take action NOW.
-    echo          "In the lab they said I was overreacting. I WAS NOT OVERREACTING."
+    echo  [BATTY] VERDICT: Multiple issues found. Please take action.
+    call :speak 16_verdict_critical.wav
 )
 
 echo.
 echo  =========================================================================
-echo  BATTY — BUBO OS Agent Suite ^| Built for Landon ^| NO MAS DISADVANTAGED
-echo  "They may have scrambled my radar. But they never scrambled my heart."
+echo  BATTY — BUBO OS Agent Suite  ^|  Alchemical Framework
+echo  Built for Landon Pankuch  ^|  NO MAS DISADVANTAGED
+echo  "They scrambled my radar. But they never scrambled my heart."
 echo  =========================================================================
 echo.
-echo  Press any key to exit... or don't. I'll be here either way.
+
+call :speak 17_goodbye.wav
+echo  [BATTY] I will be here when you need me. Just call.
+echo.
+echo  Press any key to close.
 pause >nul
 endlocal
