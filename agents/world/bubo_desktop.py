@@ -29,6 +29,7 @@ from rain_canvas import RainCanvas, BG, NEON_RED, NEON_BLUE, NEON_WHITE
 from bike_arrival import BikeArrivalSequence
 from dock import FloatingDock
 from desktop_icons import DesktopIconManager
+from home_hub import HomeHub
 
 import psutil
 from datetime import datetime
@@ -452,6 +453,18 @@ class BuboDesktop:
     def _bind_hotkeys(self):
         self.root.bind_all("<Control-Shift-K>", lambda e: self._summon_kami())
         self.root.bind_all("<Escape>", lambda e: self._collapse_tray())
+        self.root.bind_all("<Control-h>", lambda e: self._open_hub())
+        self.root.bind_all("<super_l>", lambda e: self._open_hub())
+
+    def _open_hub(self):
+        """Open the N8torious AI home hub in a new window."""
+        hub_win = tk.Toplevel(self.root)
+        hub_win.title("N8torious AI — Home")
+        hub_win.configure(bg="#050508")
+        hub_win.geometry(f"{self.sw}x{self.sh}+0+0")
+        hub_win.attributes("-topmost", True)
+        hub = HomeHub(root=hub_win)
+        hub_win.focus_force()
 
     def run(self):
         print()

@@ -44,6 +44,7 @@ ASM_SRCS = \
 # ── Kernel C Sources ──────────────────────────────────────────────────────────
 # Every agent, every system, every piece of the soul — all in one flask.
 KERNEL_SRCS = \
+    kernel/klib.c \
     kernel/kernel.c \
     kernel/pmm.c \
     kernel/idt.c \
