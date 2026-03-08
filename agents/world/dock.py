@@ -126,7 +126,8 @@ class FloatingDock:
             ("🐦‍⬛", "Corvus",  "#9D00FF", self._launch_corvus),
             ("🦅", "Mater",    "#00D4FF", self._launch_mater),
             ("🦇", "Batty",    "#00FF88", self._launch_batty),
-            ("🌊", "Vera",     "#FFD700", self._launch_vera),
+            ("🌊", "Vera",     "#FFD700",  self._launch_vera),
+            ("⚡", "Genki",     "#FF6600",  self._launch_genki),
             ("─", "",          GRAY,      None),          # Separator
             ("💻", "Terminal", NEON_WHT,  self._launch_terminal),
             ("📁", "Files",    NEON_WHT,  self._launch_files),
@@ -223,6 +224,13 @@ class FloatingDock:
 
     def _launch_vera(self):
         bus.publish("Dock", "vera.input", "Status")
+
+    def _launch_genki(self):
+        import subprocess, sys
+        genki_path = os.path.join(
+            os.path.dirname(__file__), "..", "genki", "genki.py"
+        )
+        subprocess.Popen([sys.executable, genki_path])
 
     def _launch_terminal(self):
         try:

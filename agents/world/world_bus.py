@@ -86,6 +86,7 @@ class AgentRegistry:
             "Corvus": "clouds",      # Learning state = cloud cover
             "Vera":   "wind",        # Routing activity = wind speed
             "Bubo":   "visibility",  # OS state = visibility
+            "Genki":   "lightning",   # Deploy activity = lightning
         }
         return mapping.get(name, "humidity")
 
@@ -191,6 +192,7 @@ registry.register("Corvus", "Learns and adapts — the memory",                "
 registry.register("Mater",  "Watches everything — the eyes from above",      "🦅", "Kimishima / Eagle")
 registry.register("Batty",  "Checks health — shows up when called",          "🦇", "Batty Koda")
 registry.register("Kami",   "Nathan's right hand — arrives on Kaneda's bike","🏍️", "Toshiki Kamishima")
+registry.register("Genki",   "Automation — deploy, pull, watch, sync",        "⚡", "Genki — YuYu Hakusho")
 
 
 if __name__ == "__main__":

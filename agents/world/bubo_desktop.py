@@ -135,6 +135,7 @@ class BuboDesktop:
             ("🐦‍⬛", "Corvus", "clouds",      C["purple"], "%"),
             ("🌊", "Vera",   "wind",        C["yellow"], ""),
             ("🦉", "Bubo",   "visibility",  C["white"],  ""),
+            ("⚡", "Genki",   "lightning",   C["orange"],  ""),
         ]
         for bird, name, metric, color, unit in agents:
             row = tk.Frame(self.weather_frame, bg=C["panel"])
