@@ -25,7 +25,7 @@ import threading
 # AKIRA COLORS
 # ─────────────────────────────────────────────
 BG          = "#050508"
-RAIN_COLORS = ["#0A2A4A", "#0D3B6E", "#1A5276", "#00D4FF22", "#004466"]
+RAIN_COLORS = ["#0A2A4A", "#0D3B6E", "#1A5276", "#003344", "#004466"]
 NEON_RED    = "#FF0A14"
 NEON_BLUE   = "#00D4FF"
 NEON_WHITE  = "#E8E8F0"
