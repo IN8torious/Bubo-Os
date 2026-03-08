@@ -42,6 +42,12 @@
 #include "../include/bubo_input_map.h"
 #include "../include/deepflow_colors.h"
 
+/* ── Boot color aliases — map semantic names to deepflow_colors.h ── */
+#define COLOR_VOID          DF_BG_DEEP          /* Near-black — unlit background  */
+#define COLOR_LANDON_PURPLE DF_USER_LANDON      /* Deep purple — Landon's tomoe   */
+#define COLOR_DEPTH_2       DF_RED_DIM          /* Dimmed red — partial progress  */
+#define COLOR_DEPTH_3       DF_RED_MID          /* Mid red — active spin          */
+
 /* =============================================================================
  * Framebuffer — provided by VESA init before boot sequence starts
  * ============================================================================= */
