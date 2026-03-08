@@ -2,7 +2,12 @@
 
 > **NO MAS DISADVANTAGED**
 
+> *"She chose loyalty. She chose the bond. That's not instinct. That's character."*
+> — Blue, Jurassic World
+
 This is not just an operating system. This is a correction.
+
+**Also known as Blue OS** — named for the raptor who chose her person and could not be turned.
 
 BUBO OS is a bare-metal, x86-64 operating system built from scratch for one specific purpose: **to allow a kid with cerebral palsy to command his world, drive a Demon 170, and play Call of Duty with his uncle using his voice alone.**
 
