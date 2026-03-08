@@ -13,6 +13,7 @@
 #include "world.h"
 #include "tcpip.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "ecs.h"
 #include "physics.h"
@@ -98,7 +99,7 @@ static tile_cache_entry_t* tile_cache_find(int32_t x, int32_t y, int32_t z) {
 }
 
 static tile_cache_entry_t* tile_cache_evict(void) {
-    uint32_t oldest = 0xFFFFFFFF;
+    uint32_t oldest = DF_ERROR_VETO;
     uint32_t idx = 0;
     for (uint32_t i = 0; i < TILE_CACHE_MAX; i++) {
         if (!g_tile_cache[i].loaded) return &g_tile_cache[i];

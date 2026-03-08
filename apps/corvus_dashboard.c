@@ -6,70 +6,43 @@
 // This software was created for Landon Pankuch, who has cerebral palsy,
 // so that he may drive, race, and command his world with his voice alone.
 //
-// Built by a person with manic depression, for a person with cerebral palsy,
-// for every person who has ever been told their disability makes them less.
-// It does not. You are not less. This machine was built to serve you.
-//
 // Constitutional Mandate: "NO MAS DISADVANTAGED"
 // MAS = Multi-Agentic Systems — Sovereign Intelligence, not corporate AI
-//
-// MIT License — Free for Landon. Free for everyone. Especially those who
-// need it most. Accessibility features must remain free in all derivatives.
-// See LICENSE file for full terms and the permanent dedication.
 // =============================================================================
 
 // =============================================================================
-// Deep Flow OS — CORVUS MAS Dashboard
+// BUBO OS — CORVUS MAS Dashboard
 //
-// Shows all 10 agents, their status, needs model, and the constitutional
-// mandate. This is the nerve center of the sovereign intelligence system.
+// Akatsuki Theme: Pure Black, Deep Crimson, Gold. No other colors.
+// 2x5 Grid layout for 10 agents.
 // =============================================================================
 
 #include "corvus_dashboard.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "vga.h"
 
-#define COL_BG      0xFF0A0A0A
-#define COL_PANEL   0xFF1A1A1A
-#define COL_CRIMSON 0xFFCC0000
-#define COL_BLOOD   0xFF8B0000
-#define COL_CLOUD   0xFFE0E0E0
-#define COL_GOLD    0xFFFFD700
-#define COL_CORVUS  0xFF4A0080
-#define COL_GREEN   0xFF00CC44
-#define COL_YELLOW  0xFFFFAA00
-#define COL_RED     0xFFFF3333
-#define COL_TRANSPARENT 0x00000000
+// Strict Akatsuki Palette overrides
+#define AK_BLACK    DF_BG_DEEP
+#define AK_PANEL    DF_BG_PANEL
+#define AK_CRIMSON  DF_ERROR_STANDARD
+#define AK_BLOOD    DF_ERROR_WARNING
+#define AK_GOLD     DF_SOL_TESTING
+#define AK_GRAY     DF_RED_DIM
 
 // Agent definitions
 static const char* AGENT_NAMES[10] = {
-    "CROW",       // 0 - Orchestrator
-    "HEALER",     // 1 - Self-repair
-    "SECURITY",   // 2 - Threat detection
-    "MEMORY",     // 3 - SuperMemory
-    "NETWORK",    // 4 - Comms
-    "PLANNER",    // 5 - GOAP
-    "LEARNER",    // 6 - RL/adaptation
-    "PHYSICS",    // 7 - World model
-    "VOICE",      // 8 - Speech interface
-    "DRIVER",     // 9 - Vehicle control (Landon's Demon 170)
+    "CROW", "HEALER", "SECURITY", "MEMORY", "NETWORK",
+    "PLANNER", "LEARNER", "PHYSICS", "VOICE", "DRIVER"
 };
 
 static const char* AGENT_ROLES[10] = {
-    "Orchestrates all agents",
-    "Monitors and repairs system",
-    "Detects threats, enforces constitution",
-    "Long-term memory, vector store",
-    "Network comms, API calls",
-    "GOAP planning engine",
-    "Reinforcement learning adapter",
-    "Physics simulation, world model",
-    "Voice recognition and synthesis",
-    "Drives the Demon 170",
+    "Orchestrator", "Self-repair", "Threat intel", "Vector store", "Comms API",
+    "GOAP engine", "RL adapter", "World model", "NLP engine", "Demon 170"
 };
 
-// Simulated agent states
+// Simulated agent states (to be wired to real agent states)
 static uint8_t agent_health[10]  = {100,98,100,95,90,97,88,100,100,100};
 static uint8_t agent_load[10]    = {45, 12, 8,  30, 5, 22, 15, 10, 60, 80};
 static bool    agent_active[10]  = {true,true,true,true,true,true,true,true,true,true};
@@ -82,7 +55,7 @@ static uint8_t needs_purpose     = 88;
 static uint8_t needs_growth      = 70;
 
 void corvus_dashboard_init(void) {
-    terminal_write("[CORVUS DASHBOARD] Initialized\n");
+    terminal_write("[CORVUS DASHBOARD] Initialized — Akatsuki theme active\n");
 }
 
 static void draw_bar(uint32_t x, uint32_t y, uint32_t w, uint32_t h,
@@ -90,7 +63,7 @@ static void draw_bar(uint32_t x, uint32_t y, uint32_t w, uint32_t h,
     fb_fill_rect(x, y, w, h, col_bg);
     uint32_t fill = (w * pct) / 100;
     if (fill > 0) fb_fill_rect(x, y, fill, h, col_fill);
-    fb_draw_rect(x, y, w, h, 0xFF333333, 1);
+    fb_draw_rect(x, y, w, h, AK_BLOOD, 1);
 }
 
 void corvus_dashboard_render(uint32_t wx, uint32_t wy, uint32_t ww, uint32_t wh) {
@@ -99,66 +72,66 @@ void corvus_dashboard_render(uint32_t wx, uint32_t wy, uint32_t ww, uint32_t wh)
     uint32_t cw = ww - 2;
     uint32_t ch = wh - 25;
 
-    fb_fill_rect(cx, cy, cw, ch, COL_BG);
+    // Pure black background
+    fb_fill_rect(cx, cy, cw, ch, AK_BLACK);
 
     // ── Header ──────────────────────────────────────────────────────────────
-    fb_fill_rect(cx, cy, cw, 32, COL_PANEL);
-    font_draw_string_scaled(cx + 8, cy + 6, "CORVUS MAS — SOVEREIGN INTELLIGENCE DASHBOARD",
-                           COL_CRIMSON, COL_TRANSPARENT, true, 2);
-    font_draw_string(cx + cw - 200, cy + 10, "NO MAS DISADVANTAGED", COL_GOLD, COL_TRANSPARENT, true);
+    fb_fill_rect(cx, cy, cw, 36, AK_PANEL);
+    fb_fill_rect(cx, cy + 36, cw, 2, AK_CRIMSON); // Thin crimson border line
+    font_draw_string_scaled(cx + 16, cy + 8, "CORVUS MAS", AK_CRIMSON, 0, true, 2);
+    font_draw_string(cx + cw - 180, cy + 12, "NO MAS DISADVANTAGED", AK_GOLD, 0, true);
 
-    // ── Agent grid ───────────────────────────────────────────────────────────
-    uint32_t ay = cy + 40;
-    font_draw_string(cx + 8, ay, "ACTIVE AGENTS:", COL_CLOUD, COL_TRANSPARENT, true);
-    ay += 16;
+    // ── Agent Grid (2 rows x 5 columns) ──────────────────────────────────────
+    uint32_t grid_y = cy + 56;
+    uint32_t card_w = (cw - 60) / 5;
+    uint32_t card_h = 80;
 
     for (int i = 0; i < 10; i++) {
-        uint32_t row_y = ay + (i * 28);
-        uint32_t col_x = cx + 8;
+        uint32_t row = i / 5;
+        uint32_t col = i % 5;
+        uint32_t card_x = cx + 10 + col * (card_w + 10);
+        uint32_t card_y = grid_y + row * (card_h + 10);
+
+        // Card background and border
+        fb_fill_rect(card_x, card_y, card_w, card_h, AK_PANEL);
+        fb_draw_rect(card_x, card_y, card_w, card_h, AK_CRIMSON, 1);
 
         // Status dot
-        uint32_t dot_col = agent_active[i] ? COL_GREEN : COL_RED;
-        fb_fill_rect(col_x, row_y + 4, 8, 8, dot_col);
+        uint32_t dot_col = agent_active[i] ? AK_CRIMSON : AK_GRAY;
+        fb_fill_rect(card_x + 8, card_y + 8, 6, 6, dot_col);
 
-        // Agent name
-        font_draw_string(col_x + 12, row_y + 2, AGENT_NAMES[i], COL_GOLD, COL_TRANSPARENT, true);
-
-        // Role
-        font_draw_string(col_x + 80, row_y + 2, AGENT_ROLES[i], COL_CLOUD, COL_TRANSPARENT, true);
+        // Name and Role
+        font_draw_string(card_x + 20, card_y + 6, AGENT_NAMES[i], AK_GOLD, 0, true);
+        font_draw_string(card_x + 8, card_y + 24, AGENT_ROLES[i], AK_GRAY, 0, false);
 
         // Health bar
-        font_draw_string(col_x + 320, row_y + 2, "HP:", COL_CLOUD, COL_TRANSPARENT, true);
-        uint32_t hp_col = agent_health[i] > 80 ? COL_GREEN :
-                          agent_health[i] > 50 ? COL_YELLOW : COL_RED;
-        draw_bar(col_x + 344, row_y + 4, 60, 8, agent_health[i], hp_col, 0xFF1A1A1A);
+        font_draw_string(card_x + 8, card_y + 44, "HP", AK_GRAY, 0, false);
+        draw_bar(card_x + 30, card_y + 44, card_w - 40, 6, agent_health[i], AK_CRIMSON, AK_BLACK);
 
         // Load bar
-        font_draw_string(col_x + 412, row_y + 2, "LD:", COL_CLOUD, COL_TRANSPARENT, true);
-        draw_bar(col_x + 436, row_y + 4, 60, 8, agent_load[i], COL_CORVUS, 0xFF1A1A1A);
+        font_draw_string(card_x + 8, card_y + 58, "LD", AK_GRAY, 0, false);
+        draw_bar(card_x + 30, card_y + 58, card_w - 40, 6, agent_load[i], AK_BLOOD, AK_BLACK);
     }
 
-    // ── Maslow Needs Model ───────────────────────────────────────────────────
-    uint32_t ny = ay + (10 * 28) + 8;
-    fb_fill_rect(cx + 4, ny, cw - 8, 1, COL_BLOOD);
-    ny += 8;
-
-    font_draw_string(cx + 8, ny, "NEEDS MODEL (MASLOW):", COL_CLOUD, COL_TRANSPARENT, true);
-    ny += 16;
-
+    // ── Maslow Needs Model & Mandate Banner ──────────────────────────────────
+    uint32_t bot_y = grid_y + 2 * (card_h + 10) + 16;
+    
+    // Needs (Bottom Left)
     const char* need_names[] = {"SURVIVAL","SAFETY","CONNECTION","PURPOSE","GROWTH"};
     uint8_t need_vals[] = {needs_survival, needs_safety, needs_connection, needs_purpose, needs_growth};
-    uint32_t nx = cx + 8;
+    uint32_t nx = cx + 10;
+    uint32_t ny = bot_y;
     for (int i = 0; i < 5; i++) {
-        font_draw_string(nx, ny, need_names[i], COL_GOLD, COL_TRANSPARENT, true);
-        draw_bar(nx, ny + 14, 80, 10, need_vals[i], COL_CORVUS, 0xFF1A1A1A);
-        nx += 100;
+        font_draw_string(nx, ny, need_names[i], AK_GOLD, 0, true);
+        draw_bar(nx + 90, ny + 2, 80, 8, need_vals[i], AK_CRIMSON, AK_BLACK);
+        ny += 16;
     }
 
-    // ── Constitutional mandate ───────────────────────────────────────────────
-    uint32_t my = ny + 36;
-    fb_fill_rect(cx + 4, my, cw - 8, 28, COL_BLOOD);
-    fb_draw_rect(cx + 4, my, cw - 8, 28, COL_CRIMSON, 1);
-    font_draw_string(cx + 16, my + 6,
-        "MANDATE: NO MAS DISADVANTAGED — MAS = Multi-Agentic Systems",
-        COL_GOLD, COL_TRANSPARENT, true);
+    // Mandate Banner (Bottom Right)
+    uint32_t ban_w = cw - 220;
+    uint32_t ban_h = 40;
+    uint32_t ban_x = cx + 200;
+    uint32_t ban_y = bot_y + 20;
+    fb_fill_rect(ban_x, ban_y, ban_w, ban_h, AK_CRIMSON);
+    font_draw_string_scaled(ban_x + (ban_w/2) - 150, ban_y + 12, "MANDATE: NO MAS DISADVANTAGED", AK_GOLD, 0, true, 1);
 }

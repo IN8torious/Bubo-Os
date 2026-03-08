@@ -3,6 +3,7 @@
 // https://github.com/IN8torious/Deep-Flow-OS
 #include "racing_game.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "corvus.h"
 #include <stdint.h>
@@ -12,7 +13,7 @@
 #define COLOR_BLACK       0x00000000
 #define COLOR_CRIMSON     0xCC0000FF
 #define COLOR_DARK_RED    0x8B0000FF
-#define COLOR_WHITE       0xFFFFFFFF
+#define COLOR_WHITE       DF_ERROR_VETO
 #define COLOR_GREY        0x888888FF
 #define COLOR_DARK_GREY   0x333333FF
 #define COLOR_GOLD        0xFFD700FF
@@ -154,7 +155,7 @@ void racing_game_init(void) {
     g_race.race_finished = false;
     g_race.winner       = 0;
 
-    set_hud("LANDON: Say 'GO' to start!");
+    set_hud("CORVUS: Say 'GO' to start!");
 }
 
 // ── Parse voice command from text ─────────────────────────────────────────────
@@ -419,7 +420,7 @@ static void draw_hud(void) {
 
     // Landon's info
     fb_fill_rect(8, 6, 200, 36, COLOR_DARK_RED);
-    font_draw_string(14, 10, "LANDON'S DEMON 170", COLOR_GOLD, COLOR_DARK_RED, false);
+    font_draw_string(14, 10, "DEMON 170", COLOR_GOLD, COLOR_DARK_RED, false);
 
     // Speed
     char speed_str[32];
@@ -482,7 +483,7 @@ static void draw_finish(void) {
 
     if (g_race.winner == 1) {
         font_draw_string(SCREEN_W/2 - 140, SCREEN_H/2 - 60,
-            "LANDON WINS!", COLOR_GOLD, COLOR_DARK_RED, false);
+            "DRIVER WINS!", COLOR_GOLD, COLOR_DARK_RED, false);
         font_draw_string(SCREEN_W/2 - 180, SCREEN_H/2 - 20,
             "DEMON 170 TAKES THE CHECKERED FLAG!", COLOR_WHITE, COLOR_DARK_RED, false);
         font_draw_string(SCREEN_W/2 - 160, SCREEN_H/2 + 30,

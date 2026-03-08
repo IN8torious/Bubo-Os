@@ -16,6 +16,7 @@
 // =============================================================================
 
 #include "corvus_vash.h"
+#include "corvus_archivist.h"
 #include "corvus.h"
 #include "scheduler.h"
 #include "vga.h"
@@ -148,6 +149,7 @@ static void vash_apply_action(vash_threat_t* t, vash_heal_action_t action,
 // ── Public API ────────────────────────────────────────────────────────────────
 
 void corvus_vash_init(void) {
+    archivist_record(ARCHIVE_RECORD_AGENT_STATE, "VASH", "init", false);
     // Zero the state
     uint8_t* p = (uint8_t*)&g_vash;
     for (uint32_t i = 0; i < sizeof(vash_state_t); i++) p[i] = 0;

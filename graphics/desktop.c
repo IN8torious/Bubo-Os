@@ -27,6 +27,7 @@
 // =============================================================================
 #include "desktop.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "vga.h"
 #include "polish.h"
@@ -35,16 +36,16 @@
 #include <stdbool.h>
 
 // ── Akatsuki color palette ────────────────────────────────────────────────────
-#define COL_VOID        0xFF0A0A0A
-#define COL_CRIMSON     0xFFCC0000
-#define COL_BLOOD       0xFF8B0000
-#define COL_ASH         0xFF1A1A1A
+#define COL_VOID        DF_BG_DEEP
+#define COL_CRIMSON     DF_ERROR_STANDARD
+#define COL_BLOOD       DF_ERROR_WARNING
+#define COL_ASH         DF_BG_PANEL
 #define COL_STEEL       0xFF2A2A2A
-#define COL_CLOUD       0xFFE0E0E0
-#define COL_GOLD        0xFFFFD700
-#define COL_CORVUS      0xFF4A0080
+#define COL_CLOUD       DF_RED_BRIGHT
+#define COL_GOLD        DF_SOL_TESTING
+#define COL_CORVUS      DF_AGENT_JIN
 #define COL_LANDON      0xFF0066CC
-#define COL_GREEN       0xFF00CC44
+#define COL_GREEN       DF_HEALTH_GREEN
 #define COL_TRANSPARENT 0x00000000
 
 // ── Desktop state ─────────────────────────────────────────────────────────────
@@ -236,7 +237,7 @@ static void desktop_draw_taskbar(void) {
         if (!g_windows[i].active) continue;
         bool focused = (g_desktop.focused_window == i);
         // Drop shadow
-        polish_drop_shadow(btn_x + 2, ty + 5, 120, TASKBAR_HEIGHT - 10, 0xFF000000, 3);
+        polish_drop_shadow(btn_x + 2, ty + 5, 120, TASKBAR_HEIGHT - 10, DF_BG_DEEP, 3);
         // Bubble
         uint32_t bcol = focused ? 0xFF1A0008 : 0xFF0D0015;
         polish_bubble(btn_x, ty + 4, 120, TASKBAR_HEIGHT - 8, bcol, 200, 8);
@@ -254,7 +255,7 @@ static void desktop_draw_taskbar(void) {
 
     // CORVUS status bubble (right side)
     polish_bubble(sw - 168, ty + 4, 80, TASKBAR_HEIGHT - 8, 0xFF001A00, 180, 8);
-    polish_fill_rect_alpha(sw - 160, ty + 10, 8, 8, 0xFF00CC44, 255);
+    polish_fill_rect_alpha(sw - 160, ty + 10, 8, 8, DF_HEALTH_GREEN, 255);
     font_draw_string(sw - 148, ty + 8, "CORVUS", COL_GREEN, COL_TRANSPARENT, true);
 
     desktop_draw_clock();
@@ -295,7 +296,7 @@ static void desktop_draw_icons(void) {
         int32_t x = (int32_t)g_icons[i].x;
         int32_t y = (int32_t)g_icons[i].y;
 
-        uint32_t icon_color = 0xFF333333;
+        uint32_t icon_color = DF_BG_MID;
         bool is_race   = (g_icons[i].app_id == 0x06);
         bool is_access = (g_icons[i].app_id == 0x07);
         bool is_corvus = (g_icons[i].app_id == 0x04);
@@ -305,7 +306,7 @@ static void desktop_draw_icons(void) {
         if (is_corvus) icon_color = POLISH_COLOR_RINNEGAN;
 
         // Drop shadow
-        polish_drop_shadow(x + 3, y + 3, ICON_SIZE, ICON_SIZE, 0xFF000000, 5);
+        polish_drop_shadow(x + 3, y + 3, ICON_SIZE, ICON_SIZE, DF_BG_DEEP, 5);
 
         // Bubble icon background
         polish_bubble(x, y, ICON_SIZE, ICON_SIZE,
@@ -341,7 +342,7 @@ static void desktop_draw_windows(void) {
         bool focused = (g_desktop.focused_window == i);
 
         // Soft drop shadow
-        polish_drop_shadow(x + 6, y + 6, w, h, 0xFF000000, 8);
+        polish_drop_shadow(x + 6, y + 6, w, h, DF_BG_DEEP, 8);
 
         // Window body — dark frosted glass
         polish_frosted_glass(x, y, w, h, 0xFF0D0D18, 230, 1);
@@ -352,7 +353,7 @@ static void desktop_draw_windows(void) {
                          COL_CLOUD, COL_TRANSPARENT, true);
 
         // Close button — crimson bubble
-        polish_bubble(x + w - 22, y + 4, 18, 16, 0xFF8B0000, 220, 4);
+        polish_bubble(x + w - 22, y + 4, 18, 16, DF_ERROR_WARNING, 220, 4);
         font_draw_string(x + w - 18, y + 5, "X", COL_CLOUD, COL_TRANSPARENT, true);
 
         // Minimize button — steel bubble
@@ -393,8 +394,8 @@ static void desktop_draw_corvus_bar(void) {
     int32_t ax = 94;
     for (int i = 0; i < 10; i++) {
         // Tiny green glow dot per agent
-        polish_fill_rect_alpha(ax, 5, 5, 5, 0xFF00CC44, 255);
-        polish_fill_rect_alpha(ax - 1, 4, 7, 7, 0xFF00CC44, 60); // glow
+        polish_fill_rect_alpha(ax, 5, 5, 5, DF_HEALTH_GREEN, 255);
+        polish_fill_rect_alpha(ax - 1, 4, 7, 7, DF_HEALTH_GREEN, 60); // glow
         font_draw_string(ax + 7, 4, agents[i], COL_CLOUD, COL_TRANSPARENT, true);
         ax += 52;
     }
@@ -419,7 +420,7 @@ static void desktop_draw_accessibility_bar(void) {
     polish_pulse_tick(0, ay, sw, ACCESS_BAR_HEIGHT);
 
     // Landon's name — blue, prominent
-    font_draw_string(8, ay + 8, "LANDON PANKUCH", COL_LANDON, COL_TRANSPARENT, true);
+    // User identity is sealed in ARCHIVIST — not displayed on screen
     // Underline his name
     polish_fill_rect_alpha(8, ay + ACCESS_BAR_HEIGHT - 4, 100, 1, 0xFF0066CC, 180);
 

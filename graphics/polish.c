@@ -41,6 +41,7 @@
 // =============================================================================
 #include "polish.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 
 // ── Color math helpers ────────────────────────────────────────────────────────
@@ -56,7 +57,7 @@ static inline uint32_t color_b(uint32_t c) { return  c        & 0xFF; }
 static inline uint32_t color_a(uint32_t c) { return (c >> 24) & 0xFF; }
 
 static inline uint32_t make_color(uint32_t r, uint32_t g, uint32_t b) {
-    return 0xFF000000 | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+    return DF_BG_DEEP | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 }
 
 static inline uint32_t make_argb(uint32_t a, uint32_t r, uint32_t g, uint32_t b) {
@@ -364,7 +365,7 @@ void polish_titlebar(int32_t x, int32_t y, int32_t w, int32_t h,
     polish_gradient_rect(x, y, w, h, start, end, true);
 
     // Subtle inner highlight line at top
-    polish_fill_rect_alpha(x, y, w, 1, 0xFFFFFFFF, 30);
+    polish_fill_rect_alpha(x, y, w, 1, DF_ERROR_VETO, 30);
 }
 
 // ── Frosted CORVUS top bar ────────────────────────────────────────────────────
@@ -377,7 +378,7 @@ void polish_corvus_bar(int32_t x, int32_t y, int32_t w, int32_t h) {
     polish_fill_rect_alpha(x, y + h - 1, w, 1, POLISH_COLOR_CRIMSON, 200);
 
     // Subtle top highlight
-    polish_fill_rect_alpha(x, y, w, 1, 0xFFFFFFFF, 15);
+    polish_fill_rect_alpha(x, y, w, 1, DF_ERROR_VETO, 15);
 }
 
 // ── Bubble taskbar icon ───────────────────────────────────────────────────────
@@ -388,7 +389,7 @@ void polish_taskbar_icon(int32_t x, int32_t y, int32_t size,
     uint32_t bg_color = active ? 0xFF1A0008 : 0xFF0D0015;
 
     // Drop shadow
-    polish_drop_shadow(x + 2, y + 2, size, size, 0xFF000000, 4);
+    polish_drop_shadow(x + 2, y + 2, size, size, DF_BG_DEEP, 4);
 
     // Bubble background
     polish_bubble(x, y, size, size, bg_color, bg_alpha, size / 4);
@@ -409,7 +410,7 @@ void polish_taskbar_icon(int32_t x, int32_t y, int32_t size,
 
     // Hover highlight
     if (hovered && !active) {
-        polish_fill_rect_alpha(x, y, size, size, 0xFFFFFFFF, 20);
+        polish_fill_rect_alpha(x, y, size, size, DF_ERROR_VETO, 20);
     }
 }
 
@@ -431,7 +432,7 @@ void polish_landon_strip(int32_t x, int32_t y, int32_t w, int32_t h) {
 void polish_agent_bar(int32_t x, int32_t y, int32_t w, int32_t h,
                        uint8_t load_percent) {
     // Background
-    polish_fill_rect_alpha(x, y, w, h, 0xFF0A0A0A, 255);
+    polish_fill_rect_alpha(x, y, w, h, DF_BG_DEEP, 255);
 
     if (load_percent == 0) return;
 
@@ -456,7 +457,7 @@ void polish_agent_bar(int32_t x, int32_t y, int32_t w, int32_t h,
     polish_gradient_rect(x, y, fill_w, h, bar_color, bar_dark, false);
 
     // Shine highlight on top
-    polish_fill_rect_alpha(x, y, fill_w, h/3, 0xFFFFFFFF, 40);
+    polish_fill_rect_alpha(x, y, fill_w, h/3, DF_ERROR_VETO, 40);
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
@@ -488,7 +489,7 @@ void polish_vignette(int32_t sw, int32_t sh, uint8_t intensity) {
     // Each strip is 1/8 of the screen dimension wide.
     int32_t bw = sw / 8;  // border width horizontal
     int32_t bh = sh / 8;  // border width vertical
-    uint32_t black = 0xFF000000;
+    uint32_t black = DF_BG_DEEP;
 
     // Top edge
     polish_gradient_rect(0, 0, sw, bh, black, 0x00000000, false);

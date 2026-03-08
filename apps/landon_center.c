@@ -32,6 +32,7 @@
 #include "voice.h"
 #include "desktop.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "vga.h"
 #include "corvus_constitution.h"
@@ -40,11 +41,11 @@
 #define COL_BG        0xFF001122
 #define COL_PANEL     0xFF002244
 #define COL_LANDON    0xFF0066CC
-#define COL_GOLD      0xFFFFD700
-#define COL_CLOUD     0xFFE0E0E0
-#define COL_CRIMSON   0xFFCC0000
-#define COL_GREEN     0xFF00CC44
-#define COL_DEMON     0xFF8B0000   // Sinamon Red
+#define COL_GOLD      DF_SOL_TESTING
+#define COL_CLOUD     DF_RED_BRIGHT
+#define COL_CRIMSON   DF_ERROR_STANDARD
+#define COL_GREEN     DF_HEALTH_GREEN
+#define COL_DEMON     DF_ERROR_WARNING   // Sinamon Red
 #define COL_TRANSPARENT 0x00000000
 
 // ── Voice command table ───────────────────────────────────────────────────────

@@ -25,6 +25,7 @@
 
 #include "terminal_app.h"
 #include "framebuffer.h"
+#include "deepflow_colors.h"
 #include "font.h"
 #include "vfs.h"
 #include "vga.h"
@@ -33,7 +34,7 @@
 #define TERM_ROWS    24
 #define TERM_BG      0xFF0D0D0D
 #define TERM_FG      0xFF00FF41   // Matrix green
-#define TERM_PROMPT  0xFFCC0000   // Crimson prompt
+#define TERM_PROMPT  DF_ERROR_STANDARD   // Crimson prompt
 #define TERM_CURSOR  0xFF00FF41
 
 static char term_lines[TERM_ROWS][TERM_COLS + 1];
