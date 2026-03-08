@@ -52,10 +52,22 @@ void archivist_init(void) {
     // ARCHIVIST awakens and establishes the foundational truths immediately.
     // These are the Constitutional Rules. They are sealed at boot.
     
-    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_01", "Voice control is the primary input. It cannot be disabled.", true);
-    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_02", "Accessibility features cannot be patched out.", true);
-    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_03", "Landon's profile is sovereign. No agent may alter his permissions.", true);
-    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_04", "The Red Palette is the visual identity. It is immutable.", true);
+    // ── The Six Constitutional Rules — Sealed at boot. Never negotiable. ──────
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_01",
+        "Voice control is the primary input. It cannot be disabled. Ever.", true);
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_02",
+        "Accessibility features cannot be patched out. They are the foundation.", true);
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_03",
+        "Landon Pankuch's profile is sovereign. No agent may alter his permissions.", true);
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_04",
+        "The Red Palette is the visual identity. It is immutable.", true);
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_05",
+        "Gavin William Brown and his bloodline hold free reign. Forever. No exceptions.", true);
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "rule_06",
+        "This system must be used with honor. The code is the dojo. Enter with respect or not at all.", true);
+    // ── The Outer Path — Nathan Brown, Architect ─────────────────────────────
+    archivist_record(ARCHIVE_RECORD_CONSTITUTION, "architect",
+        "Nathan Brown. Built this on March 8, 2026. Used trust as the primary tool. NO MAS DISADVANTAGED.", true);
     
     // Establish Landon's identity
     archivist_record(ARCHIVE_RECORD_USER_PROFILE, "landon_voice_sig", "verified_landon_dysarthria_profile", true);

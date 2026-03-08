@@ -38,6 +38,10 @@ typedef struct {
 // Initialization
 bool      fb_init_from_multiboot(uint32_t mb2_info_addr);
 void      fb_init_fallback(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 fb_info_t* fb_get_info(void);
 bool      fb_is_ready(void);
 
@@ -76,5 +80,9 @@ extern const uint32_t FB_ORANGE;
 
 // Convenience macro: pack RGB
 #define RGB(r,g,b) (((uint32_t)(r)<<16)|((uint32_t)(g)<<8)|(b))
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // RAVEN_FRAMEBUFFER_H

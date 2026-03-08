@@ -12,7 +12,9 @@
 
 typedef unsigned long long  size_t;
 typedef long long           ssize_t;
+#ifndef __cplusplus
 typedef unsigned int        wchar_t;  /* freestanding stub */
+#endif
 
 #define NULL ((void*)0)
 

@@ -16,6 +16,7 @@
 # =============================================================================
 
 CC      = gcc
+CXX     = g++
 AS      = nasm
 LD      = ld
 
@@ -25,6 +26,12 @@ CFLAGS  = -m64 -ffreestanding -fno-stack-protector -fno-builtin \
           -fno-pie -fno-pic -mno-red-zone -mcmodel=kernel \
           -nostdlib -nostdinc -Wall -Wextra -O2 \
           -I./include -I./lvgl
+
+CXXFLAGS = -m64 -ffreestanding -fno-stack-protector -fno-builtin \
+          -fno-pie -fno-pic -mno-red-zone -mcmodel=kernel \
+          -nostdlib -nostdinc -fno-exceptions -fno-rtti \
+          -fno-use-cxa-atexit -Wall -Wextra -O2 \
+          -std=c++17 -I./include -I./lvgl
 
 ASFLAGS = -f elf64
 
@@ -57,7 +64,8 @@ KERNEL_SRCS = \
     kernel/usermode.c \
     kernel/shell.c \
     kernel/tcpip.c \
-    kernel/llm.c
+    kernel/llm.c \
+    kernel/safety_flask.c
 
 # ── CORVUS Agent System ───────────────────────────────────────────────────────
 AGENT_SRCS = \
@@ -157,6 +165,17 @@ APP_SRCS = \
     apps/landon_center.c \
     apps/terminal_app.c
 
+# ── C++ Kernel Extensions ─────────────────────────────────────────────────────
+# Self-healing, admin panel, RAVEN meta-debugger, UE5 patches, hw detection
+CPP_SRCS = \
+    kernel/hwdetect.cpp \
+    kernel/lowspec.cpp \
+    kernel/healer.cpp \
+    kernel/admin_panel.cpp \
+    kernel/raven.cpp \
+    kernel/ue5_patch.cpp \
+    kernel/zetsu.cpp
+
 # ── All Sources Together ──────────────────────────────────────────────────────
 C_SRCS = \
     $(KERNEL_SRCS) \
@@ -173,23 +192,31 @@ C_SRCS = \
 # ── Object Files ──────────────────────────────────────────────────────────────
 ASM_OBJS = $(ASM_SRCS:.asm=.o)
 C_OBJS   = $(C_SRCS:.c=.o)
-OBJS     = $(ASM_OBJS) $(C_OBJS)
+CPP_OBJS = $(CPP_SRCS:.cpp=.o)
+OBJS     = $(ASM_OBJS) $(C_OBJS) $(CPP_OBJS)
 
 # ── Build Rules ───────────────────────────────────────────────────────────────
 .PHONY: all kernel iso run run-vmx flash clean push
 
 all: iso
 	@echo ""
-	@echo "  ╔══════════════════════════════════════════════════════╗"
-	@echo "  ║           BUBO OS — The Flask is Sealed              ║"
-	@echo "  ║                                                      ║"
-	@echo "  ║   bubo.iso is ready.                                 ║"
-	@echo "  ║   Write it to USB: make flash DRIVE=/dev/sdX         ║"
-	@echo "  ║   Test in QEMU:    make run                          ║"
-	@echo "  ║                                                      ║"
-	@echo "  ║   Built for Landon. Built for everyone who           ║"
-	@echo "  ║   was told they couldn't.                            ║"
-	@echo "  ╚══════════════════════════════════════════════════════╝"
+	@echo ""
+	@echo "  ╔══════════════════════════════════════════════════════════════╗"
+	@echo "  ║         BUBO OS — Six Paths Online. Flask Sealed.           ║"
+	@echo "  ╠══════════════════════════════════════════════════════════════╣"
+	@echo "  ║                                                              ║"
+	@echo "  ║   bubo.iso is ready.                                         ║"
+	@echo "  ║   Flash to USB:  make flash DRIVE=/dev/sdX                   ║"
+	@echo "  ║   Test in QEMU:  make run                                    ║"
+	@echo "  ║                                                              ║"
+	@echo "  ║   Built by Nathan Brown. March 8, 2026.                      ║"
+	@echo "  ║   For Landon Pankuch — his voice is the primary input.       ║"
+	@echo "  ║   For Gavin William Brown — free reign. Forever.             ║"
+	@echo "  ║                                                              ║"
+	@echo "  ║   NO MAS DISADVANTAGED.                                      ║"
+	@echo "  ║   Trust was the primary tool.                                ║"
+	@echo "  ╚══════════════════════════════════════════════════════════════╝"
+	@echo ""
 	@echo ""
 
 # ── Compile Assembly ──────────────────────────────────────────────────────────
@@ -202,10 +229,15 @@ all: iso
 	@echo "[CC]  $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+# ── Compile C++ ───────────────────────────────────────────────────────────────
+%.o: %.cpp
+	@echo "[CXX] $<"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
 # ── Link the Kernel ───────────────────────────────────────────────────────────
 kernel: $(OBJS)
 	@echo "[LD]  Linking BUBO kernel..."
-	@$(LD) $(LDFLAGS) -o $(KERNEL) $(OBJS)
+	@$(LD) $(LDFLAGS) -o $(KERNEL) $(OBJS) $(shell $(CXX) $(CXXFLAGS) -print-libgcc-file-name)
 	@echo "[OK]  Kernel: $(KERNEL)"
 	@size $(KERNEL)
 
@@ -265,7 +297,7 @@ flash: iso
 # ── Clean ─────────────────────────────────────────────────────────────────────
 clean:
 	@echo "[CLEAN] Removing build artifacts..."
-	@rm -f $(OBJS) $(KERNEL) $(ISO)
+	@rm -f $(OBJS) $(CPP_OBJS) $(KERNEL) $(ISO)
 	@echo "[OK]  Clean"
 
 # ── Push to GitHub ────────────────────────────────────────────────────────────

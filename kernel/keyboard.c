@@ -30,6 +30,7 @@
 #include "vga.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <kernel_ext.h>
 
 // ── Keyboard ports ────────────────────────────────────────────────────────────
 #define KB_DATA_PORT    0x60
@@ -113,6 +114,19 @@ static void keyboard_irq_handler(registers_t* regs) {
     if (key == 0x3A && !key_release) { caps_lock = !caps_lock; return; }
 
     if (key_release) return;
+
+    // F12 (scancode 0x58) — toggle Kami admin panel
+    // Ctrl+F12 — toggle RAVEN meta-debugger raw dump
+    if (key == 0x58) {
+        if (ctrl_pressed) {
+            raven_dump_mode_toggle();
+        } else {
+            if (admin_panel_is_open()) admin_panel_close();
+            else admin_panel_open();
+        }
+        return;
+    }
+
     if (key >= 128) return;
 
     // Determine character
@@ -126,6 +140,12 @@ static void keyboard_irq_handler(registers_t* regs) {
     }
 
     if (!c) return;
+
+    // Route to admin panel if it is open — Kami handles input
+    if (admin_panel_is_open()) {
+        admin_panel_key(c);
+        return;
+    }
 
     // Ctrl+C — interrupt
     if (ctrl_pressed && (c == 'c' || c == 'C')) {

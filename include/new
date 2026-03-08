@@ -1,0 +1,11 @@
+// BUBO OS — freestanding placement new for bare-metal C++
+// NO MAS DISADVANTAGED.
+// Uses __SIZE_TYPE__ (compiler built-in) because -nostdinc means no <stddef.h>
+#pragma once
+
+// Placement new — construct an object at a given memory address
+// Required for bare-metal C++ without the standard library
+inline void* operator new(__SIZE_TYPE__, void* p) noexcept { return p; }
+inline void* operator new[](__SIZE_TYPE__, void* p) noexcept { return p; }
+inline void  operator delete(void*, void*) noexcept {}
+inline void  operator delete[](void*, void*) noexcept {}

@@ -59,6 +59,10 @@ static inline uint16_t vga_entry(unsigned char c, uint8_t color) {
     return (uint16_t)c | ((uint16_t)color << 8);
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Terminal state
 extern size_t terminal_row;
 extern size_t terminal_col;
@@ -71,5 +75,9 @@ void terminal_putchar(char c);
 void terminal_write(const char* str);
 void terminal_writeline(const char* str);
 void terminal_clear(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // RAVEN_VGA_H

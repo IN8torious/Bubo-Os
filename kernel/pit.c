@@ -36,7 +36,7 @@
 #define PIT_BASE_FREQ   1193182   // Hz — PIT oscillator frequency
 
 // ── Tick counter ──────────────────────────────────────────────────────────────
-static volatile uint32_t pit_ticks = 0;
+volatile uint32_t pit_ticks = 0;
 static uint32_t pit_frequency = 0;
 
 // ── Scheduler forward declaration ────────────────────────────────────────────

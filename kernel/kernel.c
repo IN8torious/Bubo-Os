@@ -33,6 +33,8 @@
 // Sinamon Red Dodge Demon 170 — 1,400 HP — his name on it.
 // =============================================================================
 
+#include "dedication.h"
+#include "safety_flask.h"
 #include "vga.h"
 #include "pmm.h"
 #include "idt.h"
@@ -59,6 +61,7 @@
 #include "llm.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <kernel_ext.h>
 
 #define MULTIBOOT2_BOOTLOADER_MAGIC 0x36d76289
 
@@ -147,7 +150,10 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     // ── Layer 3: VMM + kmalloc heap ───────────────────────────────────────────
     vmm_init();
 
-    // ── Layer 3.5: Framebuffer ────────────────────────────────────────────────
+    // ── Layer 3.5: Healer — self-healing layer (init before framebuffer) ──────
+    healer_init((uint32_t)multiboot_info_addr);
+    healer_boot_subsystems();
+    // ── Layer 3.5: Framebuffer (healer manages it) ────────────────────────────
     bool fb_ok = fb_init_from_multiboot((uint32_t)multiboot_info_addr);
     if (!fb_ok) fb_init_fallback();
 
@@ -161,6 +167,14 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     // ── Layer 4: Keyboard ─────────────────────────────────────────────────────
     keyboard_init();
     bubo_draw_boot_progress(18, "Keyboard perception module online...");
+
+    // ── RAVEN meta-debugger (needs PIT + keyboard) ────────────────────────────
+    raven_init();
+    bubo_draw_boot_progress(20, "RAVEN online — Ctrl+F12 for debug dump, F12 for Kami...");
+
+    // ── Admin Panel / Kami (needs RAVEN) ──────────────────────────────────────
+    admin_panel_init();
+    bubo_draw_boot_progress(21, "Kami admin panel ready — press F12 anytime...");
 
     // ── Layer 4: Scheduler ────────────────────────────────────────────────────
     scheduler_init();
@@ -260,6 +274,12 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
 
         // CORVUS agents — every 10 ticks (100ms)
         if (tick % 10 == 0) corvus_tick();
+
+        // RAVEN watchdog — every 100 ticks (1 second)
+        if (tick % 100 == 0) raven_watchdog_tick();
+
+        // Healer watchdog — every 200 ticks (2 seconds)
+        if (tick % 200 == 0) healer_watchdog_tick();
 
         // Landon center state update
         landon_center_tick();

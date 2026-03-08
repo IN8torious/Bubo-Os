@@ -138,8 +138,9 @@ bool fb_init_from_multiboot(uint32_t mb2_info_addr) {
 
 // ── Fallback: use a fixed VESA address if multiboot didn't give us one ────────
 void fb_init_fallback(void) {
-    // QEMU default VBE framebuffer address
-    fb.addr   = 0xFD000000ULL;
+    // QEMU default VBE framebuffer address (0xE0000000 for standard QEMU VGA)
+    // On real hardware GRUB will provide the correct address via multiboot2 tag
+    fb.addr   = 0xE0000000ULL;
     fb.width  = 1024;
     fb.height = 768;
     fb.pitch  = 1024 * 4;
@@ -156,7 +157,7 @@ void fb_init_fallback(void) {
 
     uint8_t white = vga_entry_color(VGA_WHITE, VGA_BLACK);
     terminal_setcolor(white);
-    terminal_writeline("  [ FB   ] Framebuffer: fallback 1024x768@32bpp at 0xFD000000");
+    terminal_writeline("  [ FB   ] Framebuffer: fallback 1024x768@32bpp at 0xE0000000");
 }
 
 // ── Get framebuffer info ──────────────────────────────────────────────────────

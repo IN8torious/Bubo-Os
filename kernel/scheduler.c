@@ -217,3 +217,30 @@ void scheduler_init(void) {
     terminal_setcolor(green);
     terminal_writeline("  ✓");
 }
+
+// ── UE5 Co-Pilot interface ────────────────────────────────────────────────────
+
+// Returns CPU load as a rough percentage (0-100) based on active process count
+uint32_t scheduler_get_cpu_load(void) {
+    if (!scheduler_ready) return 0;
+    uint32_t active = 0;
+    for (uint32_t i = 0; i < MAX_PROCESSES; i++) {
+        if (process_table[i].state == PROC_RUNNING ||
+            process_table[i].state == PROC_READY) {
+            active++;
+        }
+    }
+    if (active == 0) return 0;
+    uint32_t load = active * 10;
+    return load > 100 ? 100 : load;
+}
+
+// Set priority of a process by PID — used by UE5 co-pilot
+void scheduler_set_process_priority(uint32_t pid, uint8_t priority) {
+    for (uint32_t i = 0; i < MAX_PROCESSES; i++) {
+        if (process_table[i].pid == pid) {
+            process_table[i].priority = priority;
+            return;
+        }
+    }
+}

@@ -21,10 +21,11 @@
 #ifndef RAVEN_STDBOOL_H
 #define RAVEN_STDBOOL_H
 
-// Raven OS — Freestanding stdbool.h
-
-#define bool  _Bool
+/// BUBO OS — Freestanding stdbool.h — works for C and C++
+#ifndef __cplusplus
+typedef _Bool bool;
 #define true  1
 #define false 0
+#endif
 
 #endif // RAVEN_STDBOOL_H

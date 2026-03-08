@@ -24,6 +24,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Process states
 typedef enum {
     PROC_DEAD    = 0,
@@ -91,7 +95,17 @@ void scheduler_kill(uint32_t pid);
 // Get current running process
 process_t* scheduler_current(void);
 
+// Get CPU load as a percentage (0-100) — used by UE5 co-pilot
+uint32_t scheduler_get_cpu_load(void);
+
+// Set priority of a process by PID — used by UE5 co-pilot
+void scheduler_set_process_priority(uint32_t pid, uint8_t priority);
+
 // ASM context switch (in scheduler_asm.asm)
 void scheduler_switch(cpu_context_t* old_ctx, cpu_context_t* new_ctx);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // RAVEN_SCHEDULER_H
