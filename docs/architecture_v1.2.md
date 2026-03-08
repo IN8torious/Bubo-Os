@@ -1,4 +1,4 @@
-# Instinct OS v1.2 Architecture Document
+# Deep Flow OS v1.2 Architecture Document
 
 **Mission:** "NO MAS DISADVANTAGED"
 **Target:** Enable simultaneous multiplayer gaming — Landon Pankuch playing via CORVUS voice commands, while another player uses a standard USB controller. The system must support native games (Zelda-style adventure, sports hub) and pave the way for Windows/Linux games (like Call of Duty) via a bare-metal hypervisor.
@@ -38,7 +38,7 @@ The engine exposes a `game_handle_voice_cmd(uint32_t cmd_id)` interface. When CO
 
 ## 3. USB HID Controller Driver (`usb_hid.c`)
 
-To support simultaneous multiplayer, Instinct OS requires a USB Human Interface Device (HID) driver.
+To support simultaneous multiplayer, Deep Flow OS requires a USB Human Interface Device (HID) driver.
 
 ### Architecture
 *   **USB Stack Integration:** Hooks into the bare-metal USB controller driver (XHCI/EHCI) to detect device insertion.
@@ -59,7 +59,7 @@ This is the foundation for running Windows/Linux games (like Call of Duty) nativ
 *   **Intel VT-x Enablement:** Checks CPU support, allocates VMXON and VMCS (Virtual Machine Control Structure) regions, and executes `VMXON`.
 *   **VMCS Configuration:** Sets up the guest state (registers, segments, CR0/CR3/CR4), host state (where to return on VM exits), and execution controls.
 *   **EPT (Extended Page Tables):** Maps guest physical addresses to host physical addresses, isolating the VM's memory from Instinct OS.
-*   **VM Exits (`raven_vm.c`):** The handler that intercepts guest actions (e.g., CPUID, I/O port access, external interrupts). This is where Instinct OS emulates hardware or injects input.
+*   **VM Exits (`raven_vm.c`):** The handler that intercepts guest actions (e.g., CPUID, I/O port access, external interrupts). This is where Deep Flow OS emulates hardware or injects input.
 
 ### Input Injection (The CoD Bridge)
-When the guest OS (Windows running CoD) is active, Instinct OS intercepts the VM's input polling. It takes Landon's voice commands (via CORVUS) and translates them into emulated keyboard/mouse or virtual gamepad inputs injected directly into the guest OS. Player 2's USB controller input is passed through directly.
+When the guest OS (Windows running CoD) is active, Deep Flow OS intercepts the VM's input polling. It takes Landon's voice commands (via CORVUS) and translates them into emulated keyboard/mouse or virtual gamepad inputs injected directly into the guest OS. Player 2's USB controller input is passed through directly.

@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS v1.2 — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -26,8 +26,8 @@
 // embedded as static float arrays. Online fine-tuning via SGD is
 // supported for adaptive personalization to Landon's voice over time.
 // =============================================================================
-#ifndef INSTINCT_CORVUS_FCN_H
-#define INSTINCT_CORVUS_FCN_H
+#ifndef DEEPFLOW_CORVUS_FCN_H
+#define DEEPFLOW_CORVUS_FCN_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -133,4 +133,4 @@ const fcn_trainer_t* corvus_fcn_get_trainer(void);
 // Get raw parameters (for inspection or export)
 const fcn_params_t*  corvus_fcn_get_params(void);
 
-#endif // INSTINCT_CORVUS_FCN_H
+#endif // DEEPFLOW_CORVUS_FCN_H

@@ -1,9 +1,6 @@
-// =============================================================================
-// INSTINCT ENGINE — Onboarding & User Profile Header
-// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
-// "NO MAS DISADVANTAGED"
-// =============================================================================
-
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 #ifndef ONBOARDING_H
 #define ONBOARDING_H
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(RavenAOS VERSION 0.3.0 LANGUAGES C ASM_NASM)
 
 # =============================================================================
-# Instinct OS — CMake Build System
+# Deep Flow OS — CMake Build System
 # CORVUS is the chef. CMake is the recipe book.
 # =============================================================================
 
@@ -54,7 +54,7 @@ set(C_SOURCES
     graphics/framebuffer.c
     graphics/font.c
     graphics/gui.c
-    engine/instinct_engine.c
+    engine/deepflow_engine.c
 )
 
 # ── Kernel target ─────────────────────────────────────────────────────────────

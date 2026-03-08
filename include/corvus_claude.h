@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS v1.2 — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -29,8 +29,8 @@
 //   4. Contradicts the NO MAS DISADVANTAGED principle
 //   5. Harms Landon Pankuch in any way
 // =============================================================================
-#ifndef INSTINCT_CORVUS_CLAUDE_H
-#define INSTINCT_CORVUS_CLAUDE_H
+#ifndef DEEPFLOW_CORVUS_CLAUDE_H
+#define DEEPFLOW_CORVUS_CLAUDE_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -146,7 +146,7 @@ typedef struct {
 // It defines Claude's role within CORVUS and the constitutional constraints.
 #define CORVUS_CLAUDE_SYSTEM_PROMPT \
     "You are the Architect agent within CORVUS, the AI kernel of Instinct OS. " \
-    "Instinct OS is a bare-metal sovereign operating system built for Landon Pankuch, " \
+    "Deep Flow OS is a bare-metal sovereign operating system built for Landon Pankuch, " \
     "who has cerebral palsy and controls the entire system with his voice. " \
     "Your role: plan, reason, and make architectural decisions. " \
     "The DeepSeek Coder agent implements your plans. You review and approve its output. " \
@@ -201,4 +201,4 @@ const claude_agent_t* corvus_claude_get_state(void);
 // Shutdown and free resources
 void         corvus_claude_shutdown(void);
 
-#endif // INSTINCT_CORVUS_CLAUDE_H
+#endif // DEEPFLOW_CORVUS_CLAUDE_H

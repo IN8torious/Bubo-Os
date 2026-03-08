@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -20,7 +20,7 @@
 
 // =============================================================================
 // CORVUS — Chief Orchestration & Reasoning Via Unified Systems
-// Instinct OS Layer 5 — Embedded Reasoning Engine
+// Deep Flow OS Layer 5 — Embedded Reasoning Engine
 //
 // "The chef who runs the kitchen."
 // =============================================================================
@@ -266,7 +266,7 @@ void corvus_print_dashboard(void) {
     terminal_setcolor(white);
     terminal_writeline("  CORVUS — Chief Orchestration & Reasoning Via Unified Systems");
     terminal_setcolor(grey);
-    terminal_writeline("  Instinct OS Layer 5 | Constitutional Governance: ACTIVE");
+    terminal_writeline("  Deep Flow OS Layer 5 | Constitutional Governance: ACTIVE");
     terminal_setcolor(red);
     terminal_writeline("  ══════════════════════════════════════════════════════════════════");
 
@@ -351,7 +351,7 @@ void corvus_init(void) {
     }
 
     // Initial vector memory seed
-    corvus_remember(255, TOOL_LOG_WRITE, 0, "CORVUS initialized — Instinct OS online");
+    corvus_remember(255, TOOL_LOG_WRITE, 0, "CORVUS initialized — Deep Flow OS online");
 
     // Report to terminal
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,  VGA_BLACK);
@@ -370,4 +370,9 @@ void corvus_init(void) {
     terminal_writeline("  [ CORVUS ] Constitutional rules loaded — Vector memory ready");
     terminal_writeline("  [ CORVUS ] Cognitive loop armed — awaiting first PIT tick");
     terminal_writeline("");
+}
+
+// ── Return pointer to agents array ───────────────────────────────────────────
+corvus_agent_t* corvus_get_agents(void) {
+    return g_corvus.agents;
 }

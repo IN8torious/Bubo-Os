@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS v1.0 — Desktop Shell
+// Deep Flow OS v1.0 — Desktop Shell
 // Full window manager, taskbar, app launcher, wallpaper, cursor
 //
 // Constitutional Mandate: "NO MAS DISADVANTAGED"
@@ -209,7 +209,7 @@ static void desktop_draw_wallpaper(void) {
     font_draw_string(sw - 280, sh - TASKBAR_HEIGHT - 20,
                      "NO MAS DISADVANTAGED", COL_BLOOD, COL_TRANSPARENT, true);
     font_draw_string(4, sh - TASKBAR_HEIGHT - 18,
-                     "Instinct OS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
+                     "Deep Flow OS v1.0 | CORVUS MAS", COL_BLOOD, COL_TRANSPARENT, true);
 }
 
 // ── Taskbar ────────────────────────────────────────────────────────────────────

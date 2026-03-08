@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS v1.2 — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -20,8 +20,8 @@
 //   - Receives plans from Claude Architect, returns aider-style edit-block diffs
 //   - Validated on HumanEval, MultiPL-E, MBPP, DS-1000 benchmarks
 // =============================================================================
-#ifndef INSTINCT_CORVUS_DEEPSEEK_H
-#define INSTINCT_CORVUS_DEEPSEEK_H
+#ifndef DEEPFLOW_CORVUS_DEEPSEEK_H
+#define DEEPFLOW_CORVUS_DEEPSEEK_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -190,4 +190,4 @@ const deepseek_agent_t* corvus_deepseek_get_state(void);
 // Shutdown
 void         corvus_deepseek_shutdown(void);
 
-#endif // INSTINCT_CORVUS_DEEPSEEK_H
+#endif // DEEPFLOW_CORVUS_DEEPSEEK_H

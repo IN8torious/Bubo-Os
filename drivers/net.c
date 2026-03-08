@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS — Network Driver (RTL8139 + Intel E1000)
+// Deep Flow OS — Network Driver (RTL8139 + Intel E1000)
 //
 // Bare-metal Ethernet driver. CORVUS uses this to reach external APIs,
 // sync SuperMemory, and communicate with the outside world.

@@ -1,5 +1,5 @@
 // =============================================================================
-// Instinct Engine — Native Game Engine for Instinct OS
+// Deep Flow Engine — Native Game Engine for Deep Flow OS
 // Pure C — no dependencies, no black boxes, no waiting for patches
 // Runs directly on the Raven framebuffer
 //
@@ -13,17 +13,17 @@
 // and modify the scene through the MCP tool layer.
 // =============================================================================
 
-#include "../include/instinct_engine.h"
-#include "../include/framebuffer.h"
-#include "../include/font.h"
-#include "../include/corvus_brain.h"
+#include "raven_engine.h"
+#include "framebuffer.h"
+#include "font.h"
+#include "corvus_brain.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 
 // ── Engine state ──────────────────────────────────────────────────────────────
 static raven_scene_t  g_scene;
-static instinct_engine_t g_engine;
+static deepflow_engine_t g_engine;
 static bool           g_engine_ready = false;
 
 // ── Fixed-point math helpers (no FPU needed in kernel) ───────────────────────
@@ -328,7 +328,7 @@ void engine_tick(void) {
     }
 }
 
-// ── Demo scene: Instinct OS splash game ────────────────────────────────────────
+// ── Demo scene: Deep Flow OS splash game ────────────────────────────────────────
 // Spawns a player, some enemies, and platforms to show the engine working
 void engine_demo_scene(void) {
     fb_info_t* fb = fb_get_info();
@@ -356,7 +356,7 @@ void engine_demo_scene(void) {
     engine_spawn("platform_4", W/2 - 80,  H - 380, 160, 16, ENTITY_PLATFORM);
 
     // UI elements
-    int title = engine_spawn("Instinct OS", 10, 10, 200, 24, ENTITY_UI);
+    int title = engine_spawn("Deep Flow OS", 10, 10, 200, 24, ENTITY_UI);
     engine_set_color(title, 0x1A0000);
 
     // Particle burst at center

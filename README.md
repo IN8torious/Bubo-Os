@@ -1,4 +1,4 @@
-# Instinct OS v1.0
+# Deep Flow OS v1.0
 
 > **"NO MAS DISADVANTAGED"**
 >
@@ -19,9 +19,9 @@ It does not.
 
 ---
 
-## What Instinct OS Is
+## What Deep Flow OS Is
 
-Instinct OS is a **sovereign, constitutional, accessibility-first operating system** built from scratch for x86-64 hardware. It is not a Linux distribution. It is not a Windows fork. It is not a research toy.
+Deep Flow OS is a **sovereign, constitutional, accessibility-first operating system** built from scratch for x86-64 hardware. It is not a Linux distribution. It is not a Windows fork. It is not a research toy.
 
 It is a real, bootable, 64-bit operating system with:
 
@@ -124,7 +124,7 @@ The machine adapts to the human. Not the other way around.
 
 ## The Desktop
 
-Instinct OS boots into a full graphical desktop rendered directly on the VESA framebuffer in bare-metal C.
+Deep Flow OS boots into a full graphical desktop rendered directly on the VESA framebuffer in bare-metal C.
 
 **Visual features:**
 - Akatsuki wallpaper — void black with crimson cloud bands and Rinnegan symbol
@@ -193,5 +193,5 @@ The source is open. The mandate is permanent. The machine is yours.
 
 ---
 
-*Instinct OS v1.0 | Built from bare metal | 2025 | IN8torious*
+*Deep Flow OS v1.0 | Built from bare metal | 2025 | IN8torious*
 *https://github.com/IN8torious/Instinct-Os*

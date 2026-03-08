@@ -1,6 +1,6 @@
 // =============================================================================
 // INSTINCT ENGINE — Entity Component System
-// Instinct OS v1.1 | Built by IN8torious (Nathan Samuel — "Gift of God")
+// Deep Flow OS v1.1 | Built by IN8torious (Nathan Samuel — "Gift of God")
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //

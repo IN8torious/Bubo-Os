@@ -1,6 +1,6 @@
 // =============================================================================
 // INSTINCT ENGINE — CORVUS Home Scene
-// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
+// Deep Flow OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //

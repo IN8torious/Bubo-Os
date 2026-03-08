@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Instinct OS — Port I/O Header
+// Deep Flow OS — Port I/O Header
 // Inline x86-64 port read/write functions
 // =============================================================================
 #include <stdint.h>
@@ -52,3 +52,9 @@ static inline uint32_t port_ind(uint16_t port) {
 static inline void port_io_wait(void) {
     port_outb(0x80, 0);
 }
+
+// ── Legacy aliases for bare outl/inl used by gpu.c ───────────────────────────
+static inline void    outl(uint16_t port, uint32_t val) { port_outd(port, val); }
+static inline uint32_t inl(uint16_t port)               { return port_ind(port); }
+static inline void    outb(uint16_t port, uint8_t val)  { port_outb(port, val); }
+static inline uint8_t  inb(uint16_t port)               { return port_inb(port); }

@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS v1.0 — Kernel Main
+// Deep Flow OS v1.0 — Kernel Main
 //
 // Boot sequence:
 //   VGA → PMM → IDT → VMM → Framebuffer → PIT → Keyboard → Scheduler
@@ -108,7 +108,7 @@ static void draw_banner(void) {
     terminal_writeline("        ██║  ██║██║  ██║ ╚████╔╝ ███████╗██║ ╚████║    ╚██████╔╝███████║");
     terminal_writeline("        ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝");
     terminal_setcolor(red);
-    terminal_writeline("           Kernel Pluto: Red Cloud  |  Instinct OS v1.0  |  CORVUS MAS");
+    terminal_writeline("           Kernel Pluto: Red Cloud  |  Deep Flow OS v1.0  |  CORVUS MAS");
     terminal_writeline("================================================================================");
     terminal_setcolor(grey);
     terminal_writeline("  MAS = Multi-Agentic Systems  |  Sovereign Intelligence  |  NO MAS DISADVANTAGED");
@@ -220,7 +220,7 @@ void kernel_main(uint64_t multiboot_magic, uint64_t multiboot_info_addr) {
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════════════════");
     terminal_setcolor(green);
-    terminal_writeline("  Instinct OS v1.0 boot complete — NO MAS DISADVANTAGED");
+    terminal_writeline("  Deep Flow OS v1.0 boot complete — NO MAS DISADVANTAGED");
     terminal_setcolor(red);
     terminal_writeline("  ════════════════════════════════════════════════════════════════════════════");
     corvus_draw_boot_progress(100, "Boot complete. Launching Raven Desktop...");

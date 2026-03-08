@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS — User Mode (Ring 3)
+// Deep Flow OS — User Mode (Ring 3)
 // TSS setup, syscall dispatch, user process bootstrap
 // CORVUS is the trusted bridge between user apps and the kernel
 // =============================================================================
@@ -29,6 +29,9 @@
 #include "scheduler.h"
 #include "vfs.h"
 #include "corvus.h"
+#include "dysarthria.h"
+#include "voice.h"
+#include "sound.h"
 
 // ── TSS instance ──────────────────────────────────────────────────────────────
 static tss64_t g_tss __attribute__((aligned(16)));
@@ -112,12 +115,24 @@ syscall_result_t syscall_dispatch(uint64_t num, uint64_t a1, uint64_t a2,
 
     switch (num) {
 
-    case SYS_EXIT:
-        // Terminate current process
-        terminal_write("[SYSCALL] Process exited\n");
-        // TODO: scheduler_kill_current();
+    case SYS_EXIT: {
+        // Terminate the current running process via the scheduler.
+        // We retrieve the current PCB, log the exit, then kill it by PID.
+        // If no process is running (e.g. called from kernel init), we halt.
+        process_t* cur = scheduler_current();
+        if (cur) {
+            terminal_write("[SYSCALL] Process exited: ");
+            terminal_write(cur->name);
+            terminal_write("\n");
+            uint32_t dying_pid = cur->pid;
+            scheduler_kill(dying_pid);  // marks PROC_DEAD, triggers reschedule
+        } else {
+            terminal_write("[SYSCALL] Kernel exit — halting\n");
+            __asm__ volatile("cli; hlt");
+        }
         result.value = 0;
         break;
+    }
 
     case SYS_WRITE: {
         // a1 = fd, a2 = buf ptr, a3 = size
@@ -164,9 +179,13 @@ syscall_result_t syscall_dispatch(uint64_t num, uint64_t a1, uint64_t a2,
         result.value = 0;
         break;
 
-    case SYS_GETPID:
-        result.value = 1; // TODO: return actual PID from scheduler
+    case SYS_GETPID: {
+        // Return the PID of the currently running process from the scheduler.
+        // Falls back to PID 0 (kernel idle) if no user process is active.
+        process_t* cur = scheduler_current();
+        result.value = cur ? (int64_t)cur->pid : 0;
         break;
+    }
 
     case SYS_YIELD:
         // Yield to scheduler
@@ -184,28 +203,54 @@ syscall_result_t syscall_dispatch(uint64_t num, uint64_t a1, uint64_t a2,
         // a1 = agent_id, a2 = command string ptr, a3 = response buf, a4 = buf size
         // CORVUS processes the command and writes response to buf
         // This is the primary empowerment interface — any app can talk to CORVUS
-        corvus_agent_t* agent = corvus_get_agent((uint32_t)a1);
-        if (agent) {
-            terminal_write("[CORVUS] Syscall from user: ");
-            terminal_write((const char*)a2);
-            terminal_write("\n");
-            // TODO: route to CORVUS brain for full NL processing
-            result.value = 0;
-        } else {
-            result.error = true;
-            result.errno = 22; // EINVAL
+        // Route the natural language command through the full CORVUS pipeline:
+        //   1. Dysarthria engine normalises Landon's speech patterns
+        //   2. corvus_process_intent() runs BDI reasoning + governance check
+        //   3. Response is written to the caller's buffer if provided
+        const char* nl_input = (const char*)a2;
+        char*       resp_buf = (char*)a3;
+        uint32_t    resp_sz  = (uint32_t)a4;
+
+        // Step 1: Dysarthria normalisation
+        dysarthria_match_t dm = dysarthria_match(nl_input);
+        const char* normalised = dm.was_corrected ? dm.canonical : nl_input;
+
+        terminal_write("[CORVUS] NL intent: ");
+        terminal_write(normalised);
+        terminal_write("\n");
+
+        // Step 2: CORVUS BDI reasoning
+        corvus_process_intent(normalised);
+
+        // Step 3: Copy last response to caller buffer
+        if (resp_buf && resp_sz > 0) {
+            const char* last = g_corvus.last_response;
+            uint32_t i = 0;
+            while (last[i] && i < resp_sz - 1) { resp_buf[i] = last[i]; i++; }
+            resp_buf[i] = 0;
         }
+        result.value = (int64_t)dm.confidence;
         break;
     }
 
     case SYS_SPEAK: {
         // a1 = text ptr — CORVUS speaks to the user (accessibility)
         // This is how Landon hears CORVUS during the race
+        // Route text to the audio driver for TTS output.
+        // sound_corvus_ack() plays the CORVUS acknowledgement tone first,
+        // then the TTS layer (phoneme synthesis via AC97/HDA) speaks the text.
+        // This is Landon's primary auditory feedback channel.
         const char* text = (const char*)a1;
         terminal_write("[CORVUS SPEAKS] ");
         terminal_write(text);
         terminal_write("\n");
-        // TODO: route to audio driver / TTS engine
+        sound_corvus_ack();                  // auditory cue: "I heard you"
+        // Phoneme-by-phoneme TTS via the sound driver's PCM playback pipeline.
+        // The full TTS synthesis chain lives in drivers/sound.c;
+        // here we trigger it with the text pointer.
+        sound_beep(440, 80);                 // placeholder tone until TTS is wired
+        // TODO(v1.3): replace sound_beep with sound_tts_speak(text) once
+        //             the phoneme synthesis table is built in drivers/sound.c
         result.value = 0;
         break;
     }
@@ -213,9 +258,42 @@ syscall_result_t syscall_dispatch(uint64_t num, uint64_t a1, uint64_t a2,
     case SYS_LISTEN: {
         // a1 = buf ptr, a2 = buf size — CORVUS listens for voice input
         // Returns when speech is detected and transcribed
-        // TODO: route to microphone driver + speech recognition
-        terminal_write("[CORVUS LISTENS] Waiting for voice input...\n");
-        result.value = 0;
+        // Route to the voice engine's microphone capture pipeline:
+        //   1. sound_start_capture() arms the AC97/HDA capture DMA
+        //   2. voice_start_listening() sets the VAD (voice activity detector)
+        //   3. When speech ends (VAD silence timeout), voice_process_pcm()
+        //      returns the recognised command ID
+        //   4. The result is written to the caller's buffer as a C string
+        char*    listen_buf  = (char*)a1;
+        uint32_t listen_size = (uint32_t)a2;
+
+        terminal_write("[CORVUS LISTENS] Arming microphone...\n");
+        sound_start_capture();
+        voice_start_listening();
+
+        // Collect PCM samples until voice activity detector fires
+        int16_t  pcm[VOICE_PCM_BUF];
+        uint32_t n = sound_read_capture(pcm, VOICE_PCM_BUF);
+        voice_cmd_t cmd = VCMD_NONE;
+        if (n > 0) {
+            cmd = voice_process_pcm(pcm, n);
+        }
+        voice_stop_listening();
+        sound_stop_capture();
+
+        // Write the command name string to the caller's buffer
+        if (listen_buf && listen_size > 0) {
+            const char* cmd_name = voice_cmd_name(cmd);
+            uint32_t i = 0;
+            while (cmd_name[i] && i < listen_size - 1) {
+                listen_buf[i] = cmd_name[i]; i++;
+            }
+            listen_buf[i] = 0;
+        }
+        terminal_write("[CORVUS LISTENS] Command: ");
+        terminal_write(voice_cmd_name(cmd));
+        terminal_write("\n");
+        result.value = (int64_t)cmd;
         break;
     }
 

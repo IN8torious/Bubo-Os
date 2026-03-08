@@ -1,5 +1,5 @@
 // =============================================================================
-// Instinct OS v1.1 — Dedicated to Landon Pankuch
+// Deep Flow OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -7,7 +7,7 @@
 //
 // Scans PCI bus for NVIDIA GPU, maps BAR0/BAR1 MMIO registers,
 // sets up hardware linear framebuffer, provides hardware-accelerated
-// 2D blitting and compositing for the Instinct OS desktop.
+// 2D blitting and compositing for the Deep Flow OS desktop.
 //
 // RTX ray-tracing pipeline stub — ready for v2.0 NVK Vulkan integration.
 // =============================================================================

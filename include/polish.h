@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Instinct OS — Visual Polish Layer Header
+// Deep Flow OS — Visual Polish Layer Header
 // =============================================================================
 #include <stdint.h>
 #include <stdbool.h>
@@ -70,6 +70,16 @@ void polish_pulse_trigger(void);
 void polish_pulse_tick(int32_t x, int32_t y, int32_t w, int32_t h);
 void polish_cursor_trail_update(int32_t cx, int32_t cy);
 void polish_cursor_trail_draw(void);
+
+// ── Composite glass panels ──────────────────────────────────────────────────
+// Convenience wrapper: frosted glass rect with a single tint color and alpha.
+// Used by corvus_home, settings_app, corvus_search, live_mode.
+void polish_glass_rect(int32_t x, int32_t y, int32_t w, int32_t h,
+                        uint32_t tint, uint8_t alpha);
+
+// Full-screen vignette darkening effect (used by boot_cinematic).
+// sw/sh = screen width/height, intensity = 0 (none) to 255 (full black edges).
+void polish_vignette(int32_t sw, int32_t sh, uint8_t intensity);
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 void polish_init(void);

@@ -1,5 +1,5 @@
 # =============================================================================
-# Instinct OS v1.0 — Build System
+# Deep Flow OS v1.0 — Build System
 #
 # "NO MAS DISADVANTAGED"
 # MAS = Multi-Agentic Systems — Sovereign Intelligence
@@ -56,7 +56,7 @@ C_SRCS   = kernel/kernel.c \
             graphics/corvus_display.c \
             graphics/desktop.c \
             graphics/polish.c \
-            engine/instinct_engine.c \
+            engine/deepflow_engine.c \
             engine/racing_game.c \
             apps/corvus_dashboard.c \
             apps/landon_center.c \
@@ -123,5 +123,5 @@ clean:
 # ── Push to GitHub ────────────────────────────────────────────────────────────
 push:
 	git add -A
-	git commit -m "Instinct OS v1.0 — Voice + LLM + Network + Sound + Ring3 — NO MAS DISADVANTAGED"
+	git commit -m "Deep Flow OS v1.0 — Voice + LLM + Network + Sound + Ring3 — NO MAS DISADVANTAGED"
 	git push origin main

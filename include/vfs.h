@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -20,7 +20,7 @@
 
 #pragma once
 // =============================================================================
-// Instinct OS — Virtual File System (VFS)
+// Deep Flow OS — Virtual File System (VFS)
 // Abstraction layer: same API for initrd, FAT32, devfs, procfs
 // =============================================================================
 #include <stdint.h>

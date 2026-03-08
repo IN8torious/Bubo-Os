@@ -1,5 +1,5 @@
 // =============================================================================
-// Instinct OS v1.1 — Dedicated to Landon Pankuch
+// Deep Flow OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 
-// Syscall numbers (arbitrary, for Instinct OS internal use)
+// Syscall numbers (arbitrary, for Deep Flow OS internal use)
 #define SYS_OPEN        0
 #define SYS_CLOSE       1
 #define SYS_READ        2

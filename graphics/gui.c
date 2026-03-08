@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -388,7 +388,7 @@ void gui_draw_corvus_dashboard(void) {
         GUI_COL_AGENT_OK, 0, true);
     cy += 16;
     font_draw_string(cx + 4, cy,
-        "> Instinct OS v0.3 — framebuffer active.",
+        "> Deep Flow OS v0.3 — framebuffer active.",
         GUI_COL_DIM_TEXT, 0, true);
     cy += 16;
 

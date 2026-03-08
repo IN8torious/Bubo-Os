@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS — CORVUS LLM Engine (Cactus/GGML-compatible)
+// Deep Flow OS — CORVUS LLM Engine (Cactus/GGML-compatible)
 //
 // Bare-metal quantized language model inference.
 // CORVUS uses this to understand natural language beyond keyword matching —

@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS — Virtual File System (VFS)
+// Deep Flow OS — Virtual File System (VFS)
 // =============================================================================
 #include "vfs.h"
 #include "vmm.h"
@@ -214,8 +214,90 @@ vfs_node_t* vfs_get_root(void) {
 }
 
 // ── Create directory ──────────────────────────────────────────────────────────
+// Walks the path to find the parent directory, then allocates a new VFS node
+// for the final component and attaches it as a child of the parent.
 bool vfs_mkdir(const char* path) {
-    (void)path;
-    // TODO: implement directory creation
-    return false;
+    if (!path || !path[0]) return false;
+
+    // ── Separate parent path from the new directory name ──────────────────────
+    char parent_path[VFS_MAX_PATH];
+    char dir_name[VFS_MAX_NAME];
+
+    // Find the last '/' to split parent from name
+    int plen = vfs_strlen(path);
+    int slash = -1;
+    for (int i = plen - 1; i >= 0; i--) {
+        if (path[i] == '/') { slash = i; break; }
+    }
+
+    if (slash <= 0) {
+        // e.g. mkdir("docs") — parent is root
+        vfs_strcpy(parent_path, "/", VFS_MAX_PATH);
+        vfs_strcpy(dir_name, path + (slash + 1), VFS_MAX_NAME);
+    } else {
+        // Copy parent portion
+        int i = 0;
+        for (; i < slash && i < VFS_MAX_PATH - 1; i++) parent_path[i] = path[i];
+        parent_path[i] = 0;
+        vfs_strcpy(dir_name, path + slash + 1, VFS_MAX_NAME);
+    }
+
+    if (dir_name[0] == 0) return false; // trailing slash, nothing to create
+
+    // ── Resolve the parent node ───────────────────────────────────────────────
+    vfs_node_t* parent = vfs_resolve(parent_path);
+    if (!parent) {
+        terminal_write("[VFS] mkdir: parent not found: ");
+        terminal_write(parent_path);
+        terminal_write("\n");
+        return false;
+    }
+    if (parent->type != VFS_TYPE_DIR) {
+        terminal_write("[VFS] mkdir: parent is not a directory\n");
+        return false;
+    }
+    if (parent->child_count >= VFS_MAX_CHILDREN) {
+        terminal_write("[VFS] mkdir: parent directory is full\n");
+        return false;
+    }
+
+    // ── Check that the name does not already exist ────────────────────────────
+    for (uint32_t i = 0; i < parent->child_count; i++) {
+        if (vfs_strcmp(parent->children[i]->name, dir_name) == 0) {
+            terminal_write("[VFS] mkdir: already exists: ");
+            terminal_write(dir_name);
+            terminal_write("\n");
+            return false;
+        }
+    }
+
+    // ── Delegate to filesystem ops if available ───────────────────────────────
+    if (parent->ops && parent->ops->mkdir) {
+        return parent->ops->mkdir(parent, dir_name);
+    }
+
+    // ── Default: allocate a new in-memory directory node ─────────────────────
+    vfs_node_t* node = (vfs_node_t*)kzalloc(sizeof(vfs_node_t));
+    if (!node) {
+        terminal_write("[VFS] mkdir: out of memory\n");
+        return false;
+    }
+
+    vfs_strcpy(node->name, dir_name, VFS_MAX_NAME);
+    node->type        = VFS_TYPE_DIR;
+    node->size        = 0;
+    node->inode       = (uint64_t)(uintptr_t)node; // use address as unique inode
+    node->flags       = 0;
+    node->impl        = 0;
+    node->ops         = parent->ops;  // inherit parent ops (e.g. same filesystem)
+    node->parent      = parent;
+    node->child_count = 0;
+
+    // Attach to parent
+    parent->children[parent->child_count++] = node;
+
+    terminal_write("[VFS] mkdir: created ");
+    terminal_write(path);
+    terminal_write("\n");
+    return true;
 }

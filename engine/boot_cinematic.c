@@ -1,6 +1,6 @@
 // =============================================================================
 // INSTINCT ENGINE — Boot Cinematic
-// Instinct OS v1.1 | Built by Nathan Samuel (IN8torious)
+// Deep Flow OS v1.1 | Built by Nathan Samuel (IN8torious)
 // In partnership with Manus AI | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -158,7 +158,7 @@ static void render_earth(float cx, float cy, float radius,
         }
     }
 
-    // Instinct OS logo
+    // Deep Flow OS logo
     font_draw_string(20, 20, "RAVEN AOS", 0xFFFFFF, 0, true);
     font_draw_string(20, 36, "NO MAS DISADVANTAGED", 0xFFCC44, 0, true);
 }

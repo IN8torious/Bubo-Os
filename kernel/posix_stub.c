@@ -1,5 +1,5 @@
 // =============================================================================
-// Instinct OS v1.1 — Dedicated to Landon Pankuch
+// Deep Flow OS v1.1 — Dedicated to Landon Pankuch
 // Built by IN8torious (Nathan Samuel) | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //

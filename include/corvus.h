@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -23,7 +23,7 @@
 
 // =============================================================================
 // CORVUS — Chief Orchestration & Reasoning Via Unified Systems
-// Layer 5 of the Instinct OS 7-Layer Architecture
+// Layer 5 of the Deep Flow OS 7-Layer Architecture
 //
 // CORVUS is the embedded reasoning engine of Raven OS.
 // It coordinates all kernel agents, interprets user intent,
@@ -169,6 +169,9 @@ void corvus_remember(uint8_t agent_id, uint8_t tool_id,
 
 // Print CORVUS dashboard to VGA terminal
 void corvus_print_dashboard(void);
+
+// Get pointer to the agents array (for rendering and health bar)
+corvus_agent_t* corvus_get_agents(void);
 
 // Global CORVUS state (accessible to agents)
 extern corvus_state_t g_corvus;

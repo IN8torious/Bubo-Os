@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS v1.2 — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 // "NO MAS DISADVANTAGED"
 //
@@ -8,8 +8,8 @@
 // Tilemap, sprite animation, AABB collision, camera, dialogue, inventory.
 // Sits on top of INSTINCT ENGINE (ECS + physics + renderer3d).
 // =============================================================================
-#ifndef INSTINCT_GAME_ENGINE_H
-#define INSTINCT_GAME_ENGINE_H
+#ifndef DEEPFLOW_GAME_ENGINE_H
+#define DEEPFLOW_GAME_ENGINE_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -254,4 +254,4 @@ item_t*      ge_inventory_get_equipped(inventory_t* inv, uint8_t slot);
 // Collision
 bool         ge_aabb_overlap(aabb_t* a, aabb_t* b);
 
-#endif // INSTINCT_GAME_ENGINE_H
+#endif // DEEPFLOW_GAME_ENGINE_H

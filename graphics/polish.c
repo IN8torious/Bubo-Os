@@ -1,6 +1,6 @@
-// =============================================================================
-// Instinct OS — Dedicated to Landon Pankuch
-// =============================================================================
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 // Built by IN8torious | Copyright (c) 2025 | MIT License
 //
 // This software was created for Landon Pankuch, who has cerebral palsy,
@@ -19,7 +19,7 @@
 // =============================================================================
 
 // =============================================================================
-// Instinct OS — Visual Polish Layer
+// Deep Flow OS — Visual Polish Layer
 //
 // Everything that makes the desktop look alive instead of flat.
 //
@@ -469,4 +469,43 @@ void polish_init(void) {
     g_trail_head   = 0;
     g_pulse_alpha  = 0;
     g_pulse_active = false;
+}
+
+// ── Glass rect (convenience wrapper over frosted_glass) ───────────────────────
+// Single tint color + alpha — used by corvus_home, settings_app, corvus_search,
+// live_mode. Calls polish_frosted_glass with 1 blur pass for performance.
+void polish_glass_rect(int32_t x, int32_t y, int32_t w, int32_t h,
+                        uint32_t tint, uint8_t alpha) {
+    polish_frosted_glass(x, y, w, h, tint, alpha, 1);
+}
+
+// ── Full-screen vignette ──────────────────────────────────────────────────────
+// Darkens the edges of the screen toward black. Used by boot_cinematic.
+// intensity: 0 = no effect, 255 = fully black edges.
+void polish_vignette(int32_t sw, int32_t sh, uint8_t intensity) {
+    if (intensity == 0) return;
+    // Draw 4 gradient strips along each edge — top, bottom, left, right.
+    // Each strip is 1/8 of the screen dimension wide.
+    int32_t bw = sw / 8;  // border width horizontal
+    int32_t bh = sh / 8;  // border width vertical
+    uint32_t black = 0xFF000000;
+
+    // Top edge
+    polish_gradient_rect(0, 0, sw, bh, black, 0x00000000, false);
+    // Bottom edge
+    polish_gradient_rect(0, sh - bh, sw, bh, 0x00000000, black, false);
+    // Left edge
+    polish_gradient_rect(0, 0, bw, sh, black, 0x00000000, true);
+    // Right edge
+    polish_gradient_rect(sw - bw, 0, bw, sh, 0x00000000, black, true);
+
+    // Scale effect by intensity — blend with alpha proportional to intensity
+    if (intensity < 200) {
+        // Lighter vignette — just the strips above are enough
+        (void)intensity;
+    } else {
+        // Heavy vignette — add a second inner pass at half width
+        polish_gradient_rect(0, 0, sw, bh/2, black, 0x00000000, false);
+        polish_gradient_rect(0, sh - bh/2, sw, bh/2, 0x00000000, black, false);
+    }
 }

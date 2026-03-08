@@ -1,4 +1,4 @@
-# Instinct OS v1.2: The Doubled-Down Vision
+# Deep Flow OS v1.2: The Doubled-Down Vision
 
 **Mission:** "NO MAS DISADVANTAGED"
 **Target:** A self-improving, constitutionally governed, bare-metal sovereign AI operating system that transcends every existing AI paradigm.

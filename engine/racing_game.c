@@ -1,11 +1,6 @@
-// =============================================================================
-// Instinct OS — Racing Game: Landon's Demon 170 vs CORVUS Supra
-// =============================================================================
-// Landon Pankuch commands CORVUS with his voice.
-// CORVUS drives the Dodge Demon 170 (1,400 HP) for him.
-// CORVUS also drives the opposing Toyota Supra.
-// =============================================================================
-
+// Deep Flow OS — Copyright (c) 2025 IN8torious. MIT License.
+// Built for Landon Pankuch. Built for everyone who was told they couldn't.
+// https://github.com/IN8torious/Deep-Flow-OS
 #include "racing_game.h"
 #include "framebuffer.h"
 #include "font.h"
