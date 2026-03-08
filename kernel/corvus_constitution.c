@@ -81,3 +81,15 @@ void corvus_print_constitution(void) {
     }
     terminal_write("===============================\n\n");
 }
+
+// ── Stub: corvus_constitution_allows ─────────────────────────────────────────
+bool corvus_constitution_allows(uint32_t cmd_id) {
+    (void)cmd_id;
+    return true; // All commands allowed until full constitution wired
+}
+
+// ── Stub: corvus_execute_cmd ──────────────────────────────────────────────────
+bool corvus_execute_cmd(uint32_t cmd_id, char* response, uint32_t resp_len) {
+    (void)cmd_id; (void)response; (void)resp_len;
+    return true;
+}

@@ -386,3 +386,9 @@ const char* FCN_CMD_LABELS[FCN_OUTPUT_DIM] = {
     /* 40 */ "vm_start",   /* 41 */ "vm_stop",     /* 42 */ "vm_pause",   /* 43 */ "vm_resume",
     /* 44 */ "admin",      /* 45 */ "calibrate",   /* 46 */ "patch",      /* 47 */ "shutdown",
 };
+
+// ── Stub: fcn_train_step ──────────────────────────────────────────────────────
+void fcn_train_step(const float* features, uint32_t label, float learning_rate) {
+    (void)features; (void)label; (void)learning_rate;
+    // Full backprop wired in Hyperbolic Chamber phase
+}

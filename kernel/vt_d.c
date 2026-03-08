@@ -94,10 +94,10 @@ uint32_t vtd_find_gpu(void) {
                                 (bus << 16) | (dev << 11) | (fn << 8) | 0x08;
 
                 // Write address to CONFIG_ADDRESS
-                __asm__ volatile ("outl %0, $0xCF8" :: "a"(addr));
+                __asm__ volatile ("outl %0, %1" :: "a"(addr), "Nd"((uint16_t)0xCF8));
 
                 uint32_t class_rev;
-                __asm__ volatile ("inl $0xCFC, %0" : "=a"(class_rev));
+                __asm__ volatile ("inl %1, %0" : "=a"(class_rev) : "Nd"((uint16_t)0xCFC));
 
                 uint8_t class_code = (class_rev >> 24) & 0xFF;
                 if (class_code == 0x03) { // Display controller

@@ -628,3 +628,8 @@ void dysarthria_reset_profile(void) {
     g_state.profile.session_corrections = 0;
     terminal_write("[DYSARTHRIA] Profile reset — starting fresh calibration\n");
 }
+
+// ── Stub: dysarthria_start_calibration ───────────────────────────────────────
+void dysarthria_start_calibration(void) {
+    // Calibration sequence — wired to onboarding in next phase
+}

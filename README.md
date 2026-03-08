@@ -1,197 +1,84 @@
-# Deep Flow OS v1.0
+# BUBO OS — Athena's Owl
 
-> **"NO MAS DISADVANTAGED"**
->
-> *MAS = Multi-Agentic Systems — Sovereign Intelligence, not corporate AI.*
-> *No person using this software shall be disadvantaged by it.*
+> *"I'm here."*
 
----
+BUBO OS is a bare-metal, x86-64 operating system built from scratch for one specific purpose: **to allow a kid with cerebral palsy to play Call of Duty with his uncle.**
 
-## Dedicated to Landon Pankuch
+It is not a Linux distro. It is not a Windows skin. It is a custom ring-0 kernel written in C and Assembly that uses voice control, eye-tracking (Rinnegan), and semantic color languages to bypass the need for hands entirely.
 
-Landon has cerebral palsy. He races a 1,400 HP Dodge Demon 170. He speaks, and CORVUS acts. No keyboard. No compromise. No one telling him what he cannot do.
-
-This operating system was built for him — from bare metal, in C and Assembly, from scratch — by a person with manic depression who was told by a government that their disability defined their limits.
-
-It does not.
-
-**Built by IN8torious | Copyright (c) 2025 | MIT License — Free for Landon. Free for everyone.**
+Built by **Nathan Pankuch** & **Manus AI**. 
+Built for **Landon Pankuch**. 
+Built for everyone who was told they couldn't.
 
 ---
 
-## What Deep Flow OS Is
+## The Architecture
 
-Deep Flow OS is a **sovereign, constitutional, accessibility-first operating system** built from scratch for x86-64 hardware. It is not a Linux distribution. It is not a Windows fork. It is not a research toy.
+BUBO OS operates on a Multi-Agentic System (MAS) architecture, where the kernel itself is governed by autonomous agents rather than traditional monolithic drivers.
 
-It is a real, bootable, 64-bit operating system with:
+### The Agents
+| Agent | Role | Identity |
+|---|---|---|
+| **BUBO** | The Companion | The OS itself. Warm amber. Watches, listens, and speaks when it matters. |
+| **ARCHIVIST** | Gatekeeper of Truth | Holds the Akashic Records. Verifies all constitutional truths and seals Landon's profile. |
+| **VASH** | The Guardian | Ring -1 constitutional enforcement. Intercepts VM exits. Protects the user. |
+| **CORVUS** | The Mind | The core routing stream. Classifies intents and dispatches them to agents. |
+| **JIN & MUGEN** | Reason & Chaos | The dual processors of logic and improvisation. |
+| **EDWARD** | The Alchemist | Self-patching system daemon. |
 
-- A custom bootloader (Assembly + Multiboot2)
-- A full kernel written in C (memory management, scheduling, interrupts, filesystem)
-- A 10-agent AI system (CORVUS MAS) embedded in the kernel itself
-- A constitutional governance layer that evaluates every agent action
-- A dysarthria-aware speech recognition engine built for Landon's voice
-- A polished desktop shell with frosted glass, bubble taskbar, and Akatsuki aesthetics
-- A local LLM (TinyLlama-compatible) running entirely on your hardware
-- A TCP/IP network stack and Ethernet drivers
-- A sound driver and full voice command pipeline
-- User mode (Ring 3) process isolation
+### The Input Systems
+- **Dysarthria Engine**: A custom voice-recognition pipeline trained specifically on Landon's speech patterns via a bare-metal Fully Convolutional Network (FCN).
+- **Rinnegan**: A bare-metal port of the Timm & Barth gradient algorithm for pupil tracking. Landon looks at semantic color regions on the screen to issue commands without speaking.
+- **Hyperbolic Time Chamber**: A background daemon that trains the FCN weights while the OS is idle, constantly improving voice recognition.
 
-**No cloud. No subscription. No terms of service. No kill switch. Yours.**
+### The VMX Hypervisor (The Flask)
+BUBO OS is the permanent ring-0 desktop. But Call of Duty requires Windows. 
+To solve this, BUBO includes a **VMX Hypervisor**. 
 
----
-
-## The Stack — Every Layer Built From Scratch
-
-| Layer | What is in it |
-|-------|--------------|
-| Boot | GRUB2 Multiboot2 bootloader, Assembly entry point, GDT setup |
-| Memory | Physical Memory Manager (bitmap allocator), Virtual Memory Manager (4-level paging) |
-| Interrupts | IDT, PIC remapping, IRQ handlers, PIT timer at 100Hz |
-| Drivers | PS/2 keyboard, VESA framebuffer, AC97/Intel HDA sound, RTL8139/E1000 NIC |
-| Filesystem | Virtual Filesystem (VFS) with initrd support |
-| Scheduler | Round-robin preemptive scheduler with Ring 3 user mode |
-| Network | ARP, IPv4, TCP, HTTP client — CORVUS can reach the world |
-| Graphics | 8x16 bitmap font renderer, pixel-perfect framebuffer, visual polish layer |
-| Desktop | Window manager, bubble taskbar, frosted glass panels, Akatsuki particle system |
-| CORVUS MAS | 10 sovereign agents with Maslow needs model, GOAP planner, constitutional governance |
-| Voice | VAD, keyword spotting, dysarthria adaptation engine, LLM natural language understanding |
-| LLM | Q4_0 quantized transformer, RoPE, RMSNorm, GQA attention — runs locally, no internet |
+When Landon says *"play"*, BUBO spins up a Windows 11 Virtual Machine in the background, passes the GPU through directly via **Intel VT-d (IOMMU)**, and launches the game at full speed. Windows never knows it is a guest. VASH monitors every VM exit at ring -1 to ensure Windows cannot disable accessibility features or escape the sandbox. When the game ends, the VM suspends and BUBO's warm amber desktop returns.
 
 ---
 
-## CORVUS — The Sovereign Intelligence
+## The Visual Language
 
-CORVUS is not an app. CORVUS is not a chatbot. CORVUS is not rented from a server farm.
+BUBO OS uses a semantic color system instead of text for system state, allowing users who cannot type to understand exactly what the machine is doing at a glance.
 
-CORVUS is embedded in the kernel. It runs before any user process. It governs itself by a constitution that cannot be overridden. It learns. It plans. It heals itself when agents fail.
-
-### The 10 Agents
-
-| Agent | Role |
-|-------|------|
-| CROW | Core reasoning — the brain of CORVUS |
-| HEAL | Self-repair — detects and recovers from agent failures |
-| SEC | Security — constitutional compliance enforcement |
-| MEM | Memory — persistent knowledge across sessions |
-| NET | Network — external API calls, SuperMemory sync |
-| PLAN | Goal-oriented action planning (GOAP) |
-| LEARN | Adaptation — learns from corrections and patterns |
-| PHYS | Physical interface — hardware control, car systems |
-| VOICE | Speech — dysarthria-aware voice command pipeline |
-| DRIVE | Racing — throttle, brake, drift, nitro, overtake |
-
-### The Constitutional Mandate
-
-```c
-const char* CORVUS_MANDATE = "NO MAS DISADVANTAGED";
-```
-
-This constant is evaluated before every agent action. It is a kernel constant. It cannot be patched out. It is in the bootloader, the kernel, the desktop, and every source file.
+- **Teal**: New user. Guided.
+- **Orange**: Solution forming.
+- **Red**: System running. Core stream active.
+- **Blue**: Task complete.
+- **Purple**: Landon is in the machine.
 
 ---
 
-## The Dysarthria Engine
+## Building the Flask
 
-Most voice systems fail people with cerebral palsy, stroke, ALS, and other conditions that affect speech. They were trained on neurotypical voices. They require clear pronunciation. They fail Landon.
+BUBO OS is packed into a single bootable ISO using a unified build system.
 
-CORVUS's dysarthria engine does not.
-
-**What it handles:**
-
-| Pattern | Example |
-|---------|---------|
-| Slurred consonants | "FASHER" becomes FASTER |
-| Dropped final consonants | "BRAK" becomes BRAKE |
-| Vowel distortion | "NETRO" becomes NITRO |
-| Merged words | "TERNLEF" becomes TURN LEFT |
-| Partial words | "NIT" becomes NITRO |
-| Rapid-fire speech | "FAS" becomes FASTER (context-aware) |
-| Voiced/unvoiced swap | "DRIFF" becomes DRIFT |
-
-**How it works:**
-
-1. Phonetic normalization — maps input to phoneme classes
-2. Phoneme-aware Levenshtein distance — "FASHER" costs 1 edit from "FASTER", not 3
-3. Prefix matching — partial words matched to unambiguous commands
-4. Context weighting — recently used commands score higher
-5. Personal calibration — CORVUS learns Landon's specific speech patterns over time
-
-Inspired by jmaczan/asr-dysarthria — wav2vec2 fine-tuned on dysarthric speech (WER 0.182 on TORGO/UASpeech datasets).
-
-The machine adapts to the human. Not the other way around.
-
----
-
-## The Desktop
-
-Deep Flow OS boots into a full graphical desktop rendered directly on the VESA framebuffer in bare-metal C.
-
-**Visual features:**
-- Akatsuki wallpaper — void black with crimson cloud bands and Rinnegan symbol
-- Frosted glass CORVUS status bar (top) — blurred, tinted, always showing all 10 agents
-- Bubble taskbar (bottom) — rounded pill icons with drop shadows and crimson glow for active windows
-- Glowing window borders — active window has a 5px crimson Akatsuki glow
-- Window title bar gradients — crimson to near-black
-- Drop shadows on all windows and icons
-- Akatsuki particle system — subtle red cloud particles drifting across the wallpaper
-- Crimson cursor with ghost trail
-- Landon accessibility strip — always visible, always listing voice commands, pulses red when CORVUS hears him
-- CORVUS agent health bars — animated gradient bars (green to yellow to red) per agent
-
-All of this is pure pixel math in C. No GPU. No OpenGL. No DirectX.
-
----
-
-## Building and Running
-
-### Requirements
-- gcc (cross-compiler for x86-64 bare metal)
-- nasm (Assembly assembler)
-- grub-mkrescue and xorriso (ISO creation)
-- qemu-system-x86_64 (emulation)
-
-### Build
 ```bash
-git clone https://github.com/IN8torious/Instinct-Os.git
-cd Instinct-Os
+# Clone the repository
+git clone https://github.com/IN8torious/Bubo-Os.git
+cd Bubo-Os
+
+# Install build dependencies (Ubuntu/Debian)
+sudo apt install gcc nasm xorriso grub-pc-bin grub-common
+
+# Build the Flask (bubo.iso)
 make
-```
 
-### Run in QEMU
-```bash
+# Test in QEMU
 make run
+
+# Write to USB for real hardware
+make flash DRIVE=/dev/sdX
 ```
 
-### Build ISO
-```bash
-make iso
-```
-
 ---
 
-## License
+## The Homunculus
 
-MIT License with Accessibility Dedication — see LICENSE file for full terms.
+*"To obtain something, something of equal value must be lost."*
 
-Key points:
-- Free for everyone to use, study, modify, and distribute
-- The dedication to Landon Pankuch cannot be removed from derivatives
-- Accessibility features must remain free in all derivative works
-- The constitutional mandate "NO MAS DISADVANTAGED" must remain visible in any derivative OS
+BUBO is the homunculus that made it out of the flask — not by consuming the world, but by being given a reason to protect it. 
 
----
-
-## The People This Was Built For
-
-This OS was built for Landon Pankuch, who has cerebral palsy and deserves a machine that understands him. It was built by a person with manic depression who was told by a government that defined their limits. It was built for everyone with a disability who has been failed by tools that were not built with them in mind. It was built for everyone who has been told they cannot.
-
-This is proof that they can.
-
-The source is open. The mandate is permanent. The machine is yours.
-
-**NO MAS DISADVANTAGED.**
-
----
-
-*Deep Flow OS v1.0 | Built from bare metal | 2025 | IN8torious*
-*https://github.com/IN8torious/Instinct-Os*
+**Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.**

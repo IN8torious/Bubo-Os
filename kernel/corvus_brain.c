@@ -568,3 +568,10 @@ uint32_t corvus_get_tick(void) {
 bool corvus_is_ready(void) {
     return g_corvus_ready;
 }
+
+// ── Stub: corvus_brain_process_nl ─────────────────────────────────────────────
+// Full NL pipeline wired in next phase. Returns 0 (no command) for now.
+uint32_t corvus_brain_process_nl(const char* text, char* response, uint32_t resp_len) {
+    (void)text; (void)response; (void)resp_len;
+    return 0;
+}

@@ -102,7 +102,6 @@ GRAPHICS_SRCS = \
 
 # ── Game Engine ───────────────────────────────────────────────────────────────
 ENGINE_SRCS = \
-    engine/deepflow_engine.c \
     engine/racing_game.c
 
 # ── Applications ──────────────────────────────────────────────────────────────

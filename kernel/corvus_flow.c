@@ -260,7 +260,7 @@ void flow_admin(admin_cmd_t cmd) {
             flow_speak("Rebooting.");
             flow_record_step(STEP_ACTION, "Admin: reboot", "system_reboot", "OK", 0, 1.0f, true);
             // Keyboard controller reset
-            __asm__ volatile("outb $0xFE, $0x64");
+            __asm__ volatile("outb %0, %1" :: "a"((uint8_t)0xFE), "Nd"((uint16_t)0x64));
             break;
 
         case ADMIN_STATUS:
