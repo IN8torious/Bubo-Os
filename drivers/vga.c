@@ -27,12 +27,54 @@
 #include <stddef.h>
 #include <stdint.h>
 
+// ── Deep Flow Red Palette — VGA DAC reprogramming ────────────────────────────
+// The Matrix runs green. Deep Flow OS runs RED. That's Nathan's color.
+// We reprogram the VGA DAC at boot so the hardware palette reflects our identity.
+static inline void vga_out8(uint16_t port, uint8_t val) {
+    __asm__ volatile ("outb %0, %1" : : "a"(val), "Nd"(port));
+}
+
+static void vga_set_dac_color(uint8_t index, uint8_t r, uint8_t g, uint8_t b) {
+    vga_out8(0x3C8, index);
+    vga_out8(0x3C9, r);
+    vga_out8(0x3C9, g);
+    vga_out8(0x3C9, b);
+}
+
+static void vga_apply_deepflow_palette(void) {
+    // 16-entry red spectrum palette — 6-bit DAC values (0-63)
+    // { index, R, G, B }
+    static const uint8_t pal[16][4] = {
+        {  0,  0,  0,  0 }, // 0: Black
+        {  1, 34,  2,  2 }, // 1: Dark red — errors
+        {  2, 10,  0,  0 }, // 2: Deep red — dim text
+        {  3, 44,  8,  8 }, // 3: Mid red — normal text
+        {  4, 20,  0,  0 }, // 4: Dark background
+        {  5, 27,  1,  0 }, // 5: VASH crimson
+        {  6, 50, 30,  0 }, // 6: Orange — solutions
+        {  7, 55, 55, 55 }, // 7: Light gray — UI chrome
+        {  8, 25,  0,  0 }, // 8: Dark gray with red tint
+        {  9, 63,  8,  8 }, // 9: Bright red — code stream
+        { 10, 20,  0,  0 }, // A: Dark red
+        { 11, 63, 17, 17 }, // B: Bright red highlight
+        { 12, 63, 42,  0 }, // C: Orange-gold — Ultra Instinct
+        { 13, 63, 50,  0 }, // D: Bright gold
+        { 14, 63, 63, 63 }, // E: White — critical alerts
+        { 15, 63, 26,  0 }, // F: Orange — solution bright
+    };
+    for (int i = 0; i < 16; i++) {
+        vga_set_dac_color(pal[i][0], pal[i][1], pal[i][2], pal[i][3]);
+    }
+}
+
 size_t terminal_row = 0;
 size_t terminal_col = 0;
 uint8_t terminal_color;
 
 void terminal_init(void) {
-    // Akatsuki theme: dark red on black
+    // Deep Flow red palette — Nathan's color. The Matrix runs green. We run red.
+    vga_apply_deepflow_palette();
+    // Bright red on black — the living code stream
     terminal_color = vga_entry_color(VGA_LIGHT_RED, VGA_BLACK);
     terminal_clear();
 }

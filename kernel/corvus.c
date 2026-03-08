@@ -174,7 +174,7 @@ void corvus_process_intent(const char* intent) {
         terminal_writeline("    help          — Show this menu");
     }
     else if (str_starts(intent, "agents")) {
-        uint8_t green = vga_entry_color(VGA_LIGHT_GREEN, VGA_BLACK);
+        uint8_t green = vga_entry_color(VGA_YELLOW, VGA_BLACK);
         uint8_t white = vga_entry_color(VGA_WHITE, VGA_BLACK);
         terminal_setcolor(white);
         terminal_writeline("  CORVUS Agent Roster:");
@@ -200,7 +200,7 @@ void corvus_process_intent(const char* intent) {
     }
     else if (str_starts(intent, "heal")) {
         g_corvus.agents[AGENT_HEALER].state = AGENT_ACTING;
-        uint8_t green = vga_entry_color(VGA_LIGHT_GREEN, VGA_BLACK);
+        uint8_t green = vga_entry_color(VGA_YELLOW, VGA_BLACK);
         terminal_setcolor(green);
         terminal_writeline("  [CORVUS:HEALER] Running self-heal sequence...");
         terminal_writeline("  [CORVUS:HEALER] All systems nominal.");
@@ -258,7 +258,7 @@ void corvus_tick(void) {
 void corvus_print_dashboard(void) {
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,   VGA_BLACK);
     uint8_t white = vga_entry_color(VGA_WHITE,        VGA_BLACK);
-    uint8_t green = vga_entry_color(VGA_LIGHT_GREEN,  VGA_BLACK);
+    uint8_t green = vga_entry_color(VGA_YELLOW,  VGA_BLACK);
     uint8_t grey  = vga_entry_color(VGA_DARK_GREY,    VGA_BLACK);
 
     terminal_setcolor(red);
@@ -356,7 +356,7 @@ void corvus_init(void) {
     // Report to terminal
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,  VGA_BLACK);
     uint8_t white = vga_entry_color(VGA_WHITE,       VGA_BLACK);
-    uint8_t green = vga_entry_color(VGA_LIGHT_GREEN, VGA_BLACK);
+    uint8_t green = vga_entry_color(VGA_YELLOW, VGA_BLACK);
 
     terminal_setcolor(red);
     terminal_writeline("  ┌─────────────────────────────────────────────────────────────┐");

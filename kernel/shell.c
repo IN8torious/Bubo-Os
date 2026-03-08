@@ -121,7 +121,7 @@ static void cmd_uptime(void) {
 static void cmd_memory(void) {
     pmm_stats_t stats = pmm_get_stats();
     uint8_t white = vga_entry_color(VGA_WHITE,       VGA_BLACK);
-    uint8_t green = vga_entry_color(VGA_LIGHT_GREEN, VGA_BLACK);
+    uint8_t green = vga_entry_color(VGA_YELLOW, VGA_BLACK);
     uint8_t red   = vga_entry_color(VGA_LIGHT_RED,   VGA_BLACK);
     uint8_t grey  = vga_entry_color(VGA_DARK_GREY,   VGA_BLACK);
 
@@ -141,7 +141,7 @@ static void cmd_memory(void) {
 static void cmd_vector(void) {
     uint8_t white = vga_entry_color(VGA_WHITE,      VGA_BLACK);
     uint8_t grey  = vga_entry_color(VGA_DARK_GREY,  VGA_BLACK);
-    uint8_t green = vga_entry_color(VGA_LIGHT_GREEN,VGA_BLACK);
+    uint8_t green = vga_entry_color(VGA_YELLOW,VGA_BLACK);
 
     terminal_setcolor(white);
     terminal_writeline("  CORVUS Vector Memory (last 8 entries):");

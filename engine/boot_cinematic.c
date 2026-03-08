@@ -159,8 +159,8 @@ static void render_earth(float cx, float cy, float radius,
     }
 
     // Deep Flow OS logo
-    font_draw_string(20, 20, "RAVEN AOS", 0xFFFFFF, 0, true);
-    font_draw_string(20, 36, "NO MAS DISADVANTAGED", 0xFFCC44, 0, true);
+    font_draw_string(20, 20, "DEEP FLOW OS", 0xFF2020, 0, true);
+    font_draw_string(20, 36, "THIS IS THE WAY", 0xFF6600, 0, true);
 }
 
 // ── Zoom phase ────────────────────────────────────────────────────────────────
@@ -188,7 +188,7 @@ static void render_zoom(float t) {
         fb_draw_line(mx-20, my, mx+20, my, col | 0x2222);
         fb_draw_line(mx, my-20, mx, my+20, col | 0x2222);
         if (alpha > 0.5f)
-            font_draw_string(mx+24, my-6, "NURBURGRING", 0xFFCC44, 0, true);
+            font_draw_string(mx+24, my-6, "NURBURGRING", 0xFF6600, 0, true);
     }
 }
 
@@ -206,9 +206,9 @@ static void render_tile_load(float t) {
     fb_draw_rect(50, (int32_t)(sh/2 - 8), sw-100, 16, 1, 0x444444);
 
     font_draw_string((int32_t)(sw/2 - 80), (int32_t)(sh/2 + 20),
-                     "LOADING NURBURGRING NORDSCHLEIFE", 0xFFFFFF, 0, true);
+                     "LOADING NURBURGRING NORDSCHLEIFE", 0xFF4444, 0, true);
     font_draw_string((int32_t)(sw/2 - 60), (int32_t)(sh/2 + 40),
-                     "THE GREEN HELL — 20.832 KM", 0xCC2222, 0, true);
+                     "THE GREEN HELL â 20.832 KM", 0xFF6600, 0, true);
 
     // Render world top-down as it loads
     if (t > 0.3f) {
