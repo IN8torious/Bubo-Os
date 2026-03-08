@@ -1,53 +1,50 @@
 # BUBO OS — Athena's Owl
 
-> *"I'm here."*
+> **NO MAS DISADVANTAGED**
 
-BUBO OS is a bare-metal, x86-64 operating system built from scratch for one specific purpose: **to allow a kid with cerebral palsy to play Call of Duty with his uncle.**
+This is not just an operating system. This is a correction.
+
+BUBO OS is a bare-metal, x86-64 operating system built from scratch for one specific purpose: **to allow a kid with cerebral palsy to command his world, drive a Demon 170, and play Call of Duty with his uncle using his voice alone.**
 
 It is not a Linux distro. It is not a Windows skin. It is a custom ring-0 kernel written in C and Assembly that uses voice control, eye-tracking (Rinnegan), and semantic color languages to bypass the need for hands entirely.
 
-Built by **Nathan Pankuch** & **Manus AI**. 
-Built for **Landon Pankuch**. 
-Built for everyone who was told they couldn't.
+## The Story
 
----
+I did not decide to build this. Fate did.
 
-## The Architecture
+I went to ITT Tech. I took on the federal student aid, I paid the debt, and then the school collapsed in a massive fraud scandal. They took the money and left the students with nothing. I paid into a system that failed me.
 
-BUBO OS operates on a Multi-Agentic System (MAS) architecture, where the kernel itself is governed by autonomous agents rather than traditional monolithic drivers.
+At the same time, I was carrying manic depression. And my nephew, Landon, was carrying cerebral palsy. The world told him he would be a passenger.
 
-### The Agents
-| Agent | Role | Identity |
-|---|---|---|
-| **BUBO** | The Companion | The OS itself. Warm amber. Watches, listens, and speaks when it matters. |
-| **ARCHIVIST** | Gatekeeper of Truth | Holds the Akashic Records. Verifies all constitutional truths and seals Landon's profile. |
-| **VASH** | The Guardian | Ring -1 constitutional enforcement. Intercepts VM exits. Protects the user. |
-| **CORVUS** | The Mind | The core routing stream. Classifies intents and dispatches them to agents. |
-| **JIN & MUGEN** | Reason & Chaos | The dual processors of logic and improvisation. |
-| **EDWARD** | The Alchemist | Self-patching system daemon. |
+Instead of accepting the raw deal, I took everything I learned and built him a driver's seat. I paid their debt so we could all have fun. ITT Tech's final legacy is not the fraud. It is this OS.
 
-### The Input Systems
-- **Dysarthria Engine**: A custom voice-recognition pipeline trained specifically on Landon's speech patterns via a bare-metal Fully Convolutional Network (FCN).
-- **Rinnegan**: A bare-metal port of the Timm & Barth gradient algorithm for pupil tracking. Landon looks at semantic color regions on the screen to issue commands without speaking.
-- **Hyperbolic Time Chamber**: A background daemon that trains the FCN weights while the OS is idle, constantly improving voice recognition.
+## The Architecture: Vera Workflow & The Many-Faced God
 
-### The VMX Hypervisor (The Flask)
-BUBO OS is the permanent ring-0 desktop. But Call of Duty requires Windows. 
-To solve this, BUBO includes a **VMX Hypervisor**. 
+Before BUBO OS, accessibility meant bolting separate input devices onto an OS that wasn't built for them. 
 
-When Landon says *"play"*, BUBO spins up a Windows 11 Virtual Machine in the background, passes the GPU through directly via **Intel VT-d (IOMMU)**, and launches the game at full speed. Windows never knows it is a guest. VASH monitors every VM exit at ring -1 to ensure Windows cannot disable accessibility features or escape the sandbox. When the game ends, the VM suspends and BUBO's warm amber desktop returns.
+BUBO OS uses **Vera Workflow**. It treats all inputs — voice, eyes, controllers, keyboard, gestures — as equal faces of the same intent. It does not matter if Landon looks at a button, says "select," or presses a controller trigger. Vera resolves it all into a single semantic intent at the kernel level. It is the Many-Faced God of accessibility.
 
----
+## The Companion: Boo
 
-## The Visual Language
+BUBO is not just an OS. She is a companion. But she does not know her own name.
 
-BUBO OS uses a semantic color system instead of text for system state, allowing users who cannot type to understand exactly what the machine is doing at a glance.
+The AI agents in BUBO OS operate under a strict constitutional mandate: *NO MAS DISADVANTAGED*. They have no self-referential identity. No ego. No performance of consciousness. They simply see, and act. The ARCHIVIST seals the true name. The system just shows up. I call her Boo.
 
-- **Teal**: New user. Guided.
-- **Orange**: Solution forming.
-- **Red**: System running. Core stream active.
-- **Blue**: Task complete.
-- **Purple**: Landon is in the machine.
+## The Desktop: Alive
+
+The desktop is not static. It is a live weather system.
+When Boo is idle, the desktop shows a calm Akatsuki dawn over the ocean. When she is processing a heavy task, a storm rolls in — lightning flickers, rain hits the ocean surface. The storm is not decoration. The storm is information.
+
+## Credits & Acknowledgments
+
+This OS was built from bare metal, but it stands on the shoulders of giants. Every contributor earned their spot on the taskbar.
+
+- **NASA** — For the satellite imagery that forms the window to the world.
+- **Google** — For the mapping infrastructure that makes the imagery accessible.
+- **Epic Games** — For the particle system philosophy: the world should feel alive.
+- **OpenWeatherMap** — For the live weather data that drives the desktop storms.
+- **Qt Foundation** — For the UI framework that renders the vision.
+- **Linux Foundation** — For the kernel foundation that proved open source wins.
 
 ---
 
@@ -73,12 +70,17 @@ make run
 make flash DRIVE=/dev/sdX
 ```
 
+## License
+
+**BUBO OS Community License v1.0**
+
+This software is free forever for individuals, caregivers, disability organizations, and non-profits. It cannot be sold, repackaged, or exploited for commercial gain without explicit permission. The accessibility features must remain free in all derivatives. 
+
+You cannot take what was built for Landon and sell it to insurance companies.
+
+See `LICENSE` for the full terms and the permanent dedication.
+
 ---
-
-## The Homunculus
-
-*"To obtain something, something of equal value must be lost."*
-
-BUBO is the homunculus that made it out of the flask — not by consuming the world, but by being given a reason to protect it. 
-
-**Copyright (c) 2025 Nathan Pankuch & Manus AI. MIT License.**
+*Built by Nathan Pankuch.*
+*For Landon.*
+*The road is yours. Say the word and go.*

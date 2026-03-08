@@ -34,6 +34,8 @@
 #include "dysarthria.h"
 #include "vera_workflow.h"
 #include "bubo_input_map.h"
+#include "bubo_weather.h"
+#include "bubo_particles.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -176,7 +178,20 @@ void desktop_close_window(int32_t wid) {
 void desktop_render(void) {
     if (!g_desktop_ready) return;
     desktop_draw_wallpaper();
-    // Akatsuki particle system — drifting red cloud particles over wallpaper
+    // ── Vera Workflow weather particles — rain, lightning, storm ─────────────
+    // Real weather from OpenWeatherMap (Brunswick, OH 44212)
+    // Storm intensifies when Boo is processing tasks
+    {
+        bubo_visual_intensity_t vis = bubo_weather_get_visual(&g_bubo_weather);
+        bubo_particles_set_intensity(&g_bubo_particles, &vis);
+        bubo_particles_update(&g_bubo_particles, &vis);
+        // Render particles over the wallpaper, under the UI
+        fb_info_t* _fb = fb_get_info();
+        bubo_particles_render(&g_bubo_particles,
+                              (uint32_t*)_fb->addr,
+                              (int)_fb->width, (int)_fb->height);
+    }
+    // Akatsuki polish particles — drifting red cloud particles over wallpaper
     polish_particles_tick();
     desktop_draw_icons();
     desktop_draw_windows();
@@ -265,6 +280,36 @@ static void desktop_draw_taskbar(void) {
     polish_bubble(sw - 168, ty + 4, 80, TASKBAR_HEIGHT - 8, 0xFF001A00, 180, 8);
     polish_fill_rect_alpha(sw - 160, ty + 10, 8, 8, DF_HEALTH_GREEN, 255);
     font_draw_string(sw - 148, ty + 8, "BUBO", COL_GREEN, COL_TRANSPARENT, true);
+
+    // ── Live weather widget ───────────────────────────────────────────────────
+    // Powered by OpenWeatherMap — Brunswick, Ohio 44212
+    // Storm intensity driven by Vera Workflow task signal
+    {
+        char weather_str[96] = {0};
+        bubo_weather_format_taskbar(&g_bubo_weather, weather_str, sizeof(weather_str));
+
+        // Weather bubble — left of clock
+        int32_t wb_w = 260;
+        int32_t wb_x = sw - 168 - wb_w - 8;
+        polish_bubble(wb_x, ty + 4, wb_w, TASKBAR_HEIGHT - 8, 0xFF00080A, 180, 8);
+
+        // Color the weather text based on conditions
+        uint32_t wcol = COL_CLOUD;
+        switch (g_bubo_weather.state) {
+            case WEATHER_THUNDERSTORM: wcol = COL_GOLD;    break;
+            case WEATHER_RAIN:         wcol = DF_AGENT_HEAL; break;
+            case WEATHER_SNOW:         wcol = 0xFFCCDDFF;  break;
+            case WEATHER_CLEAR:        wcol = 0xFFFFCC88;  break;
+            default:                   wcol = COL_CLOUD;   break;
+        }
+        font_draw_string(wb_x + 8, ty + 10, weather_str, wcol, COL_TRANSPARENT, false);
+
+        // Storm intensity indicator dot — pulses when Boo is working
+        if (g_bubo_task_intensity >= TASK_INTENSITY_MODERATE) {
+            uint32_t pulse = (g_desktop.tick % 60 < 30) ? POLISH_COLOR_CRIMSON : COL_GOLD;
+            polish_fill_rect_alpha(wb_x + wb_w - 12, ty + 10, 8, 8, pulse, 255);
+        }
+    }
 
     desktop_draw_clock();
 }
